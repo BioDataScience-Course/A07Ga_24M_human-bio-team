@@ -67,11 +67,19 @@ skimr::skim(biometry_data)
 ### Description par l'étudiant 4
 
 ```{r}
-chart(data = biometry, masse_corr ~ genre %fill=% genre) +
+chart(data = biometry_data, masse_corr ~ genre %fill=% genre) +
   geom_boxplot() +
 labs(title = "Distribution de la masse par genre",
        x = "Genre",
        y = "Masse (kg)")
+cross_table <- table(biometry_data$masse_corr, biometry_data$genre)
+tabularise(cross_table)
+```
+
+```{r}
+# Commentaire
+
+La ligne épaisse à  l intérieur de chaque boîte représente est la mediane de la masse pour chaque genre. On observe que la médiane de la masse est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu''il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande. 
 ```
 
 ## Calcul d'indices
