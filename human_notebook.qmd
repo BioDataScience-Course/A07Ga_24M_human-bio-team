@@ -1,6 +1,6 @@
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
-author: "___, ___, ___, ___"
+author: "Amal_Abarou, Fiona_Guiwala, Audrey_Tchuente, Leslie_Tankam"
 date: "`r Sys.Date()`"
 format:
   html:
