@@ -66,7 +66,13 @@ skimr::skim(biometry_data)
 
 ### Description par l'étudiant 4
 
-...Vos deux descriptions ici...
+```{r}
+chart(data = biometry, masse_corr ~ genre %fill=% genre) +
+  geom_boxplot() +
+labs(title = "Distribution de la masse par genre",
+       x = "Genre",
+       y = "Masse (kg)")
+```
 
 ## Calcul d'indices
 
