@@ -203,7 +203,7 @@ chart(biometry_data, ~ IMG) +
 
 -   On note la présence de valeurs courantes d'IMG se situant entre 15% et 35%, où l'on observe les plus hautes barres. Ces valeurs correspondent généralement aux IMG normaux en fonctions des références.
 
--   On note la présence des valeurs extrêmes et rares, très peu d\'individus ont un IMG inférieur a 10% ou supérieur a 50% (un IMG \< 10% peut être observé chez les athlètes : tres faible, tandis qu\'un IMG \>50% indique une forte accumulation de masse grasse : obésité )
+-   On note la présence des valeurs extrêmes et rares, très peu d'individus ont un IMG inférieur a 10% ou supérieur a 50% (un IMG \< 10% peut être observé chez les athlètes : tres faible, tandis qu'un IMG \>50% indique une forte accumulation de masse grasse : obésité )
 
 -   Cette distribution est asymétrique.
 
