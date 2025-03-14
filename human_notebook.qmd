@@ -54,8 +54,6 @@ skimr::skim(biometry_data)
 
 ### Description par l'étudiant 1
 
-...Vos deux descriptions ici...
-
 ### Description par l'étudiant 2
 
 ...Vos deux descriptions ici...
