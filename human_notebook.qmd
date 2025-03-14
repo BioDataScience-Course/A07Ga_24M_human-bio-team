@@ -64,7 +64,21 @@ skimr::skim(biometry_data)
 
 ### Description par l'étudiant 4
 
-...Vos deux descriptions ici...
+```{r}
+chart(data = biometry_data, masse_corr ~ genre %fill=% genre) +
+  geom_boxplot() +
+labs(title = "Distribution de la masse par genre",
+       x = "Genre",
+       y = "Masse (kg)")
+cross_table <- table(biometry_data$masse_corr, biometry_data$genre)
+tabularise(cross_table)
+```
+
+```{r}
+# Commentaire
+
+La ligne épaisse à  l intérieur de chaque boîte représente est la mediane de la masse pour chaque genre. On observe que la médiane de la masse est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu''il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande. 
+```
 
 ## Calcul d'indices
 
@@ -153,25 +167,43 @@ biometry_data <- biometry_data %>%
 
 <!--% Description et formule ci-dessous. -->
 
+L'**Indice de Masse Grasse (IMG)** est une mesure qui estime le pourcentage de graisse corporelle d'une personne. Contrairement à l'IMC (indice de masse corporelle), qui ne fait pas de distinction entre la masse grasse et la masse musculaire, l'IMG offre une estimation plus précise de la composition corporelle.
+
 ```{r indice4}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
+     
+biometry_data <- biometry_data %>%
+  smutate(., 
+   taille_m = taille / 100,
+   IMC = masse_corr / (taille_m^2),  # Calcul de l'IMC
+   IMG = (1.2 * IMC) + (0.23 * age) - (10.8 * ifelse(genre == "H", 1, 0)) - 5.4) # Calcul de l'IMG en fonction du sexe
 
+# Transformation en facteur (classification en catégories)
+biometry_data <- biometry_data %>%
+  smutate(., IMG_Categorie = cut(IMG, 
+          breaks = c(-Inf, 10, 20, 25, 30, Inf), 
+          labels = c("Très faible", "Faible", "Normal", "Élevé", "Obésité"),
+                             ordered_result = TRUE))
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice4}
 # Graphique ou tableau utilisant l'indice calculé.
-
+chart(biometry_data, ~ IMG) +
+  geom_histogram(binwidth = 2, fill = "blue", alpha = 0.6, color = "black") +
+  labs(title = "Répartition de l'Indice de Masse Grasse",
+       x = "IMG (%)",
+       y = "Nombre d'individus")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   On note la présence de valeurs courantes d'IMG se situant entre 15% et 35%, où l'on observe les plus hautes barres. Ces valeurs correspondent généralement aux IMG normaux en fonctions des références.
 
--   ...
+-   On note la présence des valeurs extrêmes et rares, très peu d'individus ont un IMG inférieur a 10% ou supérieur a 50% (un IMG \< 10% peut être observé chez les athlètes : tres faible, tandis qu'un IMG \>50% indique une forte accumulation de masse grasse : obésité )
 
--   ...
+-   Cette distribution est asymétrique.
 
 ## Tests d'hypothèses
 
