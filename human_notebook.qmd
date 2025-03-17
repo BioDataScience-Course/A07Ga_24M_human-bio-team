@@ -84,7 +84,7 @@ tabularise(cross_table)
 
 La ligne épaisse à l'intérieur de chaque boîte représente est la médiane de la masse pour chaque genre. La médiane de la masse est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu'il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande.
 
-Le tableau obtenu reflète une différence biologique habituelle, les hommes ayant généralement une masse musculaire plus élevée que les femmes. L\'écart type est pratiquement similaire entre les hommes et les femmes de meme que le nombre d'individus analysé. Comme conclusion : les hommes ont une masse corporelle moyenne plus élevée que les femmes ce qui correspond a la tendance physiologiques générale.
+Le tableau obtenu reflète une différence biologique habituelle, les hommes ayant généralement une masse musculaire plus élevée que les femmes. L'écart type est pratiquement similaire entre les hommes et les femmes de meme que le nombre d'individus analysé. Comme conclusion : les hommes ont une masse corporelle moyenne plus élevée que les femmes ce qui correspond a la tendance physiologiques générale.
 
 ## Calcul d'indices
 
