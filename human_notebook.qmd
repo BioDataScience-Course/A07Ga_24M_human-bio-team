@@ -1,3 +1,5 @@
+------------------------------------------------------------------------
+
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
 author: "Amal_Abarou, Fiona_Guiwala, Audrey_Tchuente, Leslie_Tankam"
@@ -118,6 +120,8 @@ biometry_data <- biometry_data %>%
 ### Indice 2
 
 <!--% Description et formule ci-dessous. -->
+
+Le rapport tour de taille sur tour de hanches (RTH) est une mesure anthropométrique qui permet d'évaluer la distribution de la graisse corporelle. Son élévation témoigne d'une accumulation de tissus graisseux au niveau abdominal
 
 ```{r indice2}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
