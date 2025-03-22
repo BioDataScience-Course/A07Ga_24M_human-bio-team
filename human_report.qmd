@@ -22,11 +22,9 @@ if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
 
 # Configuration de l'environnement SciViews::R
-<<<<<<< HEAD
-SciViews::R(infer, lang = "fr")
-=======
+
 SciViews::R("infer", lang = "fr")
->>>>>>> 20e1d937e9dae3cec66c5216633c6e708175b472
+
 ```
 
 # Introduction
