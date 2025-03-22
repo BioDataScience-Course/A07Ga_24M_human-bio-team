@@ -72,7 +72,23 @@ chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
 
 ### Description par l'étudiant 3
 
-...Vos deux descriptions ici...
+```{r}
+#Regroupage en tranche d'age 
+## Recodage de biometry_data$age en biometry_data$age_rec
+biometry_data$age_rec <- cut(biometry_data$age,
+  include.lowest = FALSE,
+  right = TRUE,
+  dig.lab = 4,
+  breaks = c(18, 30, 50, 70, Inf),
+labels = c("18-30 ans", "30-50ans", "50-70ans", "plus de 70ans"))
+
+chart(data = biometry_data, ~ fast_food %fill=% genre | age_rec) +
+  geom_bar(position = "dodge") +
+  scale_fill_viridis_d() +
+  labs(title = "Répartition de la consommation de fast-food par tranche d'âge",
+  x = "Nombre de fast-food consommés par semaine",
+  y = "Effectifs")
+```
 
 ### Description par l'étudiant 4
 
