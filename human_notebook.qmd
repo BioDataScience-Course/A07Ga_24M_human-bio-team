@@ -326,7 +326,7 @@ H1 : mean \[0,1) - mean \[1,13\] != 0
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
-
+t.test(data = biometry_data, IMG ~ fast_food_rec)
 ```
 
 <!-- Interprétation statistique et biologique -->
