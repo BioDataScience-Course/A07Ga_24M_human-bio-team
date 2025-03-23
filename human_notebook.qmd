@@ -305,10 +305,23 @@ chart(biometry_data, ~ IMG) +
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_1}
-
+## Recodage de biometry_data$fast_food en biometry_data$fast_food_rec
+biometry_data$fast_food_rec <- cut(biometry_data$fast_food,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 1, 13) 
+  )
+biometry_data %>.%
+  sgroup_by(., fast_food_rec) %>.%
+  ssummarise(., mean = mean(IMG, na.rm = T))
 ```
 
 <!-- Hypothèse nulle et alternative -->
+
+H0 : mean \[0,1) - mean \[1,13\] = 0
+
+H1 : mean \[0,1) - mean \[1,13\] != 0
 
 <!-- Vérification des conditions d'application -->
 
