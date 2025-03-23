@@ -110,15 +110,19 @@ chart(data = biometry_data, masse_corr ~ genre %fill=% genre) +
 labs(title = "Distribution de la masse par genre",
        x = "Genre",
        y = "Masse (kg)")
-cross_table <- table(biometry_data$masse_corr, biometry_data$genre)
+cross_table <- biometry_data %>%
+  group_by(., genre) %>%
+  ssummarise(.,
+    moyenne        = fmean(masse_corr),
+    ecart_type     =  fsd(masse_corr),
+    n              = fn(masse_corr)
+    )
 tabularise(cross_table)
 ```
 
-```{r}
-# Commentaire
+La ligne épaisse à l'intérieur de chaque boîte représente la mediane de la masse pour chaque genre. Cette médiane est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu'il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande.
 
-La ligne épaisse à  l intérieur de chaque boîte représente est la mediane de la masse pour chaque genre. On observe que la médiane de la masse est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu''il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande. 
-```
+Le tableau obtenu reflète une différence biologique habituelle, les hommes ayant généralement une masse musculaire plus élevée que les femmes. L\'écart type est pratiquement similaire entre les hommes et les femmes de même que le nombre d'individu analyse. Comme conclusion : les hommes ont une masse corporelle moyenne plus élevée que les femmes ce qui correspond a la tendance physiologique générale
 
 ## Calcul d'indices
 
