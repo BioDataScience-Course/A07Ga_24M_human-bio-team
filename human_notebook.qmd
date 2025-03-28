@@ -241,11 +241,12 @@ biometry_data <- biometry_data %>%
 
 ```{r plot_indice4}
 # Graphique ou tableau utilisant l'indice calculé.
-chart(biometry_data, ~ IMG) +
-  geom_histogram(binwidth = 2, fill = "blue", alpha = 0.6, color = "black") +
+chart(biometry_data, ~ IMG %fill=% genre | genre) +
+  geom_density(binwidth = 2, alpha = 0.6, color = "black") +
+  scale_fill_viridis_d() +
   labs(title = "Répartition de l'Indice de Masse Grasse",
        x = "IMG (%)",
-       y = "Nombre d'individus")
+       y = "Densité")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
@@ -314,7 +315,7 @@ biometry_data$fast_food_rec <- cut(biometry_data$fast_food,
   )
 biometry_data %>.%
   sgroup_by(., fast_food_rec) %>.%
-  ssummarise(., mean = mean(IMG, na.rm = T))
+  ssummarise(., mean = mean(IMG, na.rm = T)) 
 ```
 
 <!-- Hypothèse nulle et alternative -->
@@ -324,6 +325,13 @@ H0 : mean \[0,1) - mean \[1,13\] = 0
 H1 : mean \[0,1) - mean \[1,13\] != 0
 
 <!-- Vérification des conditions d'application -->
+
+```{r}
+biometry_data 
+biometry_data$imglog <- log(biometry_data$IMG)
+car::qqPlot(biometry_data[["imglog"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "VVV")
+```
 
 ```{r test_t_1}
 t.test(data = biometry_data, IMG ~ fast_food_rec)
