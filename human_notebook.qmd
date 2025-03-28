@@ -226,8 +226,7 @@ L'**Indice de Masse Grasse (IMG)** est une mesure qui estime le pourcentage de g
 biometry_data <- biometry_data %>%
   smutate(., 
    taille_m = taille / 100,
-   IMC = masse_corr / (taille_m^2),  # Calcul de l'IMC
-   IMG = (1.2 * IMC) + (0.23 * age) - (10.8 * ifelse(genre == "H", 1, 0)) - 5.4) # Calcul de l'IMG en fonction du sexe
+   IMG = (1.2 * imc) + (0.23 * age) - (10.8 * ifelse(genre == "H", 1, 0)) - 5.4) # Calcul de l'IMG en fonction du sexe
 
 # Transformation en facteur (classification en catégories)
 biometry_data <- biometry_data %>%
