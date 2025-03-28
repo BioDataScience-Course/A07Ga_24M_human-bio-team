@@ -363,12 +363,26 @@ t.test(data = biometry_data, IMG ~ fast_food_rec)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_1}
-
+biometry_data %>.%
+  sgroup_by(., sucre, genre) %>.%
+  ssummarise(., mean = mean(imc, na.rm = T))
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+-   H0: μ1 = μ2 = ...= μk
+
+-    H1:∃(i,j) tel que μi ≠ μj
+
 <!--% Vérification des conditions d'application -->
+
+```{r}
+
+```
+
+```{r}
+bartlett.test(data = biometry_data, imc ~ sucre)
+```
 
 ```{r test_anova1_1}
 
