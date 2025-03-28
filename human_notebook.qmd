@@ -250,7 +250,7 @@ chart(biometry_data, ~ IMG %fill=% genre | genre) +
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   Les plus hautes barres sont observées pour des valeurs courantes d'IMG se situant entre 15% et 35%. Ces valeurs correspondent généralement aux IMG normaux en fonctions des références.
+-   Les plus hautes barres sont observées pour des valeurs courantes d'IMG se situant entre 15% et 35%. Ces valeurs correspondent généralement aux IMG normaux en fonctions des références.11
 
 -   Des valeurs extrêmes et rares, très peu d'individus ont un IMG inférieur a 10% ou supérieur a 50% (un IMG \< 10% peut être observé chez les athlètes : très faible, tandis qu'un IMG \>50% indique une forte accumulation de masse grasse : obésité )
 
