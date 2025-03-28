@@ -158,6 +158,7 @@ chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
 
 ```{r indice3}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
+# 
 biometry_data <- biometry_data %>.% 
   smutate(biometry_data, imc = (masse_corr / (taille / 100)^2)) %>.% 
   drop_na(.)
@@ -170,14 +171,7 @@ biometry_data <- biometry_data %>.%
     imc >= 30 ~ "obèse"))
     biometry_data$imc_cat <- ordered(biometry_data$imc_cat, 
   level = "sous-poids", "poids-normal", "surpoids", "obèse")
-  
-  
 
-
-<!--% Graphique ou tableau utilisant l'indice calculé.-->
-
-```{r plot_indice3}
-# Graphique ou tableau utilisant l'indice calculé.
 
 ```
 
