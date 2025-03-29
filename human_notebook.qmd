@@ -203,7 +203,8 @@ smutate(biometry_data, imc = (masse_corr / (taille / 100)^2)) %>.%
     imc >= 18.5 & imc < 25 ~ "poids-normal",
     imc >= 25 & imc < 30 ~ "surpoids",
     imc >= 30 ~ "obèse"))
-    biometry_data$imc_cat <- ordered(biometry_data$imc_cat, 
+    
+  biometry_data$imc_cat <- ordered(biometry_data$imc_cat, 
   level = c("sous-poids", "poids-normal", "surpoids", "obèse"))
 
 ```
