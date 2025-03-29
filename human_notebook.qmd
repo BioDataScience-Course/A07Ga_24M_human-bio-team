@@ -196,7 +196,7 @@ L'**Indice de Masse Corporelle (IMC)** est une mesure simple et largement utilis
   biometry_data <- biometry_data %>.% 
 smutate(biometry_data, imc = (masse_corr / (taille / 100)^2)) %>.%   drop_na(.)
 
-  biometry_3 <- biometry_data %>.% 
+  biometry_data <- biometry_data %>.% 
   smutate(biometry_data, imc_cat = case_when(
     imc < 18.5 ~ "sous-poids",
     imc >= 18.5 & imc < 25 ~ "poids-normal",
