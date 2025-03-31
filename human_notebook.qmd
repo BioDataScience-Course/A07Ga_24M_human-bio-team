@@ -285,8 +285,7 @@ chart(biometry_data, ~ IMG %fill=% genre | genre) +
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_1}
-imc_table <- table(imc_cat = biometry_data$imc_cat, genre = biometry_data$genre)
-tabularise(imc_table)
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -297,9 +296,14 @@ H1 : dépendance entre les variable imc_cat et genre
 
 <!--% Vérification des conditions d'application -->
 
+```{r}
+imc_table <- table(imc_cat = biometry_data$imc_cat, genre = biometry_data$genre)
+tabularise(imc_table)
+```
+
 ```{r test_chi2_1}
-  chi2_imc <- chisq.test(imc_table)
-  tabularise(chi2_imc)
+  fisher_imc <- fisher.test(imc_table)
+  tabularise(fisher_imc)
 ```
 
 <!--% Interprétation statistique et biologique -->
