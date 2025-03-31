@@ -142,46 +142,22 @@ biometry_data <- biometry_data %>%
   taille_m = taille / 100,   # Conversion de la taille de cm en m
  IMA = (tour_hanche / (taille_m^1.5)) - 18  # Calcul de l'IMA
   )
-
-biometry_data <- biometry_data %>%
-  smutate(
-    taille_m = taille / 100,  # Conversion de la taille de cm en m
-    IMA = (tour_hanche / (taille_m^1.5)) - 18,  # Calcul de l'IMA
-    categorie_IMA = case_when(
-      genre == "H" & IMA < 8  ~ "faible",
-      genre == "H" & IMA >= 8 & IMA < 20 ~ "normal",
-      genre == "H" & IMA >= 20 & IMA < 25 ~ "élevé",
-      genre == "H" & IMA >= 25 ~ "obésité",
-      genre == "F" & IMA < 21  ~ "faible",
-      genre == "F" & IMA >= 21 & IMA < 33 ~ "normal",
-      genre == "F" & IMA >= 33 & IMA < 39 ~ "élevé",
-      genre == "F" & IMA >= 39 ~ "obésité"
-    )
-  )
-
-# Ordonner les catégories pour faciliter l'affichage
-biometry_data$categorie_IMA <- ordered(biometry_data$categorie_IMA, 
-  levels = c("faible", "normal", "élevé", "obésité"))
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice1}
 # Graphique ou tableau utilisant l'indice calculé.
-chart(data = biometry_data, IMA ~ genre %fill=% genre) +
-  geom_boxplot() +
-  labs(title = "Distribution de l'Indice de Masse Adipeuse (IMA) par Genre")
+
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   Les femmes (**F**) ont une médiane d'IMA plus élevée que les hommes (**H**), indiquant qu'en général, elles ont un pourcentage de masse grasse plus important.
+-   ...
 
-    La distribution de l'IMA chez les hommes est plus compacte, avec une fourchette plus réduite.
+-   ...
 
-    Les femmes ont une plus grande dispersion, ce qui indique une variabilité plus forte de leur IMA.
-
--   L'IMA est plus élevé chez les femmes que chez les hommes, ce qui est cohérent avec la biologie humaine, les femmes ayant naturellement un pourcentage de masse grasse plus élevé que les hommes. La distribution plus large chez les femmes peut s'expliquer par une plus grande diversité de morphologies.
+-   ...
 
 ### Indice 2
 
@@ -254,7 +230,7 @@ tabularise(biometry_3_1)
 
 -   Les hommes ont une distribution plus homogène entre les catégories poids normal et surpoids.
 
--   La différence d\'IMC entre les sexes pourrait être liée à des facteurs biologiques, alimentaire ou comportementaux.
+-   La différence d'IMC entre les sexes pourrait être liée à des facteurs biologiques, alimentaire ou comportementaux.
 
 ### Indice 4
 
@@ -309,39 +285,24 @@ chart(biometry_data, ~ IMG %fill=% genre | genre) +
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_1}
-# Création du tableau de contingence entre la catégorie IMA et le genre
-table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
-tabularise(table_ima_genre)
+imc_table <- table(imc_cat = biometry_data$imc_cat, genre = biometry_data$genre)
+tabularise(imc_table)
 ```
-
-Ce tableau montre la répartition des individus dans chaque catégorie d'IMA (faible, normal, élevé, obésité) en fonction du genre.
-
-Faible (0 hommes, 11 femmes) : Les femmes sont uniquement dans cette catégorie, suggérant que l'IMA faible est plus fréquent chez elles dans cette population.
-
-Normal (17 hommes, 46 femmes) : Les femmes représentent une proportion plus importante dans cette catégorie, ce qui indique qu'elles sont plus souvent dans la plage normale de l'IMA que les hommes.
-
-Élevé (30 hommes, 13 femmes) : Les hommes sont majoritairement dans cette catégorie, indiquant qu'ils ont une tendance plus forte à l'accumulation de graisse dans les plages élevées de l'IMA.
-
-Obésité (18 hommes, 8 femmes) : Les hommes dominent également dans la catégorie "obésité", suggérant qu'ils sont plus susceptibles d'être dans cette catégorie
 
 <!--% Hypothèse nulle et alternative -->
 
-Hypothèse nulle (H₀) : La catégorie d'IMA et le genre sont indépendants.
+H0 : indépendance entre les variables imc_cat et genre
 
-Hypothèse alternative (H₁) : La catégorie d'IMA et le genre ne sont pas indépendants.
+H1 : dépendance entre les variable imc_cat et genre
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_1}
-test_chi2_1 <- chisq.test(table_ima_genre)
-tabularise(test_chi2_1)
+  chi2_imc <- chisq.test(imc_table)
+  tabularise(chi2_imc)
 ```
 
 <!--% Interprétation statistique et biologique -->
-
-Puisque la **valeur p** est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
-
-les résultats suggèrent que le genre influence la répartition de la graisse corporelle. Les hommes et les femmes ont des profils de distribution de la graisse corporelle différents, ce qui peut expliquer pourquoi la catégorie d'IMA varie de manière significative entre les deux sexes. Par exemple, les hommes peuvent avoir tendance à accumuler plus de graisse viscérale, associée à un IMA plus élevé, tandis que les femmes peuvent stocker davantage de graisse sous-cutanée, ce qui pourrait les amener à avoir un IMA plus faible.
 
 ### Test de Chi^2^ 2
 
