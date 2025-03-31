@@ -1,4 +1,4 @@
-------------------------------------------------------------------------
+n
 
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
@@ -365,6 +365,8 @@ t.test(data = biometry_data, IMG ~ fast_food_rec)
 ```
 
 <!-- Interprétation statistique et biologique -->
+
+Nous rejetton H0 au seuil alpha 5%. Nous pouvons conclure que l'indice de masse grasse (IMG) diffère significativement en fonction de la consommation du nombre de fast_food par semaine ( t-test, df = 52.776, p = 0.0009862 \<\<\<0.05)
 
 ### Test t de Student 2
 
