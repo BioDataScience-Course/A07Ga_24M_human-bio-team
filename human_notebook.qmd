@@ -213,16 +213,24 @@ smutate(biometry_data, imc = (masse_corr / (taille / 100)^2)) %>.%
 
 ```{r plot_indice3}
 # Graphique ou tableau utilisant l'indice calculé.
+biometry_3_1 <- biometry_data %>.%
+  sgroup_by(., genre, imc_cat) %>.%
+  ssummarise(., 
+  "n" = fn(imc)) %>.%
+  smutate(., 
+  "pourcentage" = (n / sum(n)) * 100)
+
+tabularise(biometry_3_1)
 
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Les femmes présentent une proportion plus élevée de sous-poids et d'obésité que les hommes.
 
--   ...
+-   Les hommes ont une distribution plus homogène entre les catégories poids normal et surpoids.
 
--   ...
+-   La différence d\'IMC entre les sexes pourrait être liée à des facteurs biologiques, alimentaire ou comportementaux.
 
 ### Indice 4
 
