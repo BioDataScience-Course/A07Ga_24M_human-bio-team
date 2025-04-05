@@ -57,18 +57,24 @@ skimr::skim(biometry_data)
 ### Description par l'étudiant 1
 
 ```{r}
-chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
-  geom_histogram(data = sselect(biometry_data,-alimentation),
-    fill = "grey", bins = 25) + 
-  geom_histogram(show.legend = TRUE, bins = 25) +
-  ylab("Effectifs") +
-  scale_fill_viridis_d()
 
 ```
 
 ### Description par l'étudiant 2
 
-...Vos deux descriptions ici...
+```{r}
+chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
+  geom_histogram(data = sselect(biometry_data,-alimentation),
+    fill = "grey", bins = 25) + 
+  geom_histogram(show.legend = FALSE, bins = 25) +
+  ylab("Effectifs") +
+  scale_fill_viridis_d()
+
+```
+
+L'observation principale est que la distribution du tour de taille semble varier significativement entre les groupes alimentaires. Le groupe végétarien tend à présenter des tours de taille plus bas, ce qui pourrait suggérer une association entre un régime végétarien et une moindre adiposité abdominale.
+
+La distribution du tour de taille pour le groupe omnivore semble être **bimodale**, avec deux pics principaux un premier autour de 70 et un deuxième autour de 90. Cette distribution suggère qu'il pourrait y avoir deus sous-groupes distincts au sein de le catégorie"omnivore". Ces sous groupes pourrait etre caractérisés par des facteurs non directement apparents dans ce graphique comme le genre,l'age ou les facteurs lié au mode de vie (l'activité physique).
 
 ### Description par l'étudiant 3
 
