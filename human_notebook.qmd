@@ -78,6 +78,14 @@ La distribution du tour de taille pour le groupe omnivore semble être **bimodal
 
 ```{r}
 
+biometry_data$activite_physique_cat <- cut(biometry_data$activite_physique,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 150, 300, Inf),
+  labels = c("Faible", "Modéré", "Élevé"))
+
+
 ```
 
 ### Description par l'étudiant 3
