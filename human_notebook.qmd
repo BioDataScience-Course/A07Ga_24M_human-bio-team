@@ -209,14 +209,18 @@ chart(data = biometry_data, IMA ~ genre %fill=% genre) +
 Le rapport tour de taille sur tour de hanches (RTH) est une mesure anthropométrique qui permet d'évaluer la distribution de la graisse corporelle. Son élévation témoigne d'une accumulation de tissus graisseux au niveau abdominal
 
 ```{r indice2}
-biometry_data <- biometry_data %>% 
-  smutate(ttaille_tchanche = (tour_taille/tour_hanche))
+biometry_data <- biometry_data %>.% 
+smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche))
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice2}
 # Graphique ou tableau utilisant l'indice calculé.
+ chart(data = biometry_data, ~ age_rec ) +
+  geom_bar(position = "dodge") +
+  ylab("Effectifs") +
+  scale_fill_viridis_d()
 
 ```
 
