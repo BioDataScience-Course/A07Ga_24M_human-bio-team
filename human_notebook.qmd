@@ -466,14 +466,16 @@ biometry_data %>.%
 ```
 
 ```{r}
-chart (data = biometry_data, IMG ~ niveau_activite) +
-  geom_boxplot() +
-  labs(x = "Activité physique", y = "IMG", title = "Effet de l'activité physique sur l’IMG") 
+chart(data = biometry_data, IMG ~ niveau_activite) +
+  geom_violin() +
+  geom_jitter(width = 0.05, alpha = 0.5) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3) +
+  ylab("Indice de Masse Grasse")
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
--   H0: μ1 = μ2 = ...= μk. Il n'ya pas de différence significative entre les moyennes d'IMG selon le niveau d'activité physique.
+-   H0: μ1 = μ2 = ...= μk. Il n'y a pas de différence significative entre les moyennes d'IMG selon le niveau d'activité physique. L'IMG diffère significativement en fonction des nivesux d\'activité physique.
 
 -   H1:∃(i,j) tel que μi ≠ μj. Il existe au moins une différence significative entre les moyennes d'IMG d'au moins deux groupes de niveau d'activité physique.
 
@@ -501,6 +503,11 @@ car::qqPlot(biometry_data[["imglog"]], distribution = "norm",
 ```{r test_anova1_1}
 biometry_anova1 <- lm(data = biometry_data, IMG ~ niveau_activite)
 anova(biometry_anova1) |> tabularise()
+```
+
+```{r}
+residus <- residuals(biometry_anova1)
+
 ```
 
 <!--% Interprétation statistique et biologique -->
