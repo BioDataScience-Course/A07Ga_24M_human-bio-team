@@ -506,7 +506,7 @@ anova(biometry_anova1) |> tabularise()
 ```
 
 ```{r}
-residus <- residuals(biometry_anova1)
+qqnorm(residus, main = "Graphique Quantile-Quantile des résidus")
 
 ```
 
