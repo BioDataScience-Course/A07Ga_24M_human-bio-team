@@ -450,9 +450,17 @@ t.test(data = biometry_data, IMG ~ fast_food_rec)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_1}
-biometry_data %>.%
-  sgroup_by(., sucre, genre) %>.%
-  ssummarise(., mean = mean(imc, na.rm = T))
+biometry_data <- biometry_data %>%
+  mutate(niveau_activite = cut(activite_physique,
+                               breaks = c(-Inf, 149, 300, Inf),
+                               labels = c("Faible", "Modérée", "Élevée"),
+                               ordered_result = TRUE))
+```
+
+```{r}
+chart (data = biometry_data, IMG ~ niveau_activite %fill=% activite_physique) +
+  geom_boxplot() +
+  labs(x = "Activité physique", y = "IMG", title = "Effet de l'activité physique sur l’IMG") 
 ```
 
 <!--% Hypothèse nulle et alternative -->
