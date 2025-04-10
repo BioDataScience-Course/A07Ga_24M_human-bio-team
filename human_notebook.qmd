@@ -287,10 +287,19 @@ biometry_data <- biometry_data %>%
 
 # Transformation en facteur (classification en catégories)
 biometry_data <- biometry_data %>%
-  smutate(., IMG_Categorie = cut(IMG, 
-          breaks = c(-Inf, 10, 20, 25, 30, Inf), 
-          labels = c("Très faible", "Faible", "Normal", "Élevé", "Obésité"),
-                             ordered_result = TRUE))
+  smutate(., IMG_Categorie = case_when(
+      genre == "F" & IMG < 25 ~ "Maigre",
+      genre == "F" & IMG < 30 ~ "Poids-Normal",
+      genre == "F" & IMG < 35 ~ "Surpoids",
+      genre == "F" & IMG >= 35 ~ "Obésité",
+      
+      genre == "H" & IMG < 15 ~ "Maigre",
+      genre == "H" & IMG < 20 ~ "Poids-Normal",
+      genre == "H" & IMG < 25 ~ "Surpoids",
+      genre == "H" & IMG >= 25 ~ "Obésité",
+      
+      TRUE ~ "Non défini"
+    ))
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
@@ -397,9 +406,9 @@ biometry_data %>.%
 
 <!-- Hypothèse nulle et alternative -->
 
-H0 : mean \[0,1) - mean \[1,13\] = 0
+H0 : mean \[0,1) - mean \[1,13\] = 0. La consommation de fast-food n'a pas d'effet significatif sur l'indice de masse grasse.
 
-H1 : mean \[0,1) - mean \[1,13\] != 0
+H1 : mean \[0,1) - mean \[1,13\] != 0. La consommation de fast - food a un effet significatif sur l'indice de masse grasse.
 
 <!-- Vérification des conditions d'application -->
 
