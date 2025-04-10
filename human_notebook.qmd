@@ -413,6 +413,7 @@ H1 : mean \[0,1) - mean \[1,13\] != 0. La consommation de fast - food a un effet
 <!-- Vérification des conditions d'application -->
 
 ```{r}
+#Vérification de la distribution
 biometry_data 
 biometry_data$imglog <- log(biometry_data$IMG)
 car::qqPlot(biometry_data[["imglog"]], distribution = "norm",
@@ -455,32 +456,51 @@ biometry_data <- biometry_data %>%
                                breaks = c(-Inf, 149, 300, Inf),
                                labels = c("Faible", "Modérée", "Élevée"),
                                ordered_result = TRUE))
+
+biometry_data %>.%
+  sgroup_by(., niveau_activite) %>.%
+  ssummarise(.,
+    mean  = fmean(IMG),
+    sd    = fsd(IMG),
+    count = fsum(!is.na(IMG)))
 ```
 
 ```{r}
-chart (data = biometry_data, IMG ~ niveau_activite %fill=% activite_physique) +
+chart (data = biometry_data, IMG ~ niveau_activite) +
   geom_boxplot() +
   labs(x = "Activité physique", y = "IMG", title = "Effet de l'activité physique sur l’IMG") 
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
--   H0: μ1 = μ2 = ...= μk
+-   H0: μ1 = μ2 = ...= μk. Il n'ya pas de différence significative entre les moyennes d'IMG selon le niveau d'activité physique.
 
--   H1:∃(i,j) tel que μi ≠ μj
+-   H1:∃(i,j) tel que μi ≠ μj. Il existe au moins une différence significative entre les moyennes d'IMG d'au moins deux groupes de niveau d'activité physique.
 
 <!--% Vérification des conditions d'application -->
 
 ```{r}
-
+#Verification de homoscédasticité 
+bartlett.test(data = biometry_data, IMG ~ niveau_activite)
 ```
 
+-   H0: var1 = var2 =\...= vark (homoscédasticité)
+
+-   H1: ∃ (i,j) tel que vari ≠ varj (hétéroscédasticité)
+
+    p-value \> 5%, donc pas de rejet de H0. Il ya donc homoscédasticité
+
 ```{r}
-bartlett.test(data = biometry_data, imc ~ sucre)
+#Verification de la distribution des résidus  
+biometry_data 
+biometry_data$imglog <- log(biometry_data$IMG)
+car::qqPlot(biometry_data[["imglog"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "Distrubution de l'IMG")
 ```
 
 ```{r test_anova1_1}
-
+biometry_anova1 <- lm(data = biometry_data, IMG ~ niveau_activite)
+anova(biometry_anova1) |> tabularise()
 ```
 
 <!--% Interprétation statistique et biologique -->
