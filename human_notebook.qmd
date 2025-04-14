@@ -22,7 +22,7 @@ if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
 
 # Configuration de l'environnement SciViews::R
-SciViews::R("infer", lang = "fr")
+SciViews::R("infer", "model", lang = "fr")
 ```
 
 # Introduction et but
@@ -217,10 +217,11 @@ smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche))
 
 ```{r plot_indice2}
 # Graphique ou tableau utilisant l'indice calculé.
- chart(data = biometry_data, ~ taille_hanche ) +
-   geom_density() +
-   ylab("Densité")
- 
+ chart(data = biometry_data, ~ age_rec ) +
+  geom_bar(position = "dodge") +
+  ylab("Effectifs") +
+  scale_fill_viridis_d()
+
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
@@ -371,22 +372,15 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
-# Création du tableau de contingence entre l'imc et la consommation de sucre
-table_imc_sucre <- table(biometry_data$imc_cat,biometry_data$sucre)
-tabularise(table_imc_sucre)
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
-Hypothèse nulle (H0) : la catégorie d'imc et la quantité de sucre consommé sont indépendants
-
-Hypothese alternative (H1) : La catégorie d'imc et la quantité de sucre consommé sont dépendants
-
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-test_chi2_2 <- chisq.test(table_imc_sucre)
-tabularise(table_imc_sucre)
+
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -498,21 +492,14 @@ bartlett.test(data = biometry_data, IMG ~ niveau_activite)
 
     p-value \> 5%, donc pas de rejet de H0. Il ya donc homoscédasticité
 
-```{r}
-#Verification de la distribution des résidus  
-biometry_data 
-biometry_data$imglog <- log(biometry_data$IMG)
-car::qqPlot(biometry_data[["imglog"]], distribution = "norm",
-  envelope = 0.95, col = "Black", ylab = "Distrubution de l'IMG")
-```
-
 ```{r test_anova1_1}
 biometry_anova1 <- lm(data = biometry_data, IMG ~ niveau_activite)
 anova(biometry_anova1) |> tabularise()
 ```
 
 ```{r}
-qqnorm(residus, main = "Graphique Quantile-Quantile des résidus")
+#Vérification de la normalité des résidus
+chart$qqplot(biometry_anova1)
 
 ```
 
