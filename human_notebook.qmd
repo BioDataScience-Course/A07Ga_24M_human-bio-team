@@ -1,5 +1,3 @@
-------------------------------------------------------------------------
-
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
 author: "Amal_Abarou, Fiona_Guiwala, Audrey_Tchuente, Leslie_Tankam"
@@ -275,7 +273,7 @@ smutate(biometry_data, imc = (masse_corr / (taille / 100)^2)) %>.%
 
 <!--% Description et formule ci-dessous. -->
 
-L'**Indice de Masse Grasse (IMG)** est une mesure qui estime le pourcentage de graisse corporelle d'une personne. Contrairement à l'IMC (indice de masse corporelle), qui ne fait pas de distinction entre la masse grasse et la masse musculaire, l'IMG offre une estimation plus précise de la composition corporelle.
+L'**Indice de Masse Grasse (IMG)** est une mesure qui estime le pourcentage de graisse corporelle d'une personne. Contrairement à l'IMC (indice de masse corporelle), qui ne fait pas de distinction entre la masse grasse et la masse musculaire, l'IMG offre une estimation plus précise de la composition corporelle [@wikipedia2025].
 
 ```{r indice4}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
