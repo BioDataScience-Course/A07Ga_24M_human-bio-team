@@ -217,11 +217,10 @@ smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche))
 
 ```{r plot_indice2}
 # Graphique ou tableau utilisant l'indice calculé.
- chart(data = biometry_data, ~ age_rec ) +
-  geom_bar(position = "dodge") +
-  ylab("Effectifs") +
-  scale_fill_viridis_d()
-
+ chart(data = biometry_data, ~ taille_hanche ) +
+   geom_density() +
+   ylab("Densité")
+ 
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
