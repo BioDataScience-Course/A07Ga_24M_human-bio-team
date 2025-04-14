@@ -372,15 +372,22 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
-
+# Création du tableau de contingence entre l'imc et la consommation de sucre
+table_imc_sucre <- table(biometry_data$imc_cat,biometry_data$sucre)
+tabularise(table_imc_sucre)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+Hypothèse nulle (H0) : la catégorie d'imc et la quantité de sucre consommé sont indépendants
+
+Hypothese alternative (H1) : La catégorie d'imc et la quantité de sucre consommé sont dépendants
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-
+test_chi2_2 <- chisq.test(table_imc_sucre)
+tabularise(table_imc_sucre)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -475,7 +482,7 @@ chart(data = biometry_data, IMG ~ niveau_activite) +
 
 <!--% Hypothèse nulle et alternative -->
 
--   H0: μ1 = μ2 = ...= μk. Il n'y a pas de différence significative entre les moyennes d'IMG selon le niveau d'activité physique. L'IMG diffère significativement en fonction des nivesux d\'activité physique.
+-   H0: μ1 = μ2 = ...= μk. Il n'y a pas de différence significative entre les moyennes d'IMG selon le niveau d'activité physique. L'IMG diffère significativement en fonction des nivesux d'activité physique.
 
 -   H1:∃(i,j) tel que μi ≠ μj. Il existe au moins une différence significative entre les moyennes d'IMG d'au moins deux groupes de niveau d'activité physique.
 
