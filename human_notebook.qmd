@@ -214,12 +214,15 @@ smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche))
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice2}
-# Graphique ou tableau utilisant l'indice calculé.
- chart(data = biometry_data, ~ age_rec ) +
-  geom_bar(position = "dodge") +
-  ylab("Effectifs") +
-  scale_fill_viridis_d()
-
+# Recodage de la variable taille_hanche en facteur
+biometry_data <- biometry_data %>%
+  smutate(., Categorie_RTH = case_when(
+      genre == "F" & taille_hanche <= 0.80 ~ "Faible",
+      genre == "F" & taille_hanche >=0.81 & taille_hanche<=0.85 ~ "Modéré",
+      genre == "F" & taille_hanche >=0.86 ~ "Elevé",
+      genre == "H" & taille_hanche <= 0,95 ~ "Faible",
+      genre == "H" & taille_hanche >=0.96 & taille_hanche<=1 ~ "Modéré",
+      genre == "H" & taille_hanche >=1 ~ "Elevé"))
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
