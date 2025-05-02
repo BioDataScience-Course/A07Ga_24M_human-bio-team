@@ -430,22 +430,52 @@ t.test(data = biometry_data, IMG ~ fast_food_rec)
 
 <!-- Interprétation statistique et biologique -->
 
-Puisque la valeur de p est faible et inférieure au seuil alpha 5%. Nous rejetons H(0). Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t billatéral, t = 3.4892, ddl = 52.776, valeur de p \<\<\< 0.05).
+Puisque la valeur de p est faible et inférieure au seuil alpha 5%. Nous rejetons H(0). Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t bilatéral, t = 3.4892, ddl = 52.776, valeur de p \<\<\< 0.05).
+
+Les résultats montrent que les personnes qui consomment du fast-food plus fréquemment présentent en moyenne un indice de masse grasse plus faible que celles qui n\'en consomment pas. Biologiquement, ce résultat peut s'expliquer par d'autres facteurs comme l'âge, le niveau d'activité physique, ou le métabolisme individuel, qui peuvent influencer la masse grasse indépendamment de l'alimentation.
 
 ### Test t de Student 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_2}
+## Recodage de biometry_data$fumeur en biometry_data$fumeur_rec
+biometry_data$fumeur_rec <- cut(biometry_data$fumeur,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 1, 300),
+  labels = c("Non fumeur", "Fumeur")) 
 
+chart(data = biometry_data, IMA ~ fumeur_rec %fill=% fumeur_rec) +
+  geom_boxplot() + 
+  labs(
+    title = "Distribution de l'IMA selon le statut tabagique",
+    x = "Statut tabagique",
+    y = "Indice de Masse Abdominale (IMA)"
+  )
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+µ1: moyenne de l'IMA chez les fumeurs ; µ2: moyenne de l'IMA chez les non-fumeurs
+
+H(0): µ1 - µ2 = 0 (Il n'y a pas de différence significativeentre les moyennes des deux groupes.)
+
+H(1): µ1 - µ2 != 0 (Il y a une différence significativeentre les moyennes des deux groupes.)
+
 <!--% Vérification des conditions d'application -->
 
-```{r test_t_2}
+```{r}
+#vérification des conditions de l'application 
+biometry_data$IMAlog <- log(biometry_data$IMA)
+car::qqPlot(biometry_data[["IMAlog"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "log(area [mm^2])")
+```
 
+```{r test_t_2}
+t.test(data = biometry_data, IMA ~ fumeur_rec,
+  alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
 ```
 
 <!--% Interprétation statistique et biologique -->
