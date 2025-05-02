@@ -269,11 +269,11 @@ tabularise(biometry_3)
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   L\'analyse de la répartition de l\'IMC selon le genre montre que la majorité des individus de la population étudiée présentent un poids normal ou sont en surpoids, ce qui indique une situation globalement moyenne, mais avec des risques de prise de poids à surveiller. 
+-   L'analyse de la répartition de l'IMC selon le genre montre que la majorité des individus de la population étudiée présentent un poids normal ou sont en surpoids, ce qui indique une situation globalement moyenne, mais avec des risques de prise de poids à surveiller. 
 
 -   Les femmes sont plus nombreuses que les hommes dans la catégorie obèse, mais aussi dans celle du sous-poids, ce qui montre une plus grande variation de poids chez elles. 
 
--   Ces différences entre hommes et femmes montrent qu\'il serait utile d\'adapter les conseils de santé selon le genre, pour mieux prévenir les risques liés au surpoids ou à la maigreur. 
+-   Ces différences entre hommes et femmes montrent qu'il serait utile d'adapter les conseils de santé selon le genre, pour mieux prévenir les risques liés au surpoids ou à la maigreur. 
 
 ### Indice 4
 
@@ -430,6 +430,8 @@ t.test(data = biometry_data, IMG ~ fast_food_rec)
 
 <!-- Interprétation statistique et biologique -->
 
+Puisque la valeur de p est faible et inférieure au seuil alpha 5%. Nous rejetons H(0). Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t billatéral, t = 3.4892, ddl = 52.776, valeur de p \<\<\< 0.05).
+
 ### Test t de Student 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
@@ -508,6 +510,8 @@ chart$qqplot(biometry_anova1)
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Nous observons dans le tableau de l\'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 140, ddl = 2 & 196, valeur p \<\< 0.0118).
 
 ### ANOVA à un facteur 2
 
