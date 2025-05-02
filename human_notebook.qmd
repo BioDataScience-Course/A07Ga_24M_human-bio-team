@@ -432,7 +432,7 @@ t.test(data = biometry_data, IMG ~ fast_food_rec)
 
 Puisque la valeur de p est faible et inférieure au seuil alpha 5%. Nous rejetons H(0). Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t bilatéral, t = 3.4892, ddl = 52.776, valeur de p \<\<\< 0.05).
 
-Les résultats montrent que les personnes qui consomment du fast-food plus fréquemment présentent en moyenne un indice de masse grasse plus faible que celles qui n\'en consomment pas. Biologiquement, ce résultat peut s'expliquer par d'autres facteurs comme l'âge, le niveau d'activité physique, ou le métabolisme individuel, qui peuvent influencer la masse grasse indépendamment de l'alimentation.
+Les résultats montrent que les personnes qui consomment du fast-food plus fréquemment présentent en moyenne un indice de masse grasse plus faible que celles qui n'en consomment pas. Biologiquement, ce résultat peut s'expliquer par d'autres facteurs comme l'âge, le niveau d'activité physique, ou le métabolisme individuel, qui peuvent influencer la masse grasse indépendamment de l'alimentation.
 
 ### Test t de Student 2
 
@@ -541,22 +541,45 @@ chart$qqplot(biometry_anova1)
 
 <!--% Interprétation statistique et biologique -->
 
-Nous observons dans le tableau de l\'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 4.59, ddl = 2 & 140, valeur p \<\< 0.0118). Le fait qu'il y ait une différence significative entre les groupes suggère que l'activité physique régulière pourrait être un moyen éfficace de réduire la masse grasse chez les individus.
+Nous observons dans le tableau de l'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 4.59, ddl = 2 & 140, valeur p \<\< 0.0118). Le fait qu'il y ait une différence significative entre les groupes suggère que l'activité physique régulière pourrait être un moyen éfficace de réduire la masse grasse chez les individus.
 
 ### ANOVA à un facteur 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_2}
-
+chart(data = biometry_data, taille_hanche ~ imc_cat) +
+  geom_violin() +
+  geom_jitter(width = 0.05, alpha = 0.5) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3) +
+  labs(title = "Distribution du rapport taille/hanche selon les catégories d'IMC",
+  x = "Catégories d'IMC",
+  y = "Rapport Taille / Hanche")
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
 <!--% Vérification des conditions d'application -->
 
-```{r test_anova1_2}
+-   H0: var1= var2 = \... = vark (homoscédasticité)
 
+-   H1: ∃(i,j) tel que vari ≠ varj (hétéroscédasticité)
+
+```{r test_anova1_2}
+#Verification de homoscédasticité 
+bartlett.test(data = biometry_data, taille_hanche ~ imc_cat)
+```
+
+Puisque la valeur p est supérieur au seuil alpha 5% (0.05), nous ne rejetons pas H(0). Il y a homoscédasticité.
+
+```{r}
+# test anova 
+anova(biometry_anova_2 <- lm(data = biometry_data, taille_hanche ~ imc_cat)) |> tabularise()
+```
+
+```{r}
+# Vérification de la normalité des résidus
+chart$qqplot(biometry_anova_2)
 ```
 
 <!--% Interprétation statistique et biologique -->
