@@ -72,7 +72,7 @@ chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
 
 L'observation principale est que la distribution du tour de taille semble varier significativement entre les groupes alimentaires. Le groupe végétarien tend à présenter des tours de taille plus bas, ce qui pourrait suggérer une association entre un régime végétarien et une moindre adiposité abdominale.
 
-La distribution du tour de taille pour le groupe omnivore semble être **bimodale**, avec deux pics principaux un premier autour de 70 et un deuxième autour de 90. Cette distribution suggère qu'il pourrait y avoir deus sous-groupes distincts au sein de le catégorie"omnivore". Ces sous groupes pourrait etre caractérisés par des facteurs non directement apparents dans ce graphique comme le genre, l'age ou les facteurs lié au mode de vie (l'activité physique).
+La distribution du tour de taille pour le groupe omnivore semble être **bimodale**, avec deux pics principaux un premier autour de 70 et un deuxième autour de 90. Cette distribution suggère qu'il pourrait y avoir deux sous-groupes distincts au sein de le catégorie"omnivore". Ces sous groupes pourrait être caractérisés par des facteurs non directement apparents dans ce graphique comme le genre, l'age ou les facteurs lié au mode de vie (l'activité physique).
 
 ```{r}
 
@@ -609,7 +609,10 @@ chart$qqplot(biometry_anova_2)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-
+biometry_5 <- biometry_data %>.% 
+  ssummarise(sgroup_by(., alimentation),
+  "n" = fn(alimentation))
+tabularise(biometry_5)
 ```
 
 <!--% Hypothèse nulle et alternative -->
