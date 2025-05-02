@@ -541,7 +541,7 @@ chart$qqplot(biometry_anova1)
 
 <!--% Interprétation statistique et biologique -->
 
-Nous observons dans le tableau de l\'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 140, ddl = 2 & 196, valeur p \<\< 0.0118).
+Nous observons dans le tableau de l\'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 4.59, ddl = 2 & 140, valeur p \<\< 0.0118). Le fait qu'il y ait une différence significative entre les groupes suggère que l'activité physique régulière pourrait être un moyen éfficace de réduire la masse grasse chez les individus.
 
 ### ANOVA à un facteur 2
 
