@@ -332,7 +332,7 @@ chart(biometry_data, ~ IMG %fill=% genre | genre) +
 
 <!--# Chaque test d'hypothèse doit être correctement employé. Vous devez indiquer, pour chaque test, l'hypothèse nulle et l'hypothèse alternative. Vous devez vérifier les conditions d'application du test d'hypothèse. Vous le réalisez, et ensuite vous l'interprétez du point de vue statistique d'abord et biologique ensuite. -->
 
-### Test de Chi^2^ 1
+### Test de Chi^2^ 1 (Amal)
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
