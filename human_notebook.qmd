@@ -383,15 +383,21 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
-
+table_imc_sucre <- table(biometry_data$imc_cat, biometry_data$sucre)
+tabularise(table_imc_sucre)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+Hypothèse nulle (H₀) : La catégorie d'IMC et la consommation de sucre sont indépendants
+
+Hypothèse alternative (H₁) : La catégorie d'IMC et la consommation de sucre ne sont dépendants
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-
+test_chi2_2 <- chisq.test(table_imc_sucre)
+tabularise(test_chi2_2)
 ```
 
 <!--% Interprétation statistique et biologique -->
