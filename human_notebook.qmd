@@ -204,6 +204,8 @@ chart(data = biometry_data, IMA ~ genre %fill=% genre) +
 
 <!--% Description et formule ci-dessous. -->
 
+\\text{WHR} = \\frac{\\text{Tour de taille}}{\\text{Tour de hanche}}
+
 Le rapport tour de taille sur tour de hanches (RTH) est une mesure anthropométrique qui permet d'évaluer la distribution de la graisse corporelle. Son élévation témoigne d'une accumulation de tissus graisseux au niveau abdominal
 
 ```{r indice2}
@@ -217,14 +219,18 @@ smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche)) %>.%
 ```{r plot_indice2}
 # Recodage de la variable taille_hanche en facteur
 biometry_data <- biometry_data %>.%
-  smutate(., Categorie_RTH = case_when(genre == "F" & taille_hanche <= 0.80 ~ "Faible",
-      genre == "F" & taille_hanche >=0.81 & taille_hanche<=0.85 ~ "Modéré",
-      genre == "F" & taille_hanche >=0.86 ~ "Elevé",
-      genre == "H" & taille_hanche <= 0.95 ~ "Faible",
-      genre == "H" & taille_hanche >=0.96 & taille_hanche<=1 ~ "Modéré",
+  smutate(., Categorie_RTH = case_when(genre == "F" & taille_hanche < 0.80 ~ "Faible",
+      genre == "F" & taille_hanche >=0.80 & taille_hanche < 0.85 ~ "Modéré",
+      genre == "F" & taille_hanche >=0.85 ~ "Elevé",
+      genre == "H" & taille_hanche < 0.95 ~ "Faible",
+      genre == "H" & taille_hanche >=0.95 & taille_hanche < 1 ~ "Modéré",
       genre == "H" & taille_hanche >=1 ~ "Elevé"))
 
   # Graphique utilisant l'indice calculé
+chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
+  geom_bar(position = "dodge") +
+ labs(title = " Risque de santé Indiqués par le  rapport tour de taille sur tour de hanche ",
+  y = "Effectifs")
 
 ```
 
