@@ -82,8 +82,8 @@ biometry_data$sommeil_cat <- cut(biometry_data$sommeil, include.lowest = FALSE, 
 
  biometry_data %>.% 
  sgroup_by(.,genre, sommeil_cat) %>.%
-  ssummarise(., mean = mean(fast_food),
-    mean = mean(masse))
+  ssummarise(., moyenne_fast_food = mean(fast_food),
+    masse_moyenne = mean(masse)) -> biometry_table
  tabularise(biometry_table)
 ```
 
@@ -208,26 +208,27 @@ Le rapport tour de taille sur tour de hanches (RTH) est une mesure anthropométr
 
 ```{r indice2}
 biometry_data <- biometry_data %>.% 
-smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche))
+smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche)) %>.%
+  drop_na(.)
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice2}
 # Recodage de la variable taille_hanche en facteur
-biometry_data <- biometry_data %>%
-  smutate(., Categorie_RTH = case_when(
-      genre == "F" & taille_hanche <= 0.80 ~ "Faible",
+biometry_data <- biometry_data %>.%
+  smutate(., Categorie_RTH = case_when(genre == "F" & taille_hanche <= 0.80 ~ "Faible",
       genre == "F" & taille_hanche >=0.81 & taille_hanche<=0.85 ~ "Modéré",
       genre == "F" & taille_hanche >=0.86 ~ "Elevé",
-      genre == "H" & taille_hanche <= 0,95 ~ "Faible",
+      genre == "H" & taille_hanche <= 0.95 ~ "Faible",
       genre == "H" & taille_hanche >=0.96 & taille_hanche<=1 ~ "Modéré",
       genre == "H" & taille_hanche >=1 ~ "Elevé"))
+
+  # Graphique utilisant l'indice calculé
+
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
-
--   ...
 
 -   ...
 
