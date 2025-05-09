@@ -480,7 +480,7 @@ Puisque la valeur de p est faible et inférieure au seuil alpha 5%. Nous rejeton
 
 Les résultats montrent que les personnes qui consomment du fast-food plus fréquemment présentent en moyenne un indice de masse grasse plus faible que celles qui n'en consomment pas. Biologiquement, ce résultat peut s'expliquer par d'autres facteurs comme l'âge, le niveau d'activité physique, ou le métabolisme individuel, qui peuvent influencer la masse grasse indépendamment de l'alimentation.
 
-### Test t de Student 2
+### c
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
