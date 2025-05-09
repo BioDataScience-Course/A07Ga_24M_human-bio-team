@@ -75,13 +75,15 @@ L'observation principale est que la distribution du tour de taille semble varier
 La distribution du tour de taille pour le groupe omnivore semble être **bimodale**, avec deux pics principaux un premier autour de 70 et un deuxième autour de 90. Cette distribution suggère qu'il pourrait y avoir deux sous-groupes distincts au sein de le catégorie"omnivore". Ces sous groupes pourrait être caractérisés par des facteurs non directement apparents dans ce graphique comme le genre, l'age ou les facteurs lié au mode de vie (l'activité physique).
 
 ```{r}
-
-biometry_data$sommeil_cat <- cut(biometry_data$sommeil, include.lowest = FALSE, right = TRUE,
-  breaks = c(0,6,8,Inf),
-  labels = c("<7h", "7–9h", ">9h"))
+## Recodage de biometry_data$sommeil en biometry_data$sommeil_rec
+biometry_data$sommeil_rec <- cut(biometry_data$sommeil,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(4, 6, 8, 13))
 
  biometry_data %>.% 
- sgroup_by(.,genre, sommeil_cat) %>.%
+ sgroup_by(.,genre, sommeil_rec) %>.%
   ssummarise(., moyenne_fast_food = mean(fast_food),
     masse_moyenne = mean(masse)) -> biometry_table
  tabularise(biometry_table)
@@ -383,8 +385,8 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
-table_imc_sucre <- table(biometry_data$imc_cat, biometry_data$sucre)
-tabularise(table_imc_sucre)
+table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_rec)
+tabularise(table_img_sommeil)
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -396,7 +398,7 @@ Hypothèse alternative (H₁) : La catégorie d'IMC et la consommation de sucre 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-test_chi2_2 <- chisq.test(table_imc_sucre)
+test_chi2_2 <- chisq.test(table_img_sommeil)
 tabularise(test_chi2_2)
 ```
 
