@@ -63,7 +63,7 @@ chart(data = biometry_data, activite_physique ~ genre %fill=% genre) +
 
 ```
 
-Le graphique montre que les hommes déclarent globalement plus d\'activité physique que les femmes. La médiane des minutes d\'activité physique hebdomadaire est plus élevée chez les hommes, ce qui indique qu'au moins la moitié d'entre eux dépasse un seuil de temps supérieur à celui des femmes.
+Le graphique montre que les hommes déclarent globalement plus d'activité physique que les femmes. La médiane des minutes d'activité physique hebdomadaire est plus élevée chez les hommes, ce qui indique qu'au moins la moitié d'entre eux dépasse un seuil de temps supérieur à celui des femmes.
 
 ```{r}
 library(dplyr)
@@ -79,15 +79,15 @@ biometry_data %>%
 
 ```
 
-Le tableau compare des moyennes de masse, taille et âge entre les hommes (H) et les femmes (F) de l\'échantillon :
+Le tableau compare des moyennes de masse, taille et âge entre les hommes (H) et les femmes (F) de l'échantillon :
 
 Masse corporelle : Les hommes ont une masse moyenne plus élevée (81.8 kg) que les femmes (69.6 kg), ce qui est attendu biologiquement.
 
 Taille : Les hommes mesurent en moyenne 179 cm, contre 165 cm pour les femmes, confirmant aussi une différence physique typique entre les genres.
 
-Âge : Les femmes de l\'échantillon sont en moyenne un peu plus âgées (34.9 ans) que les hommes (31.2 ans).
+Âge : Les femmes de l'échantillon sont en moyenne un peu plus âgées (34.9 ans) que les hommes (31.2 ans).
 
-Effectifs (n) : L\'échantillon compte 79 femmes et 65 hommes, donc une légère surreprésentation féminine.
+Effectifs (n) : L'échantillon compte 79 femmes et 65 hommes, donc une légère surreprésentation féminine.
 
 ### Description par l'étudiant 2
 
@@ -632,20 +632,41 @@ chart$qqplot(biometry_anova_2)
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
-### ANOVA à deux facteurs 1
+### ANOVA à deux facteurs 1 (Amal)
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_1}
-
+chart(data = biometry_data, masse_corr ~ genre  %facet=% sommeil_cat %fill=% genre) +
+  geom_boxplot() +
+  labs(title = "Masse selon le genre et la durée de sommeil",
+       x = "Genre",
+       y = "Masse (kg)")
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+-   H₀ (hypothèse nulle) : Il n\'y a pas d\'effet du genre, ni de la durée de sommeil, ni d\'interaction entre les deux sur la masse corrigée.
+
+```{=html}
+<!-- -->
+```
+-    H₁ (hypothèse alternative) : Il y a un effet du genre, ou de la durée de sommeil, ou une interaction entre les deux sur la masse corrigée.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
+mod_anova2 <- aov(masse_corr ~ genre * sommeil_cat, data = biometry_data)
+bartlett.test(masse_corr ~ interaction(genre, sommeil_cat), data = biometry_data)
 
+```
+
+**L**es variances sont homogènes entre les groupes définis par l\'interaction `genre * sommeil_cat` (p-value = 0.2187 \> 0.05 )
+
+```{r}
+anova_amal <- lm(masse_corr ~ genre * sommeil_cat, data = biometry_data) 
+anova(anova_amal) |>
+  tabularise()
 ```
 
 <!--% Interprétation statistique et biologique -->
