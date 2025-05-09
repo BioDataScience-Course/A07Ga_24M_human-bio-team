@@ -16,17 +16,6 @@ bibliography: bibliography/references.bib
 
 <!--# Dans les différentes sections, vous trouverez des indicateurs "...Vos XXX ici..." Vous devez bien sûr REMPLACER ces indicateurs par votre propre texte. Ne les laissez pas dans votre version finale du document. Vous devez travailler dans le même document (pas question de faire un document séparé par étudiant). Gérez les conflits éventuels. -->
 
-```{r setup, include=FALSE}
-# Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
-if (!"tools:tests" %in% search())
-  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
-
-# Configuration de l'environnement SciViews::R
-
-SciViews::R("infer", lang = "fr")
-
-```
-
 # Introduction
 
 <!--% Sur base de la bibliographie (lecture de l'article fourni et de vos propres recherches sur Internet), rédigez une introduction du sujet en 3 à 4 paragraphes. Cette introduction doit guider le lecteur vers votre but. Vous devez citer vos sources, c'est-à-dire qu’il faut indiquer au minimum la référence bibliographique fournie de manière correcte (inspirez-vous de ce qui est indiqué dans le bloc-notes, mais reformulez : un simple copier-coller de l'introduction du bloc-notes n'est PAS considéré comme l'exercice réalisé !) -->
@@ -55,7 +44,28 @@ SciViews::R("infer", lang = "fr")
 
 <!--# N'oubliez pas que ce document doit pouvoir compiler indépendamment du reste. Cela implique que vous ajoutiez un chunk d'importation des données et que vous recalculiez tout ce qui doit l'être... Par contre, un simple copier-coller de toute la partie résultats du bloc-notes ne sera pas considéré comme un travail réalisé : vous devez sélectionner, et éventuellement remanier un peu le code, pour ne conserver que ce qui est utile ici. -->
 
-...Vos descriptions des données ici...
+Notre jeu de données porte sur la biométrie humaine et contient des observations de caractéristiques physiologiques et comportementales telles que le poids, la taille, l'âge, le sexe, le tour de taille, le tour de hanche et le tour de poignet. Des variables de mode de vie comme la consommation de sucre, d'alcool, de fast-food, d'eau ou de cortisone, le régime alimentaire (carnivore, végétarien, herbivore), les intolérances (lactose, gluten), ainsi que l'activité physique et les heures de sommeil sont également incluses.
+
+Trois visualisations ont retenu de maniere particuliere notre attention pour explorer ces données.
+
+Tour de taille selon le type d'alimentation : ce graphique permet de mettre en évidence une éventuelle influence du régime alimentaire sur la corpulence abdominale. On observe par exemple que les personnes ayant un régime carnivore présentent en moyenne un tour de taille plus élevé que les végétariens ou herbivores.
+
+Consommation de fast-food en fonction de l'âge : une tendance décroissante se dégage globalement, suggérant que les plus jeunes consomment plus fréquemment du fast-food que les personnes plus âgées.
+
+Distribution de la masse corporelle selon le genre : cette visualisation montre une répartition distincte du poids entre hommes et femmes, avec une masse corporelle généralement plus élevée chez les hommes.
+
+Ces éléments permettent de mieux comprendre comment certains comportements alimentaires et facteurs biologiques interagissent avec des indicateurs de santé comme le tour de taille ou la masse corporelle....Vos descriptions des données ici...
+
+```{r}
+chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
+  geom_histogram(data = sselect(biometry_data,-alimentation),
+    fill = "grey", bins = 25) + 
+  geom_histogram(show.legend = FALSE, bins = 25) +
+  ylab("Effectifs") +
+  scale_fill_viridis_d()
+```
+
+Ce graphique compare la distribution du tour de taille selon le régime alimentaire (omnivore, carnivore, végétarien). Les végétariens de cet échantillon semblent avoir les tours de taille les plus petits, concentrés autour de 70-80. Les carnivores ont tendance à avoir des tours de taille plus petits que les omnivores, possiblement entre 80 et 100, mais plus grands que les végétariens. La distribution du tour de taille chez les omnivores est plus large, avec une concentration notable autour de 80-90 et une autre vers 100-110, et globalement plus élevée que celle des autres régimes. La faible visibilité de données pour les végétariens suggère un petit échantillon ou des valeurs très regroupées.
 
 ## Tests d'hypothèses
 

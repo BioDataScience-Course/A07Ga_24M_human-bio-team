@@ -106,15 +106,17 @@ L'observation principale est que la distribution du tour de taille semble varier
 La distribution du tour de taille pour le groupe omnivore semble être **bimodale**, avec deux pics principaux un premier autour de 70 et un deuxième autour de 90. Cette distribution suggère qu'il pourrait y avoir deux sous-groupes distincts au sein de le catégorie"omnivore". Ces sous groupes pourrait être caractérisés par des facteurs non directement apparents dans ce graphique comme le genre, l'age ou les facteurs lié au mode de vie (l'activité physique).
 
 ```{r}
-
-biometry_data$sommeil_cat <- cut(biometry_data$sommeil, include.lowest = FALSE, right = TRUE,
-  breaks = c(0,6,8,Inf),
-  labels = c("<7h", "7–9h", ">9h"))
+## Recodage de biometry_data$sommeil en biometry_data$sommeil_rec
+biometry_data$sommeil_rec <- cut(biometry_data$sommeil,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(4, 6, 8, 13))
 
  biometry_data %>.% 
- sgroup_by(.,genre, sommeil_cat) %>.%
-  ssummarise(., mean = mean(fast_food),
-    mean = mean(masse))
+ sgroup_by(.,genre, sommeil_rec) %>.%
+  ssummarise(., moyenne_fast_food = mean(fast_food),
+    masse_moyenne = mean(masse)) -> biometry_table
  tabularise(biometry_table)
 ```
 
@@ -235,30 +237,37 @@ chart(data = biometry_data, IMA ~ genre %fill=% genre) +
 
 <!--% Description et formule ci-dessous. -->
 
+\\text{WHR} = \\frac{\\text{Tour de taille}}{\\text{Tour de hanche}}
+
 Le rapport tour de taille sur tour de hanches (RTH) est une mesure anthropométrique qui permet d'évaluer la distribution de la graisse corporelle. Son élévation témoigne d'une accumulation de tissus graisseux au niveau abdominal
 
 ```{r indice2}
 biometry_data <- biometry_data %>.% 
-smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche))
+smutate(biometry_data,taille_hanche = (tour_taille/tour_hanche)) %>.%
+  drop_na(.)
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice2}
 # Recodage de la variable taille_hanche en facteur
-biometry_data <- biometry_data %>%
-  smutate(., Categorie_RTH = case_when(
-      genre == "F" & taille_hanche <= 0.80 ~ "Faible",
-      genre == "F" & taille_hanche >=0.81 & taille_hanche<=0.85 ~ "Modéré",
-      genre == "F" & taille_hanche >=0.86 ~ "Elevé",
-      genre == "H" & taille_hanche <= 0,95 ~ "Faible",
-      genre == "H" & taille_hanche >=0.96 & taille_hanche<=1 ~ "Modéré",
+biometry_data <- biometry_data %>.%
+  smutate(., Categorie_RTH = case_when(genre == "F" & taille_hanche < 0.80 ~ "Faible",
+      genre == "F" & taille_hanche >=0.80 & taille_hanche < 0.85 ~ "Modéré",
+      genre == "F" & taille_hanche >=0.85 ~ "Elevé",
+      genre == "H" & taille_hanche < 0.95 ~ "Faible",
+      genre == "H" & taille_hanche >=0.95 & taille_hanche < 1 ~ "Modéré",
       genre == "H" & taille_hanche >=1 ~ "Elevé"))
+
+  # Graphique utilisant l'indice calculé
+chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
+  geom_bar(position = "dodge") +
+ labs(title = " Risque de santé Indiqués par le  rapport tour de taille sur tour de hanche ",
+  y = "Effectifs")
+
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
-
--   ...
 
 -   ...
 
@@ -407,15 +416,21 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
-
+table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_rec)
+tabularise(table_img_sommeil)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+Hypothèse nulle (H₀) : La catégorie d'IMC et la consommation de sucre sont indépendants
+
+Hypothèse alternative (H₁) : La catégorie d'IMC et la consommation de sucre ne sont dépendants
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-
+test_chi2_2 <- chisq.test(table_img_sommeil)
+tabularise(test_chi2_2)
 ```
 
 <!--% Interprétation statistique et biologique -->
