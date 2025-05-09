@@ -524,7 +524,11 @@ t.test(data = biometry_data, IMA ~ fumeur_rec,
   alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
 ```
 
-<!--% Interprétation statistique et biologique -->
+<!--% Interprétation statistique et biologique --> (Amal)
+
+Afin d\'évaluer si le statut tabagique influence l\'indice de masse abdominale (IMA), un test t de Student a été réalisé pour comparer les moyennes d\'IMA entre les individus fumeurs et non-fumeurs. Sur le plan statistique, les résultats du test (t = 0.337, ddl = 141, p = 0.7363) indiquent qu\'il n\'existe aucune différence significative entre les deux groupes. En effet, la p-value très élevée (\> 0.05) empêche de rejeter l\'hypothèse nulle selon laquelle les deux moyennes sont égales. La moyenne de l\'IMA chez les non-fumeurs (26.40) est légèrement supérieure à celle des fumeurs (25.71), mais cet écart est faible et n\'est pas statistiquement significatif.
+
+Sur le plan biologique, ces résultats suggèrent que, dans l\'échantillon étudié, le fait d\'être fumeur ou non n\'a pas d\'influence marquée sur l\'accumulation abdominale de masse grasse telle que mesurée par l\'IMA. Il est toutefois important de noter que l\'IMA peut être influencé par de nombreux facteurs (alimentation, activité physique, génétique, etc.), et que l\'effet du tabac sur la répartition des graisses corporelles pourrait se manifester de manière plus subtile ou dans des contextes différents. Par conséquent, bien que l\'analyse actuelle ne révèle pas de lien significatif entre tabagisme et IMA, cela ne permet pas de conclure à une absence totale d\'effet biologique du tabac sur la composition corporelle.
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
