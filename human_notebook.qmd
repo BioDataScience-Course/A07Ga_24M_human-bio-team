@@ -55,8 +55,39 @@ skimr::skim(biometry_data)
 ### Description par l'étudiant 1
 
 ```{r}
+chart(data = biometry_data, activite_physique ~ genre %fill=% genre) +
+  geom_boxplot() +
+  labs(title = "Activité physique (h/sem) par genre",
+       x = "Genre",
+       y = "heure par semaine")
 
 ```
+
+Le graphique montre que les hommes déclarent globalement plus d\'activité physique que les femmes. La médiane des minutes d\'activité physique hebdomadaire est plus élevée chez les hommes, ce qui indique qu'au moins la moitié d'entre eux dépasse un seuil de temps supérieur à celui des femmes.
+
+```{r}
+library(dplyr)
+biometry_data %>%
+  group_by(genre) %>%
+  summarise(
+    moyenne_masse = mean(masse, na.rm = TRUE),
+    moyenne_taille = mean(taille, na.rm = TRUE),
+    moyenne_age = mean(age, na.rm = TRUE),
+    n = n()
+  ) %>%
+  tabularise()
+
+```
+
+Le tableau compare des moyennes de masse, taille et âge entre les hommes (H) et les femmes (F) de l\'échantillon :
+
+Masse corporelle : Les hommes ont une masse moyenne plus élevée (81.8 kg) que les femmes (69.6 kg), ce qui est attendu biologiquement.
+
+Taille : Les hommes mesurent en moyenne 179 cm, contre 165 cm pour les femmes, confirmant aussi une différence physique typique entre les genres.
+
+Âge : Les femmes de l\'échantillon sont en moyenne un peu plus âgées (34.9 ans) que les hommes (31.2 ans).
+
+Effectifs (n) : L\'échantillon compte 79 femmes et 65 hommes, donc une légère surreprésentation féminine.
 
 ### Description par l'étudiant 2
 
