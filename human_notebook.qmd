@@ -39,9 +39,7 @@ La description des données et les tests statistiques sont réalisés dans la Sc
 
 ## Description des données
 
-\<!\--% Ajoutez un chunk d'importation des données à partir de v
-
-os données remaniées dans \`data/biometry.rds\`. Inspirez-vous de vos projets individuels pour écrire correctement ces chunks. \--\>
+<!--% Ajoutez un chunk d'importation des données à partir de vos données remaniées dans `data/biometry.rds`. Inspirez-vous de vos projets individuels pour écrire correctement ces chunks. -->
 
 ```{r}
 # Chargement des données depuis le fichier 
@@ -417,17 +415,32 @@ Puisque la valeur p est bien inférieure au seuil de 0.05, on rejette l'hypothè
 
 les résultats suggèrent que le genre influence la répartition de la graisse corporelle. Les hommes et les femmes ont des profils de distribution de la graisse corporelle différents, ce qui peut expliquer pourquoi la catégorie d'IMA varie de manière significative entre les deux sexes. Par exemple, les hommes peuvent avoir tendance à accumuler plus de graisse viscérale, associée à un IMA plus élevé, tandis que les femmes peuvent stocker davantage de graisse sous-cutanée, ce qui pourrait les amener à avoir un IMA plus faible.
 
-### Test de Chi^2^ **2**
+### Test de Chi^2^ **2( Fiona)**
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r}
-table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_rec)
+table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite)
+tabularise(table_img_activite)
 
-tabularise(table_img_sommeil)
 ```
 
->>>>>>> a436b07ba3f90270ee8b025504297e50b917f5de
+Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible niveau d'activité physique:environ 60% d 'entre elles font peu d'effort physique. Cela pourrait indiquer qu'un manque d'activité physique pourrait être un facteur de risque pour le développement de l'obésite ou du moins que les deux éléments sont liés .De leur coté , les personnes ayant un poids normal sont plus nombreuses à avoir une activité physique élevée . Plus de 40% d'entre elles sont actives , ce qui pourrait faire penser qu'un mode de vie actif joute un rôle dans le maintien d'un poids sain
+
+On observe également que la majorité des personnes en surpoids ont un niveau d'activité faible, ce qui va dans le meme sens que ce qu'on a pu noter avec les personnes obèses
+
+Autre chose importante: L'activité modérée est assez peu frequente dans toutes les catégories . La plupart des personnes ont soit une activité faible , soit une activité élevée, mais peu se situe au milieu.
+
+Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un niveau d'activité faible, cela pourrait suggérer une certaine fréquence de la sédentarité dans cet échantillon mais il faudrait davantage de données pour en tirer une conclusion solide
+
+<!--% Hypothèse nulle et alternative -->
+
+d'application --\>
+
+Hypothèse nulle (H₀) :Le niveau d'activité physique et l'indice de masse grasse sont indépendants
+
+Hypothèse alternative (H₁) : Le niveau d'activité physique et l'indice de masse grasse sont dépendants
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
@@ -566,7 +579,7 @@ chart(data = biometry_data, IMG ~ niveau_activite) +
 
 <!--% Hypothèse nulle et alternative -->
 
--   H0: μ1 = μ2 = ...= μk. Il n'y a pas de différence significative entre les moyennes d'IMG selon le niveau d'activité physique. L'IMG diffère significativement en fonction des nivesux d'activité physique.
+-   H0: μ1 = μ2 = ...= μk. Il n'y a pas de différence significative entre les moyennes d'IMG selon le niveau d'activité physique. L'IMG diffère significativement en fonction des niveaux d'activité physique.
 
 -   H1:∃(i,j) tel que μi ≠ μj. Il existe au moins une différence significative entre les moyennes d'IMG d'au moins deux groupes de niveau d'activité physique.
 
@@ -596,7 +609,7 @@ chart$qqplot(biometry_anova1)
 
 <!--% Interprétation statistique et biologique -->
 
-Nous observons dans le tableau de l'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 4.59, ddl = 2 & 140, valeur p \<\< 0.0118). Le fait qu'il y ait une différence significative entre les groupes suggère que l'activité physique régulière pourrait être un moyen éfficace de réduire la masse grasse chez les individus.
+Nous observons dans le tableau de l'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 4.59, ddl = 2 & 140, valeur p \<\< 0.0118). Le fait qu'il y ait une différence significative entre les groupes suggère que l'activité physique régulière pourrait être un moyen efficace de réduire la masse grasse chez les individus.
 
 ### ANOVA à un facteur 2
 
@@ -642,6 +655,12 @@ chart$qqplot(biometry_anova_2)
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Dans le but d'explorer un lien possible entre la répartition de la masse grasse et le statut pondéral, nous avons comparer le rapport tour de taille sur tour de hanche selon l'imc. Pour cela, une analyse à un facteur a été utilisée, On a vérifier les conditions d'applications; tout d'abord à travers le test de Bartlett qui à montrer une homoscédasticité et le graphique quantile-quantile qui a montré une distribution normale des résidus.
+
+Nous observons dans le tableau de l'anova que la valeur p est très faible et inférieur au seuil alpha de 5% . Du point de vue statistique, nous rejetons H0, nous pouvons dire que le rapport tour de taille sur tour de hanche varie significativement en fonction des groupes d'imc (ANOVA , F=10.1, ddl=3 et 139, valeur P= 4.59\*10E-6)
+
+Sur le plan biologique, cela nous indique qu'à mesure que le poids corporel augmente , la graisse s'accumule davantage autour de la taille plutot que sur les hanches. Ce type de répartition appelée graissse abdominale est connu pour etre plus risqué pour la santé et associé à un risque accru de maladies cardiovasculaires et troubles métaboliques . Ainsi ce résultat montre que la répartition de la masse grasse devient plus défavorable à la santé lorsque l'imc augmente
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
@@ -700,15 +719,23 @@ Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-
+chart(data = biometry_data, taille_hanche ~ fast_food_rec | genre) +
+  geom_boxplot() +
+  geom_jitter(width = 0.05, alpha = 0.3) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0(hypothèse nulle): il n'ya pas d'effet du genre, ni de la consommation de fast food, ni d'interaction entre les 2 sur l'img
+
+H1:(hypothese alternative):il y'a un effet du genre ou de la consommation de fast food ou une interaction entre les 2 sur l'img
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_2}
-
+mod_anova2 <- aov(IMG ~ taille_hanche * fast_food_rec, data = biometry_data)
+bartlett.test(IMG ~ interaction(genre, fast_food_rec), data = biometry_data)
 ```
 
 <!--% Interprétation statistique et biologique -->
