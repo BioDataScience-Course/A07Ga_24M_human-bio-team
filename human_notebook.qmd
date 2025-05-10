@@ -425,6 +425,14 @@ tabularise(table_img_activite)
 
 ```
 
+Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible niveau d'activité physique: environ 60% d 'entre elles font peu d'effort physique. Cela pourrait indiquer qu'un manque d'activité physique pourrait être un facteur de risque pour le développement de l'obésité ou du moins que les deux éléments sont liés.
+
+De leur coté , les personnes ayant un poids normal sont plus nombreuses à avoir une activité physique élevée . Plus de 40% d'entre elles sont actives , ce qui pourrait faire penser qu'un mode de vie actif joute un rôle dans le maintien d'un poids sain
+
+Autre chose importante: L\'activité modérée est assez peu fréquente dans toutes les catégories . La plupart des gens ont soit une activité faible , soit une activité élevée, mais peu se situe au milieu.
+
+Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un niveau d'activité faible, cela pourrait suggérer une certaine fréquence de la sédentarité dans cet échantillon mais il faudrait davantage de données pour en tirer une conclusion solide
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
@@ -640,11 +648,11 @@ chart$qqplot(biometry_anova_2)
 
 <!--% Interprétation statistique et biologique -->
 
-Dans le but d'explorer un lien possible entre la répartition de la masse grasse et le statut pondéral, nous avons comparer le rapport tour de taille sur tour de hanche selon l'imc. Pour cela, une analyse à un facteur a été utilisée, On a vérifier les conditions d'applications; tout d'abord à travers le test de Bartlett qui à montrer une homoscédasticité et le graphique quantile-quantile qui a montré une distribution normale des résidus.
+Dans le but d'explorer un lien possible entre la répartition de la masse grasse et le statut pondéral, nous avons comparer le rapport tour de taille sur tour de hanche selon l'IMC. Pour cela, une analyse à un facteur a été utilisée, On a vérifier les conditions d'applications; tout d'abord à travers le test de Bartlett qui à montrer une homoscédasticité et le graphique quantile-quantile qui a montré une distribution normale des résidus.
 
-Nous observons dans le tableau de l'anova que la valeur p est très faible et inférieur au seuil alpha de 5% . Du point de vue statistique, nous rejetons H0, nous pouvons dire que le rapport tour de taille sur tour de hanche varie significativement en fonction des groupes d'imc (ANOVA , F=10.1, ddl=3 et 139, valeur P= 4.59\*10E-6)
+Nous observons dans le tableau de l'anova que la valeur p est très faible et inférieur au seuil alpha de 5% . Du point de vue statistique, nous rejetons H0, nous pouvons dire que le rapport tour de taille sur tour de hanche varie significativement en fonction des groupes d'IMC (ANOVA , F=10.1, ddl=3 et 139, valeur P= 4.59\*10E-6)
 
-Sur le plan biologique, cela nous indique qu'à mesure que le poids corporel augmente , la graisse s'accumule davantage autour de la taille plutot que sur les hanches. Ce type de répartition appelée graissse abdominale est connu pour etre plus risqué pour la santé et associé à un risque accru de maladies cardiovasculaires et troubles métaboliques . Ainsi ce résultat montre que la répartition de la masse grasse devient plus défavorable à la santé lorsque l'imc augmente
+Sur le plan biologique, cela nous indique qu'à mesure que le poids corporel augmente , la graisse s'accumule davantage autour de la taille plutôt que sur les hanches. Ce type de répartition appelée graisse abdominale est connu pour être plus risqué pour la santé et associé à un risque accru de maladies cardiovasculaires et troubles métaboliques . Ainsi ce résultat montre que la répartition de la masse grasse devient plus défavorable à la santé lorsque l'IMC augmente
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
@@ -705,7 +713,10 @@ Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-
+chart(data = biometry_data, IMG ~ fast_food_rec | genre) +
+  geom_boxplot() +
+  geom_jitter(width = 0.05, alpha = 0.3) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -717,6 +728,8 @@ H1:(hypothese alternative):il y'a un effet du genre ou de la consommation de fas
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_2}
+mod_anova2 <- aov(IMG ~ genre * fast_food_rec, data = biometry_data)
+bartlett.test(IMG ~ interaction(genre, fast_food_rec), data = biometry_data)
 
 ```
 
