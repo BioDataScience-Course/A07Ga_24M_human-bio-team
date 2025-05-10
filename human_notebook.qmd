@@ -158,8 +158,6 @@ tabularise(biometry_3)
 
 Le tableau obtenu montre que la population étudiée est majoritairement composée de jeunes adultes, avec plus d'individus appartenant à la tranche des 17-29 ans. Les tranches d'âge supérieures, en particulier les 70 ans et plus, sont très peu représentées (seulement 4 personnes), ce qui montre un déséquilibre important dans la distribution des âges. Cette répartition déséquilibrée limite l'intérêt d'utiliser l'âge comme variable principale dans les analyses, à moins de regrouper certaines tranches pour assurer une meilleure représentativité.
 
-=======
->>>>>>> b50af6e27a7b4d249851f10b6474a90a506d9c39
 ### Description par l'étudiant 4
 
 ```{r}
@@ -385,14 +383,10 @@ chart(biometry_data, ~ IMG %fill=% genre | genre) +
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 
-```         
-=======
 ```{r plot_chi2_1}
 # Création du tableau de contingence entre la catégorie IMA et le genre
 table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
 tabularise(table_ima_genre)
->>>>>>> b50af6e27a7b4d249851f10b6474a90a506d9c39
-```
 
 Ce tableau montre la répartition des individus dans chaque catégorie d'IMA (faible, normal, élevé, obésité) en fonction du genre.
 
