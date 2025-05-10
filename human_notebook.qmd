@@ -411,7 +411,7 @@ test_chi2_1 <- chisq.test(table_ima_genre)
 tabularise(test_chi2_1)
 ```
 
-<!--% Interprétation statistique et biologique -->
+<!--% Interprétation statistique et biologique ->
 
 Puisque la \*\*valeur p\*\* est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
 
