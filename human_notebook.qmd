@@ -419,20 +419,20 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
-table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_rec)
-tabularise(table_img_sommeil)
+table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite)
+tabularise(table_img_activite)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
-Hypothèse nulle (H₀) : La catégorie de sommeil et l'indice de masse grasse sont indépendants
+Hypothèse nulle (H₀) : Le niveau d'activité physique et l'indice de masse grasse sont indépendants
 
-Hypothèse alternative (H₁) : La catégorie se sommeil et l'indice de masse grasse ne sont dépendants
+Hypothèse alternative (H₁) : Le niveau d'activité physique et l'indice de masse grasse sont dépendants
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-test_chi2_2 <- chisq.test(table_img_sommeil)
+test_chi2_2 <- chisq.test(table_img_activite)
 tabularise(test_chi2_2)
 ```
 
@@ -688,10 +688,7 @@ anova(anova_amal) |>
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-biometry_5 <- biometry_data %>.% 
-  ssummarise(sgroup_by(., alimentation),
-  "n" = fn(alimentation))
-tabularise(biometry_5)
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
