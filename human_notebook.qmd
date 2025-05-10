@@ -155,6 +155,8 @@ biometry_data %>.%
 tabularise(biometry_3)
 ```
 
+Le tableau obtenu montre que la population étudiée est majoritairement composée de jeunes adultes, avec plus d'individus appartenant à la tranche des 17-29 ans. Les tranches d'âge supérieures, en particulier les 70 ans et plus, sont très peu représentées (seulement 4 personnes), ce qui montre un déséquilibre important dans la distribution des âges. Cette répartition déséquilibrée limite l'intérêt d'utiliser l'âge comme variable principale dans les analyses, à moins de regrouper certaines tranches pour assurer une meilleure représentativité.
+
 ### Description par l'étudiant 4
 
 ```{r}
@@ -393,24 +395,25 @@ Normal (17 hommes, 46 femmes) : Les femmes représentent une proportion plus imp
 
 Élevé (30 hommes, 13 femmes) : Les hommes sont majoritairement dans cette catégorie, indiquant qu'ils ont une tendance plus forte à l'accumulation de graisse dans les plages élevées de l'IMA.
 
-Obésité (18 hommes, 8 femmes) : Les hommes dominent également dans la catégorie "obésité", suggérant qu'ils sont plus susceptibles d'être dans cette catégorie
+Obésité (18 hommes, 8 femmes) : Les hommes dominent également dans la catégorie "obésité", suggérant qu'ils sont plus susceptibles d'être dans cette catégorie.
 
 <!--% Hypothèse nulle et alternative -->
 
-Hypothèse nulle (H₀) : La catégorie d'IMA et le genre sont indépendants.
+Hypothèse nulle (H₀) : La catégorie de sommeil et l'indice de masse grasse sont indépendants
 
-Hypothèse alternative (H₁) : La catégorie d'IMA et le genre ne sont pas indépendants.
+Hypothèse alternative (H₁) : La catégorie se sommeil et l'indice de masse grasse ne sont dépendants
 
 <!--% Vérification des conditions d'application -->
 
-```{r test_chi2_1}
+```{r}
 test_chi2_1 <- chisq.test(table_ima_genre)
+
 tabularise(test_chi2_1)
 ```
 
 <!--% Interprétation statistique et biologique -->
 
-Puisque la **valeur p** est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
+Puisque la \*\*valeur p\*\* est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
 
 les résultats suggèrent que le genre influence la répartition de la graisse corporelle. Les hommes et les femmes ont des profils de distribution de la graisse corporelle différents, ce qui peut expliquer pourquoi la catégorie d'IMA varie de manière significative entre les deux sexes. Par exemple, les hommes peuvent avoir tendance à accumuler plus de graisse viscérale, associée à un IMA plus élevé, tandis que les femmes peuvent stocker davantage de graisse sous-cutanée, ce qui pourrait les amener à avoir un IMA plus faible.
 
@@ -418,6 +421,7 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
+<<<<<<< HEAD
 ```{r plot_chi2_2}
 table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite)
 tabularise(table_img_activite)
@@ -429,6 +433,14 @@ Hypothèse nulle (H₀) : Le niveau d'activité physique et l'indice de masse gr
 
 Hypothèse alternative (H₁) : Le niveau d'activité physique et l'indice de masse grasse sont dépendants
 
+=======
+```{r}
+table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_rec)
+
+tabularise(table_img_sommeil)
+```
+
+>>>>>>> a436b07ba3f90270ee8b025504297e50b917f5de
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
@@ -705,11 +717,19 @@ anova(anova_amal) |>
 
 <!--% Reprenez ci-dessous sous forme d'éléments de listes brefs les résultats les plus importants que vous retirez de votre analyse. Ils doivent vous guider pour décider quels tests (les plus intéressants) vous allez conserver dans le rapport. -->
 
--   ...
+-   Le genre influence l'activité physique déclarée, ce qui doit être pris en compte dans l'interprétation des indicateurs de santé comme la masse
 
--   ...
+-   L'âge est un facteur important des comportements alimentaires, mais son interprétation doit être nuancée vu la faible représentativité des classes d'âge élevées dans l'échantillon.
 
--   ...
+-   Le type de régime alimentaire influence potentiellement la distribution des graisses abdominales, et pourrait être un levier de prévention de l'obésité.
+
+-   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à la corpulence.
+
+    ```{r plot_chi2_1}
+    # Création du tableau de contingence entre la catégorie IMA et le genre
+    table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
+    tabularise(table_ima_genre)
+    ```
 
 -   ...
 
