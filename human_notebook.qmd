@@ -31,7 +31,7 @@ Au cours des dernières décennies, la santé humaine a connu un déclin alarman
 
 # Matériel et méthodes
 
-Les données ont été collectées par un groupe d'une trentaine d'expérimentateurs qui se sont réparti le travail. Le choix des mesures à réaliser a fait l'objet d'un consensus au sein du groupe par l'élaboration d'un dictionnaire des données commun. Les mesures sujettes à variation (la masse plus particulièrement) ont fait l'objet d'une intercalibration. Ces données sont pseudonymisées afin de respecter l'anonymat des sujets étudiés en respect du RGPD (règlement général de la protection des données, règlement d'application en Europe).
+Les données ont été collectées par un groupe d'une trentaine d'expérimentateurs qui se sont réparti le travail. Le choix des mesures à réaliser a fait l'objet d'un consensus au sein du groupe par l'élaboration d'un dictionnaire des données commun. Les mesures sujettes à variation (la masse plus particulièrement) ont fait l'objet d'une intercalibration. Ces données sont pseudonymisées afin de respecter l'anonymat des sujets dans la SciViews Box 2024 en utilisant [Saturn Cloud](https://saturncloud.io) (Linux) avec le [logiciel R](https://www.r-project.org) (`r R.version.string`).
 
 La description des données et les tests statistiques sont réalisés dans la SciViews Box 2024 en utilisant [Saturn Cloud](https://saturncloud.io) (Linux) avec le [logiciel R](https://www.r-project.org) (`r R.version.string`).
 
@@ -112,14 +112,16 @@ biometry_data$sommeil_rec <- cut(biometry_data$sommeil,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(4, 6, 8, 13))
+  breaks = c(4, 7, 10, 13),
+labels = c("Sommeil insuffisant", "Sommeil normal", "Sommeil prolongé"))
 
  biometry_data %>.% 
  sgroup_by(.,genre, sommeil_rec) %>.%
-  ssummarise(., moyenne_fast_food = mean(fast_food),
-    masse_moyenne = mean(masse)) -> biometry_table
+  ssummarise(.,masse_moyenne = mean(masse), moyenne_fast_food = mean(fast_food), n = fn(sommeil)) -> biometry_table
  tabularise(biometry_table)
 ```
+
+Le tableau suivant présente la répartition de la masse corporelle moyenne et de la consommation de fast-food selon la durée de sommeil et le genre des individus.Le tableau met en évidence une tendance selon laquelle les hommes ayant un sommeil insuffisant présentent à la fois une masse corporelle plus élevée et une consommation plus fréquente de fast-food . En revanche , cette relation semble moins marquée chez les femmes , chez qui la variation de la masse corporelle selon la durée du sommeil est plus faible, ce qui pourrait indiquer une influence différente du sommeil en fonction du genre. Le tableau suggère que la relation entre le sommeil et les habitudes alimentaires varie selon le genre.
 
 ### Description par l'étudiant 3
 
@@ -147,14 +149,17 @@ L'analyse de notre graphe montre que la consommation de fast-food est plus élev
 
 ```{r}
 biometry_data %>.%
-  sgroup_by(., age_rec, genre) %>.%
-  ssummarise(., "moyenne" = mean(age),
-    "n" = fn(age)) -> biometry_3
+  sgroup_by(., age_rec, genre, sucre) %>.%
+  ssummarise(., "moyenne" = mean(fast_food),
+    "n" = fn(sucre)) -> biometry_3
 tabularise(biometry_3)
 ```
 
+<<<<<<< HEAD
 Le tableau obtenu montre que la population étudiée est majoritairement composée de jeunes adultes, avec plus d'individus appartenant à la tranche des 17-29 ans. Les tranches d'âge supérieures, en particulier les 70 ans et plus, sont très peu représentées (seulement 4 personnes), ce qui montre un déséquilibre important dans la distribution des âges. Cette répartition déséquilibrée limite l'intérêt d'utiliser l'âge comme variable principale dans les analyses, à moins de regrouper certaines tranches pour assurer une meilleure représentativité.
 
+=======
+>>>>>>> b50af6e27a7b4d249851f10b6474a90a506d9c39
 ### Description par l'étudiant 4
 
 ```{r}
@@ -379,7 +384,14 @@ chart(biometry_data, ~ IMG %fill=% genre | genre) +
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
+<<<<<<< HEAD
 ```         
+=======
+```{r plot_chi2_1}
+# Création du tableau de contingence entre la catégorie IMA et le genre
+table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
+tabularise(table_ima_genre)
+>>>>>>> b50af6e27a7b4d249851f10b6474a90a506d9c39
 ```
 
 Ce tableau montre la répartition des individus dans chaque catégorie d'IMA (faible, normal, élevé, obésité) en fonction du genre.
@@ -422,9 +434,9 @@ tabularise(table_img_sommeil)
 
 <!--% Hypothèse nulle et alternative -->
 
-Hypothèse nulle (H₀) : La catégorie d'IMC et la consommation de sucre sont indépendants
+Hypothèse nulle (H₀) : La catégorie de sommeil et l'indice de masse grasse sont indépendants
 
-Hypothèse alternative (H₁) : La catégorie d'IMC et la consommation de sucre ne sont dépendants
+Hypothèse alternative (H₁) : La catégorie se sommeil et l'indice de masse grasse ne sont dépendants
 
 <!--% Vérification des conditions d'application -->
 
@@ -685,7 +697,10 @@ anova(anova_amal) |>
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-
+biometry_5 <- biometry_data %>.% 
+  ssummarise(sgroup_by(., alimentation),
+  "n" = fn(alimentation))
+tabularise(biometry_5)
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -702,6 +717,7 @@ anova(anova_amal) |>
 
 <!--% Reprenez ci-dessous sous forme d'éléments de listes brefs les résultats les plus importants que vous retirez de votre analyse. Ils doivent vous guider pour décider quels tests (les plus intéressants) vous allez conserver dans le rapport. -->
 
+<<<<<<< HEAD
 -   Le genre influence l'activité physique déclarée, ce qui doit être pris en compte dans l'interprétation des indicateurs de santé comme la masse
 
 -   L'âge est un facteur important des comportements alimentaires, mais son interprétation doit être nuancée vu la faible représentativité des classes d'âge élevées dans l'échantillon.
@@ -715,6 +731,15 @@ anova(anova_amal) |>
     table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
     tabularise(table_ima_genre)
     ```
+=======
+-   ...
+
+-   ...
+
+-   ...
+
+-   ...
+>>>>>>> b50af6e27a7b4d249851f10b6474a90a506d9c39
 
 -   ...
 
