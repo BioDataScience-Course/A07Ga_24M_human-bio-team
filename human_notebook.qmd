@@ -411,6 +411,7 @@ test_chi2_1 <- chisq.test(table_ima_genre)
 tabularise(test_chi2_1)
 ```
 
+```{=html}
 <!--% Interprétation statistique et biologique ->
 
 Puisque la \*\*valeur p\*\* est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
@@ -420,7 +421,7 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 ### Test de Chi^2^ 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
-
+```
 ```{r}
 table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_rec)
 
@@ -472,7 +473,8 @@ car::qqPlot(biometry_data[["imglog"]], distribution = "norm",
 ```
 
 ```{r test_t_1}
-t.test(data = biometry_data, IMG ~ fast_food_rec)
+test <- t.test(data = biometry_data, IMG ~ fast_food_rec)
+tabularise(test)
 ```
 
 <!-- Interprétation statistique et biologique -->
@@ -507,9 +509,9 @@ chart(data = biometry_data, IMA ~ fumeur_rec %fill=% fumeur_rec) +
 
 µ1: moyenne de l'IMA chez les fumeurs ; µ2: moyenne de l'IMA chez les non-fumeurs
 
-H(0): µ1 - µ2 = 0 (Il n'y a pas de différence significativeentre les moyennes des deux groupes.)
+H(0): µ1 - µ2 = 0 (Il n'y a pas de différence significative entre les moyennes des deux groupes.)
 
-H(1): µ1 - µ2 != 0 (Il y a une différence significativeentre les moyennes des deux groupes.)
+H(1): µ1 - µ2 != 0 (Il y a une différence significative entre les moyennes des deux groupes.)
 
 <!--% Vérification des conditions d'application -->
 

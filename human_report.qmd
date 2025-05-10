@@ -54,6 +54,15 @@ Quatre visualisations ont retenu de manière particulière notre attention pour 
 
 Ces éléments permettent de mieux comprendre comment certains comportements alimentaires et facteurs biologiques interagissent avec des indicateurs de santé comme la masse grasse ou la masse adipeuse.
 
+```{r setup, include=FALSE}
+# Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+
+# Configuration de l'environnement SciViews::R
+SciViews::R("infer", "model", lang = "fr")
+```
+
 ```{r}
 chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
   geom_histogram(data = sselect(biometry_data,-alimentation),
