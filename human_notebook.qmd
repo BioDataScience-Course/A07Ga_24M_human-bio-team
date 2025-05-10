@@ -731,17 +731,12 @@ tabularise(biometry_5)
     table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
     tabularise(table_ima_genre)
     ```
-=======
--   ...
 
 -   ...
 
 -   ...
 
--   ...
->>>>>>> b50af6e27a7b4d249851f10b6474a90a506d9c39
 
--   ...
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
