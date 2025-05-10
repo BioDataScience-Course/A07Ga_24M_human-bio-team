@@ -22,19 +22,17 @@ bibliography: bibliography/references.bib
 
 <!--# Ce projet porte sur la santé humaine liée à l'obésité, à la façon de se nourrir et aux activités réalisées (plus ou moins sédentaire ou actif) ... Réalisez des recherches bibliographiques afin d'avoir une vision précise de la thématique. Existe-t-il des indicateurs calculables pour quantifier l'état de santé d'un individu, par exemple ? Naturellement, ces indicateurs doivent être calculables sur bases des variables mesurées dans votre jeu de données. Focalisez-vous donc sur ces variables-là. -->
 
-À l’ère où les maladies métaboliques et cardiovasculaires représentent des enjeux majeurs de santé publique, l’analyse des caractéristiques corporelles humaines est essentielle en épidémiologie et en médecine préventive. Les mesures anthropométriques simples, comme le poids, la taille et le tour de taille, permettent d’estimer des paramètres biologiques comme la masse grasse et la répartition des tissus adipeux. Ces estimations, traduites sous forme d’indices comme l’IMG (Indice de Masse Grasse) et l’IMA (Indice de Masse Adipeuse), sont des outils précieux pour évaluer le lien entre morphologie, mode de vie et santé.
+À l'ère où les maladies métaboliques et cardiovasculaires représentent des enjeux majeurs de santé publique, l'analyse des caractéristiques corporelles humaines est essentielle en épidémiologie et en médecine préventive. Les mesures anthropométriques simples, comme le poids, la taille et le tour de taille, permettent d'estimer des paramètres biologiques comme la masse grasse et la répartition des tissus adipeux. Ces estimations, traduites sous forme d'indices comme l'IMG (Indice de Masse Grasse) et l'IMA (Indice de Masse Adipeuse), sont des outils précieux pour évaluer le lien entre morphologie, mode de vie et santé.
 
-L’IMG évalue la proportion de masse grasse corporelle, tandis que l’IMA est particulièrement efficace pour estimer la graisse abdominale, un facteur de risque clé de maladies métaboliques. Ces indices, en complément de l'IMC, permettent de mieux identifier les risques liés à l'adiposité centrale, même chez les individus ayant un poids normal. Ils sont donc cruciaux pour la détection des risques et pour l’orientation des politiques de prévention.
+L'IMG évalue la proportion de masse grasse corporelle, tandis que l'IMA est particulièrement efficace pour estimer la graisse abdominale, un facteur de risque clé de maladies métaboliques. Ces indices, en complément de l'IMC, permettent de mieux identifier les risques liés à l'adiposité centrale, même chez les individus ayant un poids normal. Ils sont donc cruciaux pour la détection des risques et pour l'orientation des politiques de prévention.
 
-Dans ce projet, nous avons pour objectif d’explorer un jeu de données biométriques recueilli chez une population , en calculant certains de ces indices notamment l’IMG et l’IMA et en étudiant leur variation selon différentes caractéristiques comme le sexe, l’âge ou le type de régime alimentaire. Ce travail nous permettra d’interroger de manière critique la pertinence de ces indicateurs dans l’évaluation du risque pour la santé, tout en renforçant nos compétences en analyse de données et en raisonnement scientifique. L’approche adoptée se veut à la fois quantitative et biologique, afin d’interpréter les résultats dans une perspective intégrée reliant le corps, le métabolisme, et l’environnement.
+Dans ce projet, nous avons pour objectif d'explorer un jeu de données biométriques recueilli chez une population , en calculant certains de ces indices notamment l'IMG et l'IMA et en étudiant leur variation selon différentes caractéristiques comme le sexe, l'âge ou le type de régime alimentaire. Ce travail nous permettra d'interroger de manière critique la pertinence de ces indicateurs dans l'évaluation du risque pour la santé, tout en renforçant nos compétences en analyse de données et en raisonnement scientifique. L'approche adoptée se veut à la fois quantitative et biologique, afin d'interpréter les résultats dans une perspective intégrée reliant le corps, le métabolisme, et l'environnement.
 
 # But
 
 <!--% Formulez ici de façon concise et précise votre question de recherche en 1 à 2 phrases. -->
 
 Le but de ce projet est de calculer plusieurs indices corporels, tels que l'Indice de Masse Grasse (IMG), l'Indice de Masse Adipeuse (IMA), ainsi que d'autres indices pertinents, à partir d'un jeu de données biométriques. Ces calculs permettront d'étudier la variation de ces indices en fonction de différents facteurs comme le sexe, l'âge et le type de régime alimentaire, afin d'évaluer leur pertinence dans l'analyse du risque pour la santé et leur utilité dans la prévention des maladies métaboliques et cardiovasculaires.
-
-
 
 # Matériel et méthodes
 
@@ -52,15 +50,9 @@ Le but de ce projet est de calculer plusieurs indices corporels, tels que l'Indi
 
 Notre jeu de données porte sur la biométrie humaine et contient des observations de caractéristiques physiologiques et comportementales telles que le poids, la taille, l'âge, le sexe, le tour de taille, le tour de hanche et le tour de poignet. Des variables de mode de vie comme la consommation de sucre, d'alcool, de fast-food, d'eau ou de cortisone, le régime alimentaire (carnivore, végétarien, herbivore), les intolérances (lactose, gluten), ainsi que l'activité physique et les heures de sommeil sont également incluses.
 
-Trois visualisations ont retenu de maniere particuliere notre attention pour explorer ces données.
+Quatre visualisations ont retenu de manière particulière notre attention pour explorer ces données.
 
-Tour de taille selon le type d'alimentation : ce graphique permet de mettre en évidence une éventuelle influence du régime alimentaire sur la corpulence abdominale. On observe par exemple que les personnes ayant un régime carnivore présentent en moyenne un tour de taille plus élevé que les végétariens ou herbivores.
-
-Consommation de fast-food en fonction de l'âge : une tendance décroissante se dégage globalement, suggérant que les plus jeunes consomment plus fréquemment du fast-food que les personnes plus âgées.
-
-Distribution de la masse corporelle selon le genre : cette visualisation montre une répartition distincte du poids entre hommes et femmes, avec une masse corporelle généralement plus élevée chez les hommes.
-
-Ces éléments permettent de mieux comprendre comment certains comportements alimentaires et facteurs biologiques interagissent avec des indicateurs de santé comme le tour de taille ou la masse corporelle....Vos descriptions des données ici...
+Ces éléments permettent de mieux comprendre comment certains comportements alimentaires et facteurs biologiques interagissent avec des indicateurs de santé comme la masse grasse ou la masse adipeuse.
 
 ```{r}
 chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
@@ -72,6 +64,80 @@ chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
 ```
 
 Ce graphique compare la distribution du tour de taille selon le régime alimentaire (omnivore, carnivore, végétarien). Les végétariens de cet échantillon semblent avoir les tours de taille les plus petits, concentrés autour de 70-80. Les carnivores ont tendance à avoir des tours de taille plus petits que les omnivores, possiblement entre 80 et 100, mais plus grands que les végétariens. La distribution du tour de taille chez les omnivores est plus large, avec une concentration notable autour de 80-90 et une autre vers 100-110, et globalement plus élevée que celle des autres régimes. La faible visibilité de données pour les végétariens suggère un petit échantillon ou des valeurs très regroupées.
+
+Ce graphique permet de mettre en évidence une éventuelle influence du régime alimentaire sur la corpulence abdominale. Les personnes ayant un régime carnivore présentent en moyenne un tour de taille plus élevé que les végétariens ou herbivores.
+
+```{r}
+#Regroupage en tranche d'age 
+## Recodage de biometry_data$age en biometry_data$age_rec
+biometry_data$age_rec <- cut(biometry_data$age,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(17, 30, 50, 70, 81),
+  labels = c("17-29ans", "30-49ans", "50-69ans", "plus de 70ans"))
+
+chart(data = biometry_data, ~ fast_food %fill=% genre | age_rec) +
+  geom_bar(na.rm = TRUE, position = "dodge") +
+  scale_fill_viridis_d() +
+  labs(title = "Répartition de la consommation de fast-food par tranche d'âge",
+  x = "Nombre de fast-food consommés par semaine",
+  y = "Effectifs")
+```
+
+Le graphique présente la répartition du nombre de fast-food consommés par semaine selon quatre tranches d'âge, différenciée par le genre. Une tendance décroissante se dégage globalement, suggérant que les plus jeunes consomment plus fréquemment du fast-food que les personnes plus âgées.
+
+La tranche 17--29 ans est celle qui consomme le plus fréquemment du fast-food, avec des individus atteignant jusqu'à 12 repas/semaine. Les hommes et les femmes sont fortement représentés dans cette tranche, bien que les hommes semblent consommer légèrement plus en quantité.
+
+Dans les tranches d'âge supérieures, la consommation diminue progressivement avec l'âge, notamment à partir de 50 ans, où la majorité des individus consomment 0 à 1 fast-food/semaine.
+
+Chez les plus de 70 ans, la consommation devient quasi inexistante.
+
+La consommation de fast-food reste globalement plus élevée chez les jeunes adultes, ce qui peut représenter un facteur de risque important de sur-poids ou d'obésité si elle est couplée à une sédentarité ou une mauvaise hygiène de vie.
+
+Ce graphique illustre un facteur comportemental clé.
+
+```{r}
+library(dplyr)
+biometry_data %>%
+  group_by(genre) %>%
+  summarise(
+    moyenne_masse = mean(masse, na.rm = TRUE),
+    moyenne_taille = mean(taille, na.rm = TRUE),
+    moyenne_age = mean(age, na.rm = TRUE),
+    n = n()
+  ) %>%
+  tabularise()
+
+```
+
+Le tableau présente les valeurs moyennes de masse (kg), taille (cm), âge (ans) et le nombre d'individus (n) selon le genre.
+
+La différence entre la moyenne de masse peut s'expliquer en partie par la différence de taille, mais pourrait aussi indiquer une proportion plus importante de masse grasse ou musculaire chez les hommes.
+
+Les hommes sont en moyenne plus grands (179 cm) que les femmes (165 cm), ce qui est attendu biologiquement.
+
+L'âge moyen des femmes est légèrement plus élevé (35 ans) que celui des hommes (31,2 ans), ceci peut influencer certains facteurs physiologiques comme le métabolisme basal ou la distribution des graisses.
+
+L'échantillon est légèrement déséquilibré, avec 78 femmes contre 65 hommes, mais reste suffisamment représentatif.
+
+Ces statistiques montrent que les hommes de l'échantillon sont en moyenne plus lourds et plus grands, ce qui pourrait les amener à avoir un IMC comparable à celui des femmes, ou non, selon la masse grasse.
+
+```{r}
+chart(data = biometry_data, masse_corr ~ genre %fill=% genre) +
+  geom_boxplot() +
+labs(title = "Distribution de la masse par genre",
+       x = "Genre",
+       y = "Masse (kg)")
+```
+
+Cette visualisation montre une répartition distincte du poids entre hommes et femmes, avec une masse corporelle généralement plus élevée chez les hommes.
+
+Au travers de ce graphique on voit une tendance claire : en général, les hommes de cet échantillon ont une masse corporelle plus élevée que les femmes**.**
+
+La distribution de la masse est décalée vers des valeurs plus élevées chez les hommes par rapport aux femmes (comparaison des médianes et des boîtes).
+
+La présence de valeurs aberrantes plus élevées chez les hommes pourrait indiquer une plus grande proportion d'individus avec une masse très élevée dans ce groupe.
 
 ## Tests d'hypothèses
 
