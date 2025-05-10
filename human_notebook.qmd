@@ -54,7 +54,7 @@ skimr::skim(biometry_data)
 
 <!--% Ensuite vous décrirez graphiquement (avec `chart()`) et numériquement (tableaux avec `tabularise()`, `skimr::skim()`, etc.) vos données. Chaque étudiant ajoute deux éléments descriptifs pertinents. -->
 
-### Description par l'étudiant 1
+### Description par l'étudiant 1 (Amal)
 
 ```{r}
 chart(data = biometry_data, activite_physique ~ genre %fill=% genre) +
@@ -407,17 +407,16 @@ Hypothèse alternative (H₁) : La catégorie se sommeil et l'indice de masse gr
 
 ```{r}
 test_chi2_1 <- chisq.test(table_ima_genre)
-
 tabularise(test_chi2_1)
 ```
 
-<!--% Interprétation statistique et biologique -->
+\<!\--% Interprétation statistique et biologique -\>
 
-Puisque la \*\*valeur p\*\* est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
+Puisque la valeur p est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
 
 les résultats suggèrent que le genre influence la répartition de la graisse corporelle. Les hommes et les femmes ont des profils de distribution de la graisse corporelle différents, ce qui peut expliquer pourquoi la catégorie d'IMA varie de manière significative entre les deux sexes. Par exemple, les hommes peuvent avoir tendance à accumuler plus de graisse viscérale, associée à un IMA plus élevé, tandis que les femmes peuvent stocker davantage de graisse sous-cutanée, ce qui pourrait les amener à avoir un IMA plus faible.
 
-### Test de Chi^2^ 2
+### Test de Chi^2^ **2**
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
@@ -486,7 +485,8 @@ car::qqPlot(biometry_data[["imglog"]], distribution = "norm",
 ```
 
 ```{r test_t_1}
-t.test(data = biometry_data, IMG ~ fast_food_rec)
+test <- t.test(data = biometry_data, IMG ~ fast_food_rec)
+tabularise(test)
 ```
 
 <!-- Interprétation statistique et biologique -->
@@ -521,9 +521,9 @@ chart(data = biometry_data, IMA ~ fumeur_rec %fill=% fumeur_rec) +
 
 µ1: moyenne de l'IMA chez les fumeurs ; µ2: moyenne de l'IMA chez les non-fumeurs
 
-H(0): µ1 - µ2 = 0 (Il n'y a pas de différence significativeentre les moyennes des deux groupes.)
+H(0): µ1 - µ2 = 0 (Il n'y a pas de différence significative entre les moyennes des deux groupes.)
 
-H(1): µ1 - µ2 != 0 (Il y a une différence significativeentre les moyennes des deux groupes.)
+H(1): µ1 - µ2 != 0 (Il y a une différence significative entre les moyennes des deux groupes.)
 
 <!--% Vérification des conditions d'application -->
 
@@ -687,6 +687,8 @@ bartlett.test(masse_corr ~ interaction(genre, sommeil_rec), data = biometry_data
 
 **L**es variances sont homogènes entre les groupes définis par l'interaction `genre * sommeil_cat` (p-value = 0.07617 \> 0.05 )
 
+et
+
 ```{r}
 anova_amal <- lm(masse_corr ~ genre * sommeil_rec, data = biometry_data) 
 anova(anova_amal) |>
@@ -694,6 +696,16 @@ anova(anova_amal) |>
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Interpretation :
+
+La première valeur de p \<\< 0,05 (genre). Il existe un effet statistiquement significatif du genre sur la masse corrigée. La masse corrigée diffère significativement entre les genres.
+
+La deuxième valeur de p est inférieure au seuil de 0,05. Il existe un effet statistiquement significatif entre la durée de sommeil et la masse corrigée. La masse corrigée diffère significativement entre les différents groupes de durée de sommeil.
+
+La valeur de p est bien supérieure au seuil de 0,05. Il n'y a pas d'effet d'interaction statistiquement significatif entre le genre et la durée de sommeil sur la masse corrigée. Cela suggère que l'effet du genre sur la masse corrigée est similaire pour tous les niveaux de durée de sommeil.
+
+Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a un impact significatif sur la masse corrigée. L'effet combiné (interaction) du genre et de la durée de sommeil n'a pas un impact significatif sur la masse corrigée.
 
 ### ANOVA à deux facteurs 2
 
@@ -723,13 +735,7 @@ anova(anova_amal) |>
 
 -   Le type de régime alimentaire influence potentiellement la distribution des graisses abdominales, et pourrait être un levier de prévention de l'obésité.
 
--   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à la corpulence.
-
-    ```{r plot_chi2_1}
-    # Création du tableau de contingence entre la catégorie IMA et le genre
-    table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
-    tabularise(table_ima_genre)
-    ```
+-   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à lacorpulence.
 
 -   ...
 
