@@ -420,19 +420,6 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
-<<<<<<< HEAD
-```{r plot_chi2_2}
-table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite)
-tabularise(table_img_activite)
-```
-
-<!--% Hypothèse nulle et alternative -->
-
-Hypothèse nulle (H₀) : Le niveau d'activité physique et l'indice de masse grasse sont indépendants
-
-Hypothèse alternative (H₁) : Le niveau d'activité physique et l'indice de masse grasse sont dépendants
-
-=======
 ```{r}
 table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_rec)
 
