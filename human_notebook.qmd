@@ -722,7 +722,7 @@ tabularise(biometry_5)
 
 -   Le type de régime alimentaire influence potentiellement la distribution des graisses abdominales, et pourrait être un levier de prévention de l'obésité.
 
--   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à la corpulence.
+-   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à lacorpulence.
 
     ```{r plot_chi2_1}
     # Création du tableau de contingence entre la catégorie IMA et le genre
