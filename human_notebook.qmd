@@ -52,7 +52,7 @@ skimr::skim(biometry_data)
 
 <!--% Ensuite vous décrirez graphiquement (avec `chart()`) et numériquement (tableaux avec `tabularise()`, `skimr::skim()`, etc.) vos données. Chaque étudiant ajoute deux éléments descriptifs pertinents. -->
 
-### Description par l'étudiant 1
+### Description par l'étudiant 1 (Amal)
 
 ```{r}
 chart(data = biometry_data, activite_physique ~ genre %fill=% genre) +
