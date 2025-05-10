@@ -149,10 +149,11 @@ L'analyse de notre graphe montre que la consommation de fast-food est plus élev
 
 ```{r}
 biometry_data %>.%
-  sgroup_by(., age_rec, genre, sucre) %>.%
-  ssummarise(., "moyenne" = mean(fast_food),
-    "n" = fn(sucre)) -> biometry_3
+  sgroup_by(., age_rec, genre) %>.%
+  ssummarise(., "moyenne" = mean(age),
+    "n" = fn(age)) -> biometry_3
 tabularise(biometry_3)
+
 ```
 
 Le tableau obtenu montre que la population étudiée est majoritairement composée de jeunes adultes, avec plus d'individus appartenant à la tranche des 17-29 ans. Les tranches d'âge supérieures, en particulier les 70 ans et plus, sont très peu représentées (seulement 4 personnes), ce qui montre un déséquilibre important dans la distribution des âges. Cette répartition déséquilibrée limite l'intérêt d'utiliser l'âge comme variable principale dans les analyses, à moins de regrouper certaines tranches pour assurer une meilleure représentativité.
