@@ -612,9 +612,9 @@ chart(data = biometry_data, taille_hanche ~ imc_cat) +
 
 <!--% Hypothèse nulle et alternative -->
 
--   H0: μ1 = μ2 = ...= μk. Les variances du rapport taille/hanche sont égales entre les groupes d\'IMC
+-   H0: μ1 = μ2 = ...= μk. Les variances du rapport taille/hanche sont égales entre les groupes d'IMC
 
--   H1:∃(i,j) tel que μi ≠ μj. Il existe au moins une différence de variance du entre les groupes d\'IMC.
+-   H1:∃(i,j) tel que μi ≠ μj. Il existe au moins une différence de variance du entre les groupes d'IMC.
 
 <!--% Vérification des conditions d'application -->
 
@@ -658,7 +658,6 @@ chart(data = biometry_data, masse_corr ~ genre  %facet=% sommeil_rec %fill=% gen
 <!--% Hypothèse nulle et alternative -->
 
 -   H₀ (hypothèse nulle) : Il n'y a pas d'effet du genre, ni de la durée de sommeil, ni d'interaction entre les deux sur la masse corrigée.
-
 
 <!-- -->
 
