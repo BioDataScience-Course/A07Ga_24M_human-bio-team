@@ -705,6 +705,7 @@ Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -716,8 +717,7 @@ H1:(hypothese alternative):il y'a un effet du genre ou de la consommation de fas
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_2}
-mod_anova2 <- aov(IMG ~ taille_hanche * fast_food_rec, data = biometry_data)
-bartlett.test(IMG ~ interaction(genre, fast_food_rec), data = biometry_data)
+
 ```
 
 <!--% Interprétation statistique et biologique -->
