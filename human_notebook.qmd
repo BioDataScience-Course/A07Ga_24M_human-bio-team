@@ -665,6 +665,8 @@ bartlett.test(masse_corr ~ interaction(genre, sommeil_rec), data = biometry_data
 
 **L**es variances sont homogènes entre les groupes définis par l'interaction `genre * sommeil_cat` (p-value = 0.07617 \> 0.05 )
 
+et
+
 ```{r}
 anova_amal <- lm(masse_corr ~ genre * sommeil_rec, data = biometry_data) 
 anova(anova_amal) |>
