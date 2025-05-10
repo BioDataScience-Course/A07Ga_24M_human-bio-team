@@ -425,26 +425,11 @@ tabularise(table_img_activite)
 
 ```
 
-Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible niveau d'activité physique:environ 60% d 'entre elles font peu d'effort physique. Cela pourrait indiquer qu'un manque d'activité physique pourrait être un facteur de risque pour le développement de l'obésite ou du moins que les deux éléments sont liés .De leur coté , les personnes ayant un poids normal sont plus nombreuses à avoir une activité physique élevée . Plus de 40% d'entre elles sont actives , ce qui pourrait faire penser qu'un mode de vie actif joute un rôle dans le maintien d'un poids sain
-
-On observe également que la majorité des personnes en surpoids ont un niveau d'activité faible, ce qui va dans le meme sens que ce qu'on a pu noter avec les personnes obèses
-
-Autre chose importante: L'activité modérée est assez peu frequente dans toutes les catégories . La plupart des personnes ont soit une activité faible , soit une activité élevée, mais peu se situe au milieu.
-
-Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un niveau d'activité faible, cela pourrait suggérer une certaine fréquence de la sédentarité dans cet échantillon mais il faudrait davantage de données pour en tirer une conclusion solide
-
-<!--% Hypothèse nulle et alternative -->
-
-d'application --\>
-
-Hypothèse nulle (H₀) :Le niveau d'activité physique et l'indice de masse grasse sont indépendants
-
-Hypothèse alternative (H₁) : Le niveau d'activité physique et l'indice de masse grasse sont dépendants
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-test_chi2_2 <- chisq.test(table_img_activite)
+test_chi2_2 <- chisq.test(table_img_sommeil)
 tabularise(test_chi2_2)
 ```
 
@@ -704,13 +689,15 @@ anova(anova_amal) |>
 
 <!--% Interprétation statistique et biologique -->
 
-Interpretation :
+Interprétation :
 
-La première valeur de p \<\< 0,05 (genre). Il existe un effet statistiquement significatif du genre sur la masse corrigée. La masse corrigée diffère significativement entre les genres.
+Lévaluation de l'influence du genre et du sommeil sur la masse corrigée a été realisée au travers d'un test ANOVA a 2 facteurs. Sur le plan statistique, en regard du terme genre (F = 23.05, ddl = 1 et 137, p = 0.000000408 \< 0,05 donc rejet de H0). En terme sommeil_rec (F = 4.17, ddl = 2 et 137, p = 0.0174 \< 0,05 donc rejet de H0). Et pour le terme genre:sommeil_rec ( ddl = 2 et 137, p = 0.727 \> 0.05 donc on ne rejette pas H0).
 
-La deuxième valeur de p est inférieure au seuil de 0,05. Il existe un effet statistiquement significatif entre la durée de sommeil et la masse corrigée. La masse corrigée diffère significativement entre les différents groupes de durée de sommeil.
+Donc Il existe un effet statistiquement significatif du genre sur la masse corrigée. (La masse corrigée diffère significativement entre les genres).
 
-La valeur de p est bien supérieure au seuil de 0,05. Il n'y a pas d'effet d'interaction statistiquement significatif entre le genre et la durée de sommeil sur la masse corrigée. Cela suggère que l'effet du genre sur la masse corrigée est similaire pour tous les niveaux de durée de sommeil.
+De plus, il existe un effet statistiquement significatif entre la durée de sommeil et la masse corrigée. (La masse corrigée diffère significativement entre les différents groupes de durée de sommeil).
+
+Mais il n'y a pas d'effet d'interaction statistiquement significatif entre le genre et la durée de sommeil sur la masse corrigée. Cela suggère que l'effet du genre sur la masse corrigée est similaire pour tous les niveaux de durée de sommeil.
 
 Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a un impact significatif sur la masse corrigée. L'effet combiné (interaction) du genre et de la durée de sommeil n'a pas un impact significatif sur la masse corrigée.
 
@@ -719,10 +706,6 @@ Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-chart(data = biometry_data, taille_hanche ~ fast_food_rec | genre) +
-  geom_boxplot() +
-  geom_jitter(width = 0.05, alpha = 0.3) +
-  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
 ```
 
 <!--% Hypothèse nulle et alternative -->
