@@ -681,6 +681,16 @@ anova(anova_amal) |>
 
 <!--% Interprétation statistique et biologique -->
 
+Interpretation :
+
+La première valeur de p \<\< 0,05 (genre). Il existe un effet statistiquement significatif du genre sur la masse corrigée. La masse corrigée diffère significativement entre les genres.
+
+La deuxième valeur de p est inférieure au seuil de 0,05. Il existe un effet statistiquement significatif entre la durée de sommeil et la masse corrigée. La masse corrigée diffère significativement entre les différents groupes de durée de sommeil.
+
+La valeur de p est bien supérieure au seuil de 0,05. Il n'y a pas d'effet d'interaction statistiquement significatif entre le genre et la durée de sommeil sur la masse corrigée. Cela suggère que l'effet du genre sur la masse corrigée est similaire pour tous les niveaux de durée de sommeil.
+
+Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a un impact significatif sur la masse corrigée. L'effet combiné (interaction) du genre et de la durée de sommeil n'a pas un impact significatif sur la masse corrigée.
+
 ### ANOVA à deux facteurs 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
