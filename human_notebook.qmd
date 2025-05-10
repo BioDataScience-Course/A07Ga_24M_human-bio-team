@@ -39,7 +39,9 @@ La description des données et les tests statistiques sont réalisés dans la Sc
 
 ## Description des données
 
-<!--% Ajoutez un chunk d'importation des données à partir de vos données remaniées dans `data/biometry.rds`. Inspirez-vous de vos projets individuels pour écrire correctement ces chunks. -->
+\<!\--% Ajoutez un chunk d'importation des données à partir de v
+
+os données remaniées dans \`data/biometry.rds\`. Inspirez-vous de vos projets individuels pour écrire correctement ces chunks. \--\>
 
 ```{r}
 # Chargement des données depuis le fichier 
@@ -610,6 +612,10 @@ chart(data = biometry_data, taille_hanche ~ imc_cat) +
 ```
 
 <!--% Hypothèse nulle et alternative -->
+
+-   H0: μ1 = μ2 = ...= μk. Les variances du rapport taille/hanche sont égales entre les groupes d\'IMC
+
+-   H1:∃(i,j) tel que μi ≠ μj. Il existe au moins une différence de variance du entre les groupes d\'IMC.
 
 <!--% Vérification des conditions d'application -->
 
