@@ -68,7 +68,6 @@ chart(data = biometry_data, activite_physique ~ genre %fill=% genre) +
 Le graphique montre que les hommes déclarent globalement plus d'activité physique que les femmes. La médiane des minutes d'activité physique hebdomadaire est plus élevée chez les hommes, ce qui indique qu'au moins la moitié d'entre eux dépasse un seuil de temps supérieur à celui des femmes.
 
 ```{r}
-library(dplyr)
 biometry_data %>%
   group_by(genre) %>%
   summarise(
@@ -165,7 +164,7 @@ labs(title = "Distribution de la masse par genre",
 cross_table <- biometry_data %>%
   group_by(., genre) %>%
   ssummarise(.,
-    moyenne        = fmean(masse_corr),
+    Masse_moyenne        = fmean(masse_corr),
     ecart_type     =  fsd(masse_corr),
     n              = fn(masse_corr)
     )
@@ -439,7 +438,7 @@ tabularise(test_chi2_2)
 
 <!--# Travaillez jusqu'ici pour le module 7. -->
 
-### Test t de Student 1
+### Test t de Student 1 (Leslie)
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
@@ -482,7 +481,7 @@ Puisque la valeur de p est faible et inférieure au seuil alpha 5%. Nous rejeton
 
 Les résultats montrent que les personnes qui consomment du fast-food plus fréquemment présentent en moyenne un indice de masse grasse plus faible que celles qui n'en consomment pas. Biologiquement, ce résultat peut s'expliquer par d'autres facteurs comme l'âge, le niveau d'activité physique, ou le métabolisme individuel, qui peuvent influencer la masse grasse indépendamment de l'alimentation.
 
-### c
+### Test t de Student 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
@@ -536,7 +535,7 @@ Sur le plan biologique, ces résultats suggèrent que, dans l'échantillon étud
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
-### ANOVA à un facteur 1
+### ANOVA à un facteur 1(Leslie)
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
@@ -649,7 +648,7 @@ chart$qqplot(biometry_anova_2)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_1}
-chart(data = biometry_data, masse_corr ~ genre  %facet=% sommeil_cat %fill=% genre) +
+chart(data = biometry_data, masse_corr ~ genre  %facet=% sommeil_rec %fill=% genre) +
   geom_boxplot() +
   labs(title = "Masse selon le genre et la durée de sommeil",
        x = "Genre",
@@ -660,8 +659,11 @@ chart(data = biometry_data, masse_corr ~ genre  %facet=% sommeil_cat %fill=% gen
 
 -   H₀ (hypothèse nulle) : Il n'y a pas d'effet du genre, ni de la durée de sommeil, ni d'interaction entre les deux sur la masse corrigée.
 
+<<<<<<< HEAD
+=======
 <!-- -->
 
+>>>>>>> b1ae4312f7a29ab3f07d2faac6190ac2d34465ba
 -   H₁ (hypothèse alternative) : Il y a un effet du genre, ou de la durée de sommeil, ou une interaction entre les deux sur la masse corrigée.
 
 <!--% Vérification des conditions d'application -->
