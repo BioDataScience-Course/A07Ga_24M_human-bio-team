@@ -407,21 +407,19 @@ Hypothèse alternative (H₁) : La catégorie se sommeil et l'indice de masse gr
 
 ```{r}
 test_chi2_1 <- chisq.test(table_ima_genre)
-
 tabularise(test_chi2_1)
 ```
 
-```{=html}
-<!--% Interprétation statistique et biologique ->
+\<!\--% Interprétation statistique et biologique -\>
 
-Puisque la \*\*valeur p\*\* est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
+Puisque la valeur p est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
 
 les résultats suggèrent que le genre influence la répartition de la graisse corporelle. Les hommes et les femmes ont des profils de distribution de la graisse corporelle différents, ce qui peut expliquer pourquoi la catégorie d'IMA varie de manière significative entre les deux sexes. Par exemple, les hommes peuvent avoir tendance à accumuler plus de graisse viscérale, associée à un IMA plus élevé, tandis que les femmes peuvent stocker davantage de graisse sous-cutanée, ce qui pourrait les amener à avoir un IMA plus faible.
 
-### Test de Chi^2^ 2
+### Test de Chi^2^ **2**
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
-```
+
 ```{r}
 table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_rec)
 
@@ -727,12 +725,6 @@ tabularise(biometry_5)
 -   Le type de régime alimentaire influence potentiellement la distribution des graisses abdominales, et pourrait être un levier de prévention de l'obésité.
 
 -   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à lacorpulence.
-
-    ```{r plot_chi2_1}
-    # Création du tableau de contingence entre la catégorie IMA et le genre
-    table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
-    tabularise(table_ima_genre)
-    ```
 
 -   ...
 
