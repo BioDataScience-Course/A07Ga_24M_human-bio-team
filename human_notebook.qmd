@@ -653,11 +653,7 @@ chart(data = biometry_data, masse_corr ~ genre  %facet=% sommeil_rec %fill=% gen
 
 -   H₀ (hypothèse nulle) : Il n'y a pas d'effet du genre, ni de la durée de sommeil, ni d'interaction entre les deux sur la masse corrigée.
 
-<<<<<<< HEAD
-=======
-<!-- -->
 
->>>>>>> b1ae4312f7a29ab3f07d2faac6190ac2d34465ba
 -   H₁ (hypothèse alternative) : Il y a un effet du genre, ou de la durée de sommeil, ou une interaction entre les deux sur la masse corrigée.
 
 <!--% Vérification des conditions d'application -->
