@@ -147,11 +147,13 @@ L'analyse de notre graphe montre que la consommation de fast-food est plus élev
 
 ```{r}
 biometry_data %>.%
-  sgroup_by(., age_rec, genre, sucre) %>.%
-  ssummarise(., "moyenne" = mean(fast_food),
-    "n" = fn(sucre)) -> biometry_3
+  sgroup_by(., age_rec, genre) %>.%
+  ssummarise(., "moyenne" = mean(age),
+    "n" = fn(age)) -> biometry_3
 tabularise(biometry_3)
 ```
+
+Le tableau obtenu montre que la population étudiée est majoritairement composée de jeunes adultes, avec plus d\'individus appartenant à la tranche des 17-29 ans. Les tranches d\'âge supérieures, en particulier les 70 ans et plus, sont très peu représentées (seulement 4 personnes), ce qui montre un déséquilibre important dans la distribution des âges. Cette répartition déséquilibrée limite l\'intérêt d\'utiliser l\'âge comme variable principale dans les analyses, à moins de regrouper certaines tranches pour assurer une meilleure représentativité.
 
 ### Description par l'étudiant 4
 
@@ -377,10 +379,7 @@ chart(biometry_data, ~ IMG %fill=% genre | genre) +
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
-```{r plot_chi2_1}
-# Création du tableau de contingence entre la catégorie IMA et le genre
-table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
-tabularise(table_ima_genre)
+```{}
 ```
 
 Ce tableau montre la répartition des individus dans chaque catégorie d'IMA (faible, normal, élevé, obésité) en fonction du genre.
@@ -659,9 +658,7 @@ chart(data = biometry_data, masse_corr ~ genre  %facet=% sommeil_rec %fill=% gen
 
 -   H₀ (hypothèse nulle) : Il n'y a pas d'effet du genre, ni de la durée de sommeil, ni d'interaction entre les deux sur la masse corrigée.
 
-
 <!-- -->
-
 
 -   H₁ (hypothèse alternative) : Il y a un effet du genre, ou de la durée de sommeil, ou une interaction entre les deux sur la masse corrigée.
 
@@ -688,10 +685,7 @@ anova(anova_amal) |>
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-biometry_5 <- biometry_data %>.% 
-  ssummarise(sgroup_by(., alimentation),
-  "n" = fn(alimentation))
-tabularise(biometry_5)
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -708,13 +702,19 @@ tabularise(biometry_5)
 
 <!--% Reprenez ci-dessous sous forme d'éléments de listes brefs les résultats les plus importants que vous retirez de votre analyse. Ils doivent vous guider pour décider quels tests (les plus intéressants) vous allez conserver dans le rapport. -->
 
--   ...
+-   Le genre influence l\'activité physique déclarée, ce qui doit être pris en compte dans l\'interprétation des indicateurs de santé comme la masse
 
--   ...
+-   L\'âge est un facteur important des comportements alimentaires, mais son interprétation doit être nuancée vu la faible représentativité des classes d\'âge élevées dans l\'échantillon.
 
--   ...
+-   Le type de régime alimentaire influence potentiellement la distribution des graisses abdominales, et pourrait être un levier de prévention de l\'obésité.
 
--   ...
+-   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l\'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à la corpulence.
+
+    ```{r plot_chi2_1}
+    # Création du tableau de contingence entre la catégorie IMA et le genre
+    table_ima_genre <- table(biometry_data$categorie_IMA, biometry_data$genre)
+    tabularise(table_ima_genre)
+    ```
 
 -   ...
 
