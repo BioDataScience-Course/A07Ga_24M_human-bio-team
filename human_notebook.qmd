@@ -427,10 +427,11 @@ table_img_sommeil <- table(biometry_data$IMG_Categorie, biometry_data$sommeil_re
 tabularise(table_img_sommeil)
 ```
 
+>>>>>>> a436b07ba3f90270ee8b025504297e50b917f5de
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-test_chi2_2 <- chisq.test(table_img_sommeil)
+test_chi2_2 <- chisq.test(table_img_activite)
 tabularise(test_chi2_2)
 ```
 
@@ -701,10 +702,7 @@ Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-biometry_5 <- biometry_data %>.% 
-  ssummarise(sgroup_by(., alimentation),
-  "n" = fn(alimentation))
-tabularise(biometry_5)
+
 ```
 
 <!--% Hypothèse nulle et alternative -->
