@@ -155,7 +155,7 @@ biometry_data %>.%
 tabularise(biometry_3)
 ```
 
-<<<<<<< HEAD
+
 Le tableau obtenu montre que la population étudiée est majoritairement composée de jeunes adultes, avec plus d'individus appartenant à la tranche des 17-29 ans. Les tranches d'âge supérieures, en particulier les 70 ans et plus, sont très peu représentées (seulement 4 personnes), ce qui montre un déséquilibre important dans la distribution des âges. Cette répartition déséquilibrée limite l'intérêt d'utiliser l'âge comme variable principale dans les analyses, à moins de regrouper certaines tranches pour assurer une meilleure représentativité.
 
 =======
@@ -384,7 +384,7 @@ chart(biometry_data, ~ IMG %fill=% genre | genre) +
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
-<<<<<<< HEAD
+
 ```         
 =======
 ```{r plot_chi2_1}
@@ -717,7 +717,7 @@ tabularise(biometry_5)
 
 <!--% Reprenez ci-dessous sous forme d'éléments de listes brefs les résultats les plus importants que vous retirez de votre analyse. Ils doivent vous guider pour décider quels tests (les plus intéressants) vous allez conserver dans le rapport. -->
 
-<<<<<<< HEAD
+
 -   Le genre influence l'activité physique déclarée, ce qui doit être pris en compte dans l'interprétation des indicateurs de santé comme la masse
 
 -   L'âge est un facteur important des comportements alimentaires, mais son interprétation doit être nuancée vu la faible représentativité des classes d'âge élevées dans l'échantillon.
