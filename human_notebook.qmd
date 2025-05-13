@@ -90,8 +90,6 @@ Effectifs (n) : L'échantillon compte 79 femmes et 65 hommes, donc une légère 
 
 ### Description par l'étudiant 2
 
-[@taleb2015]
-
 ```{r}
 chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
   geom_histogram(data = sselect(biometry_data,-alimentation),
@@ -325,8 +323,6 @@ tabularise(biometry_3)
 
 ### Indice 4
 
-$\[\text{IMG} = (1.2 \times \text{IMC}) + (0.23 \times \text{âge}) - (10.8 \times \text{sexe}) - 5.4\]$
-
 <!--% Description et formule ci-dessous. -->
 
 L'**Indice de Masse Grasse (IMG)** est une mesure qui estime le pourcentage de graisse corporelle d'une personne. Contrairement à l'IMC (indice de masse corporelle), qui ne fait pas de distinction entre la masse grasse et la masse musculaire, l'IMG offre une estimation plus précise de la composition corporelle [@wikipedia2025].
@@ -435,7 +431,6 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 #table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite))
 #tabularise(table_img_activite)
 
-```
 
 Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible niveau d'activité physique: environ 60% d 'entre elles font peu d'effort physique. Cela pourrait indiquer qu'un manque d'activité physique pourrait être un facteur de risque pour le développement de l'obésité ou du moins que les deux éléments sont liés.
 
@@ -447,7 +442,6 @@ Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un ni
 
 <!--% Vérification des conditions d'application -->
 
-```{r test_chi2_2}
 test_chi2_2 <- chisq.test(table_img_activite)
 tabularise(test_chi2_2)
 ```
@@ -518,8 +512,7 @@ chart(data = biometry_data, IMA ~ fumeur_rec %fill=% fumeur_rec) +
   labs(
     title = "Distribution de l'IMA selon le statut tabagique",
     x = "Statut tabagique",
-    y = "Indice de Masse Abdominale (IMA)"
-  )
+    y = "Indice de Masse Abdominale (IMA)")
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -559,6 +552,11 @@ Sur le plan biologique, ces résultats suggèrent que, dans l'échantillon étud
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_1}
+biometry_data <- biometry_data %>%
+  mutate(niveau_activite = cut(activite_physique,
+                               breaks = c(-Inf, 149, 300, Inf),
+                               labels = c("Faible", "Modérée", "Élevée"),
+                               ordered_result = TRUE))
 biometry_data %>.%
   sgroup_by(., niveau_activite) %>.%
   ssummarise(.,
@@ -765,6 +763,8 @@ chart$qqplot(anova2, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+L'évaluation de l'influence du genre et du niveau d'activité sur le logarithme de l'IMA a été realisée au travers d'un test ANOVA a 2 facteurs. Sur le plan statistique, en regard du terme genre (F = 33.162, ddl = 1 et 137, p = 5.33\*10\^-8 \< 0,05 donc rejet de H0). En terme niveau d'activité (F = 1.459, ddl = 2 et 137, p = 0.236 \> 0,05 donc on ne rejette pas H0). Et pour le terme genre:niveau_d'activité ( F = 0.0188, ddl = 2 et 137, p = 0.711 \> 0.05 donc on ne rejette pas H0). Les variances de log_IMA sont homogènes entre les groupes. C'est une condition importante pour que l'ANOVA soit valide. Cela signifie que, quelle que soit la combinaison de sexe (genre) et de niveau d'activité physique, la variabilité de l'Indice de Masse Adipeuse (IMA, ici transformé en log) est comparable entre les groupes.
 
 # Discussion et conclusions
 
