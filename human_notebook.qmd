@@ -473,11 +473,10 @@ biometry_data$fast_food_rec <- cut(biometry_data$fast_food,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(0, 1, 13) 
-  )
+  breaks = c(0, 1, 13))
 biometry_data %>.%
   sgroup_by(., fast_food_rec) %>.%
-  ssummarise(., mean = mean(IMG, na.rm = T)) 
+  ssummarise(., mean = mean(IMG, na.rm = T))
 ```
 
 <!-- Hypothèse nulle et alternative -->

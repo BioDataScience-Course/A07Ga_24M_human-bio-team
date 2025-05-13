@@ -221,6 +221,30 @@ Cette analyse de la variance (ANOVA) a été réalisée pour examiner l'effet du
 Test 4
 
 ```{r}
+biometry_data <- biometry_data %>%
+  smutate(
+  taille_m = taille / 100,   # Conversion de la taille de cm en m
+ IMA = (tour_hanche / (taille_m^1.5)) - 18  # Calcul de l'IMA
+  )
+
+biometry_data <- biometry_data %>%
+  smutate(
+    taille_m = taille / 100,  # Conversion de la taille de cm en m
+    IMA = (tour_hanche / (taille_m^1.5)) - 18,  # Calcul de l'IMA
+    categorie_IMA = case_when(
+      genre == "H" & IMA < 8  ~ "faible",
+      genre == "H" & IMA >= 8 & IMA < 20 ~ "normal",
+      genre == "H" & IMA >= 20 & IMA < 25 ~ "élevé",
+      genre == "H" & IMA >= 25 ~ "obésité",
+      genre == "F" & IMA < 21  ~ "faible",
+      genre == "F" & IMA >= 21 & IMA < 33 ~ "normal",
+      genre == "F" & IMA >= 33 & IMA < 39 ~ "élevé",
+      genre == "F" & IMA >= 39 ~ "obésité"
+    )
+  )
+```
+
+```{r}
 ## Recodage de biometry_data$fumeur en biometry_data$fumeur_rec
 biometry_data$fumeur_rec <- cut(biometry_data$fumeur,
   include.lowest = TRUE,
@@ -234,6 +258,7 @@ biometry_data$fumeur_rec <- cut(biometry_data$fumeur,
 ```{r}
 t.test(data = biometry_data, IMA ~ fumeur_rec,
   alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
+
 ```
 
 Les différentes analyses statistiques réalisées ont permis de mettre en évidence des facteurs significativement associés à des indicateurs de corpulence et de santé métabolique.
@@ -250,11 +275,11 @@ Dans le cadre de notre projet portant sur l'obésité humaine, nous avons étudi
 
 Pour explorer l'influence du régime alimentaire sur l'obésité, nous avons comparé les distributions du tour de taille chez les individus omnivores, carnivores et végétariens. Le tour de taille est reconnu comme un marqueur robuste de la masse grasse abdominale et du risque métabolique associé. Notre analyse montre que les omnivores présentent une distribution plus étendue du tour de taille, concentrée autour de valeurs élevées (80 à 100 cm), avec plusieurs cas au-delà de 110 cm. Les individus végétariens, bien que moins représentés, tendent à présenter des tours de taille plus bas, ce qui correspond aux observations faites dans la littérature indiquant que les régimes riches en fibres et pauvres en graisses animales peuvent être associés à une réduction du risque d'obésité abdominale.
 
-Sur le plan des moyennes corporelles, les hommes de l\'échantillon ont une masse moyenne de 81,8 kg, une taille moyenne de 179 cm et un âge moyen de 31,2 ans. Les femmes, quant à elles, ont une masse moyenne de 69,5 kg, une taille moyenne de 165 cm et un âge moyen de 35 ans. Ces différences reflètent les variations sexuelles normales de la composition corporelle, notamment la répartition de la masse musculaire et du tissu adipeux. L\'analyse des distributions corporelles confirme que les hommes présentent des masses corporelles plus élevées, ce qui est cohérent avec leur plus grande masse maigre en moyenne.
+Sur le plan des moyennes corporelles, les hommes de l'échantillon ont une masse moyenne de 81,8 kg, une taille moyenne de 179 cm et un âge moyen de 31,2 ans. Les femmes, quant à elles, ont une masse moyenne de 69,5 kg, une taille moyenne de 165 cm et un âge moyen de 35 ans. Ces différences reflètent les variations sexuelles normales de la composition corporelle, notamment la répartition de la masse musculaire et du tissu adipeux. L'analyse des distributions corporelles confirme que les hommes présentent des masses corporelles plus élevées, ce qui est cohérent avec leur plus grande masse maigre en moyenne.
 
-Enfin, nos résultats soulignent l\'importance de facteurs comportementaux (alimentation, activité physique, sommeil, consommation de substances) dans la régulation du poids corporel. Plusieurs travaux montrent que l\'interaction de ces facteurs peut expliquer une grande partie de la variabilité interindividuelle du risque d\'obésité, ce qui justifie une approche multifactorielle dans la prévention des maladies métaboliques.
+Enfin, nos résultats soulignent l'importance de facteurs comportementaux (alimentation, activité physique, sommeil, consommation de substances) dans la régulation du poids corporel. Plusieurs travaux montrent que l'interaction de ces facteurs peut expliquer une grande partie de la variabilité interindividuelle du risque d'obésité, ce qui justifie une approche multifactorielle dans la prévention des maladies métaboliques.
 
-Cette étude exploratoire met en évidence des liens significatifs entre certains comportements alimentaires, comme le type de régime suivi ou la consommation de fast-food, et des indicateurs corporels liés à l\'obésité, tels que le tour de taille et la masse corporelle. Les résultats suggèrent notamment qu\'un régime végétarien pourrait être associé à une adiposité abdominale réduite, tandis que les jeunes adultes affichent une consommation de fast-food particulièrement élevée, indépendamment du sexe. Ces observations renforcent l\'idée que les habitudes de vie, dès le plus jeune âge, jouent un rôle crucial dans la prévention des déséquilibres corporels et des pathologies associées. Cependant, les limites de l\'échantillon notamment la sous-représentation de certains régimes alimentaires et le recours à des données auto-déclarées invitent à la prudence dans l\'interprétation. Pour affiner ces premières conclusions, des études complémentaires, à plus grande échelle et sur le long terme, seraient nécessaires. Une approche multidimensionnelle intégrant des données biologiques, comportementales et socio-économiques permettrait une évaluation plus complète des facteurs de risque liés à l\'obésité. En somme, cette analyse souligne l\'importance de promouvoir des comportements alimentaires équilibrés et une activité physique régulière, dans une logique de prévention et de santé publique.
+Cette étude exploratoire met en évidence des liens significatifs entre certains comportements alimentaires, comme le type de régime suivi ou la consommation de fast-food, et des indicateurs corporels liés à l'obésité, tels que le tour de taille et la masse corporelle. Les résultats suggèrent notamment qu'un régime végétarien pourrait être associé à une adiposité abdominale réduite, tandis que les jeunes adultes affichent une consommation de fast-food particulièrement élevée, indépendamment du sexe. Ces observations renforcent l'idée que les habitudes de vie, dès le plus jeune âge, jouent un rôle crucial dans la prévention des déséquilibres corporels et des pathologies associées. Cependant, les limites de l'échantillon notamment la sous-représentation de certains régimes alimentaires et le recours à des données auto-déclarées invitent à la prudence dans l'interprétation. Pour affiner ces premières conclusions, des études complémentaires, à plus grande échelle et sur le long terme, seraient nécessaires. Une approche multidimensionnelle intégrant des données biologiques, comportementales et socio-économiques permettrait une évaluation plus complète des facteurs de risque liés à l'obésité. En somme, cette analyse souligne l'importance de promouvoir des comportements alimentaires équilibrés et une activité physique régulière, dans une logique de prévention et de santé publique.
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
