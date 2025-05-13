@@ -143,15 +143,7 @@ chart(data = biometry_data, ~ fast_food %fill=% genre | age_rec) +
 
 Interprétation
 
-Le graphique présente la répartition du nombre de fast-food consommés par semaine selon quatre tranches d'âge, différenciée par le genre. Une tendance décroissante se dégage globalement, suggérant que les plus jeunes consomment plus fréquemment du fast-food que les personnes plus âgées.
-
-La tranche 17--29 ans est celle qui consomme le plus fréquemment du fast-food, avec des individus atteignant jusqu'à 12 repas/semaine. Les hommes et les femmes sont fortement représentés dans cette tranche, bien que les hommes semblent consommer légèrement plus en quantité.
-
-Dans les tranches d'âge supérieures, la consommation diminue progressivement avec l'âge, notamment à partir de 50 ans, où la majorité des individus consomment 0 à 1 fast-food/semaine.
-
-Chez les plus de 70 ans, la consommation devient quasi inexistante.
-
-La consommation de fast-food reste globalement plus élevée chez les jeunes adultes, ce qui peut représenter un facteur de risque important de sur-poids ou d'obésité si elle est couplée à une sédentarité ou une mauvaise hygiène de vie.
+L'analyse de notre graphe montre que la consommation de fast-food est plus élevée chez les jeunes adultes (18-30 ans) et diminue avec l'âge, surtout après 50 ans. Les plus de 70 ans en consomment très peu. Une différence entre les sexes est visible chez les 18-30 ans, où les femmes semblent en consommer davantage que les hommes, mais cette tendance s'atténue avec l'âge. Cette étude souligne l'impact de l'âge et du sexe sur les habitudes alimentaires.
 
 ```{r}
 biometry_data %>.%
@@ -291,8 +283,6 @@ chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
 
 <!--% Description et formule ci-dessous. -->
 
-$\text{IMC} = \frac{\text{Poids (kg)}}{\text{Taille (m)}^2}$
-
 L'**Indice de Masse Corporelle (IMC)** est une mesure simple et largement utilisée pour évaluer la corpulence d'une personne. Il permet d'estimer le rapport entre le poids et la taille d'un individu, en fournissant une évaluation du risque lié à la santé, tel que le surpoids, l'obésité ou l'insuffisance pondérale.
 
 ```{r indice3}
@@ -427,11 +417,17 @@ Puisque la valeur p est bien inférieure au seuil de 0.05, on rejette l'hypothè
 
 les résultats suggèrent que le genre influence la répartition de la graisse corporelle. Les hommes et les femmes ont des profils de distribution de la graisse corporelle différents, ce qui peut expliquer pourquoi la catégorie d'IMA varie de manière significative entre les deux sexes. Par exemple, les hommes peuvent avoir tendance à accumuler plus de graisse viscérale, associée à un IMA plus élevé, tandis que les femmes peuvent stocker davantage de graisse sous-cutanée, ce qui pourrait les amener à avoir un IMA plus faible.
 
-### Test de Chi^2^ **2( Fiona)**
+### Test de Chi^2^ **2**
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r}
+#Recodage de la variable activite_physique
+biometry_data <- biometry_data %>%
+  mutate(niveau_activite = cut(activite_physique,
+                               breaks = c(-Inf, 149, 300, Inf),
+                               labels = c("Faible", "Modérée", "Élevée"),
+                               ordered_result = TRUE))
 table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite)
 tabularise(table_img_activite)
 
@@ -565,12 +561,6 @@ Sur le plan biologique, ces résultats suggèrent que, dans l'échantillon étud
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_1}
-biometry_data <- biometry_data %>%
-  mutate(niveau_activite = cut(activite_physique,
-                               breaks = c(-Inf, 149, 300, Inf),
-                               labels = c("Faible", "Modérée", "Élevée"),
-                               ordered_result = TRUE))
-
 biometry_data %>.%
   sgroup_by(., niveau_activite) %>.%
   ssummarise(.,
@@ -666,7 +656,7 @@ chart$qqplot(biometry_anova_2)
 
 <!--% Interprétation statistique et biologique -->
 
-Interprétation (Fiona)
+Interprétation
 
 Dans le but d'explorer un lien possible entre la répartition de la masse grasse et le statut pondéral, nous avons comparer le rapport tour de taille sur tour de hanche selon l'IMC. Pour cela, une analyse à un facteur a été utilisée, On a vérifier les conditions d'applications; tout d'abord à travers le test de Bartlett qui à montrer une homoscédasticité et le graphique quantile-quantile qui a montré une distribution normale des résidus.
 
@@ -728,7 +718,7 @@ Mais il n'y a pas d'effet d'interaction statistiquement significatif entre le ge
 
 Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a un impact significatif sur la masse corrigée. L'effet combiné (interaction) du genre et de la durée de sommeil n'a pas un impact significatif sur la masse corrigée.
 
-### ANOVA à deux facteurs (Fiona)
+### ANOVA à deux facteurs 
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
@@ -755,7 +745,7 @@ H1:(hypothèse alternative):il y'a un effet du genre ou du niveau d'activité ou
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_2}
-mod_anova3 <- aov(log_IMA ~ genre * niveau_activite, data = biometry_data)
+mod_anova3 <- aov(log_IMA~ genre * niveau_activite, data = biometry_data)
 bartlett.test(data = biometry_data, log_IMA ~ interaction( genre, niveau_activite))
 
 ```
@@ -790,13 +780,7 @@ L'évaluation de l'influence du genre et du niveau d'activité sur le logarithme
 
 -   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à la corpulence.
 
--   Le test ANOVA à deux facteurs a révélé une interaction significative entre le genre et la durée de sommeil sur la masse corporelle corrigée. Cela suggère que le sommeil n'affecte pas de la même manière les hommes et les femmes en ce qui concerne leur poids, mettant en évidence une influence croisée entre facteurs biologiques et comportementaux.
-
--   Le test t de Student montre une différence significative d'IMG entre les individus selon leur consommation de fast-food. Ceux qui consomment plus fréquemment du fast-food ont en moyenne un indice de masse grasse plus élevé, ce qui confirme le rôle délétère de ce comportement alimentaire sur la santé corporelle.
-
--   Le test ANOVA simple indique une influence significative du niveau d'activité physique sur l'IMG. Plus le niveau d'activité est élevé, plus l'IMG est faible, ce qui soutient l'idée que l'activité physique protège contre l'excès de masse grasse.
-
--   Un test t de Student met en évidence une différence significative d'IMA (Indice de Masse Abdominale) entre fumeurs et non-fumeurs. Cela montre que le tabagisme est associé à une répartition différente des graisses, en particulier au niveau abdominal, et pourrait constituer un facteur de risque métabolique supplémentaire.
+-   ...
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
