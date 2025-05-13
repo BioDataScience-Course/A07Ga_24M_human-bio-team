@@ -90,6 +90,8 @@ Effectifs (n) : L'échantillon compte 79 femmes et 65 hommes, donc une légère 
 
 ### Description par l'étudiant 2
 
+[@taleb2015]
+
 ```{r}
 chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
   geom_histogram(data = sselect(biometry_data,-alimentation),
@@ -777,7 +779,6 @@ chart$qqplot(anova2, lang = "fr")
 
 <!--% Interprétation statistique et biologique -->
 
-L'évaluation de l'influence du genre et du niveau d'activité sur le logarithme de l'IMA a été realisée au travers d'un test ANOVA a 2 facteurs. Sur le plan statistique, en regard du terme genre (F = 33.162, ddl = 1 et 137, p = 5.33\*10\^-8 \< 0,05 donc rejet de H0). En terme niveau d'activité (F = 1.459, ddl = 2 et 137, p = 0.236 \> 0,05 donc on ne rejette pas H0). Et pour le terme genre:niveau_d'activité ( F = 0.0188, ddl = 2 et 137, p = 0.711 \> 0.05 donc on ne rejette pas H0). Les variances de log_IMA sont homogènes entre les groupes. C'est une condition importante pour que l'ANOVA soit valide. Cela signifie que, quelle que soit la combinaison de sexe (genre) et de niveau d'activité physique, la variabilité de l'Indice de Masse Adipeuse (IMA, ici transformé en log) est comparable entre les groupes.
 
 # Discussion et conclusions
 
