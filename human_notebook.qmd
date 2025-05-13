@@ -95,8 +95,8 @@ chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
   geom_histogram(data = sselect(biometry_data,-alimentation),
     fill = "grey", bins = 25) + 
   geom_histogram(show.legend = FALSE, bins = 25) +
-  ylab("Effectifs") +
-  scale_fill_viridis_d()
+  scale_fill_viridis_d() +
+  labs(title = "Répartition du tour de taille en fonction de l'alimentation", y = "Effectifs")
 
 ```
 
@@ -275,7 +275,9 @@ chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
 
 -   La variable Categorie_RTH présente une répartition déséquilibrée entre ses modalités. On constate une forte concentration d'individus ayant un rapport taille/hanche faible en particulier chez les hommes pour qui cette modalité constitue le mode
 
--   La distribution croisée des variables "genre " et "rapport taille/hanche" suggère un association statistique
+-   La distribution croisée des variables "genre " et "rapport taille/hanche" suggère un association statistique. Les différences de profils observés selon le sexe pourraient être vérifiées plus formellement à l'aide d'un test de chi carré
+
+-   
 
 ### Indice 3
 
