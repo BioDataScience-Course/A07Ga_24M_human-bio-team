@@ -266,16 +266,16 @@ biometry_data <- biometry_data %>.%
   # Graphique utilisant l'indice calculé
 chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
   geom_bar(position = "dodge") +
- labs(title = " Catégorie indiqué par le rapport tour de taille sur tour de hanche ",
+ labs(title = " Valeur indiqué par le rapport tour de taille sur tour de hanche ",
   y = "Effectifs")
 
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   La variable Categorie_RTH présente une répartition déséquilibrée entre ses modalités. On constate une forte concentration d'individus ayant un rapport taille/hanche faible en particulier chez les hommes pour qui cette modalité constitue le mode
 
--   ...
+-   La distribution croisée des variables "genre " et "rapport taille/hanche" suggère un association statistique
 
 ### Indice 3
 
