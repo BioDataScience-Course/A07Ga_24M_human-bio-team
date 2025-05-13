@@ -166,14 +166,14 @@ chart(data = biometry_data, masse_corr ~ genre %fill=% genre) +
 labs(title = "Distribution de la masse par genre",
        x = "Genre",
        y = "Masse (kg)")
-cross_table <- biometry_data %>%
+obesite_table <- biometry_data %>%
   group_by(., genre) %>%
   ssummarise(.,
     Masse_moyenne        = fmean(masse_corr),
     ecart_type     =  fsd(masse_corr),
     n              = fn(masse_corr)
     )
-tabularise(cross_table)
+tabularise(obesite_table)
 ```
 
 La ligne épaisse à l'intérieur de chaque boîte représente la médiane de la masse pour chaque genre. Cette médiane est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu'il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande.
@@ -430,7 +430,12 @@ biometry_data <- biometry_data %>%
                                breaks = c(-Inf, 149, 300, Inf),
                                labels = c("Faible", "Modérée", "Élevée"),
                                ordered_result = TRUE))
-table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite)
+table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$
+    
+    
+    
+    
+    )
 tabularise(table_img_activite)
 
 ```
@@ -563,6 +568,11 @@ Sur le plan biologique, ces résultats suggèrent que, dans l'échantillon étud
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_1}
+biometry_data <- biometry_data %>%
+  mutate(niveau_activite = cut(activite_physique,
+                               breaks = c(-Inf, 149, 300, Inf),
+                               labels = c("Faible", "Modérée", "Élevée"),
+                               ordered_result = TRUE))
 biometry_data %>.%
   sgroup_by(., niveau_activite) %>.%
   ssummarise(.,
@@ -611,7 +621,9 @@ chart$qqplot(biometry_anova1)
 
 <!--% Interprétation statistique et biologique -->
 
-Nous observons dans le tableau de l'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 4.59, ddl = 2 & 140, valeur p \<\< 0.0118). Le fait qu'il y ait une différence significative entre les groupes suggère que l'activité physique régulière pourrait être un moyen efficace de réduire la masse grasse chez les individus.
+Nous observons dans le tableau de l'ANOVA que la valeur p est faible et inférieure à 0.05. Nous rejetons H(0). Nous pouvons dire que l'IMG diffère significativement entre les niveaux d'activité physique (ANOVA, F = 4.59, ddl = 2 & 140, valeur p \<\< 0.0118).
+
+Le fait qu'il y ait une différence significative entre les groupes suggère que l'activité physique régulière pourrait être un moyen efficace de réduire la masse grasse chez les individus.
 
 ### ANOVA à un facteur 2
 
