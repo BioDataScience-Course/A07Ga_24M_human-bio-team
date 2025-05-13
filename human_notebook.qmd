@@ -266,7 +266,7 @@ biometry_data <- biometry_data %>.%
   # Graphique utilisant l'indice calculé
 chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
   geom_bar(position = "dodge") +
- labs(title = " Risque de santé Indiqués par le  rapport tour de taille sur tour de hanche ",
+ labs(title = " Catégorie indiqué par le rapport tour de taille sur tour de hanche ",
   y = "Effectifs")
 
 ```
@@ -429,14 +429,14 @@ Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible nivea
 
 De leur coté , les personnes ayant un poids normal sont plus nombreuses à avoir une activité physique élevée . Plus de 40% d'entre elles sont actives , ce qui pourrait faire penser qu'un mode de vie actif joute un rôle dans le maintien d'un poids sain
 
-Autre chose importante: L\'activité modérée est assez peu fréquente dans toutes les catégories . La plupart des gens ont soit une activité faible , soit une activité élevée, mais peu se situe au milieu.
+Autre chose importante: L'activité modérée est assez peu fréquente dans toutes les catégories . La plupart des gens ont soit une activité faible , soit une activité élevée, mais peu se situe au milieu.
 
 Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un niveau d'activité faible, cela pourrait suggérer une certaine fréquence de la sédentarité dans cet échantillon mais il faudrait davantage de données pour en tirer une conclusion solide
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-test_chi2_2 <- chisq.test(table_img_sommeil)
+test_chi2_2 <- chisq.test(table_img_activite)
 tabularise(test_chi2_2)
 ```
 
@@ -648,11 +648,13 @@ chart$qqplot(biometry_anova_2)
 
 <!--% Interprétation statistique et biologique -->
 
+Interprétation(Fiona)
+
 Dans le but d'explorer un lien possible entre la répartition de la masse grasse et le statut pondéral, nous avons comparer le rapport tour de taille sur tour de hanche selon l'IMC. Pour cela, une analyse à un facteur a été utilisée, On a vérifier les conditions d'applications; tout d'abord à travers le test de Bartlett qui à montrer une homoscédasticité et le graphique quantile-quantile qui a montré une distribution normale des résidus.
 
-Nous observons dans le tableau de l'anova que la valeur p est très faible et inférieur au seuil alpha de 5% . Du point de vue statistique, nous rejetons H0, nous pouvons dire que le rapport tour de taille sur tour de hanche varie significativement en fonction des groupes d'IMC (ANOVA , F=10.1, ddl=3 et 139, valeur P= 4.59\*10E-6)
+Nous observons dans le tableau de l'anova que la valeur p est très faible et inférieur au seuil alpha de 5% . Du point de vue statistique, nous rejetons H0 car la p value=4.59\*10E-6 \< 5% .Nous pouvons dire que le rapport tour de taille sur tour de hanche varie significativement en fonction des groupes d'IMC (ANOVA , F=10.1, ddl=3 et 139, valeur P= 4.59\*10E-6)
 
-Sur le plan biologique, cela nous indique qu'à mesure que le poids corporel augmente , la graisse s'accumule davantage autour de la taille plutôt que sur les hanches. Ce type de répartition appelée graisse abdominale est connu pour être plus risqué pour la santé et associé à un risque accru de maladies cardiovasculaires et troubles métaboliques . Ainsi ce résultat montre que la répartition de la masse grasse devient plus défavorable à la santé lorsque l'IMC augmente
+Sur le plan biologique, cela nous indique qu'à mesure que le poids corporel augmente , la graisse s'accumule davantage autour de la taille plutôt que sur les hanches. . Ainsi ce résultat montre que la répartition de la masse grasse devient plus défavorable à la santé lorsque l'IMC augmente
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
@@ -708,29 +710,50 @@ Mais il n'y a pas d'effet d'interaction statistiquement significatif entre le ge
 
 Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a un impact significatif sur la masse corrigée. L'effet combiné (interaction) du genre et de la durée de sommeil n'a pas un impact significatif sur la masse corrigée.
 
-### ANOVA à deux facteurs 2
+### ANOVA à deux facteurs (Fiona)
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-chart(data = biometry_data, IMG ~ fast_food_rec | genre) +
-  geom_boxplot() +
-  geom_jitter(width = 0.05, alpha = 0.3) +
-  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)
+# Tableau des moyennes par groupe
+biometry_data <- smutate(biometry_data, log_IMA = ln(IMA))
+biometry_data %>.%
+  sgroup_by(., genre, niveau_activite) %>.%
+  ssummarise(., log_IMA = mean(log_IMA)) %>.%
+  print(.) %>.% 
+  
+  #Graphique des interactions entre les variables facteurs(genre et niveau_d'activite)
+  chart(data = ., log_IMA ~ niveau_activite %col=% genre %group=% genre) +
+    geom_line() +
+    geom_point() 
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
-H0(hypothèse nulle): il n'ya pas d'effet du genre, ni de la consommation de fast food, ni d'interaction entre les 2 sur l'img
+H0(hypothèse nulle): il n'y a pas d'effet du genre, ni du niveau d'activité , ni d'interaction entre les 2 sur l'IMA
 
-H1:(hypothese alternative):il y'a un effet du genre ou de la consommation de fast food ou une interaction entre les 2 sur l'img
+H1:(hypothèse alternative):il y'a un effet du genre ou du niveau d'activité ou une interaction entre les 2 sur l'IMA
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_2}
-mod_anova2 <- aov(IMG ~ genre * fast_food_rec, data = biometry_data)
-bartlett.test(IMG ~ interaction(genre, fast_food_rec), data = biometry_data)
+mod_anova3 <- aov(log_IMA~ genre * niveau_activite, data = biometry_data)
+bartlett.test(data = biometry_data, log_IMA ~ interaction( genre, niveau_activite))
 
+```
+
+**L**es variances sont homogènes entre les groupes définis par l'interaction `genre * niveau_activite` (p-value = 0.07617 \> 5% )
+
+```{r}
+#Tableau de l'anova
+anova2 <- lm( data = biometry_data, log_IMA ~ genre * niveau_activite) 
+anova(anova2) |>
+  tabularise()
+```
+
+```{r}
+#Graphique quantile-quantile des résidus anova
+chart$qqplot(anova2, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->

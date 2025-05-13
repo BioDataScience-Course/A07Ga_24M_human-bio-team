@@ -152,8 +152,6 @@ La présence de valeurs aberrantes plus élevées chez les hommes pourrait indiq
 
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
-...Vos tests d'hypothèses ici...
-
 Les tests d'hypothèses les plus pertinents en rapport avec notre but sont:
 
 Test 1
@@ -240,15 +238,15 @@ t.test(data = biometry_data, IMA ~ fumeur_rec,
 
 Les différentes analyses statistiques réalisées ont permis de mettre en évidence des facteurs significativement associés à des indicateurs de corpulence et de santé métabolique.
 
-Tout d\'abord, l\'ANOVA à deux facteurs a révélé que le genre ainsi que le nombre d\'heures de sommeil ont un effet significatif sur la masse corporelle corrigée, sans interaction entre ces deux facteurs. Cela suggère que chacun de ces paramètres agit indépendamment sur la masse, mettant en lumière l\'importance de prendre en compte aussi bien les déterminants biologiques que comportementaux dans l\'analyse de l\'obésité.
+Tout d'abord, l'ANOVA à deux facteurs a révélé que le genre ainsi que le nombre d'heures de sommeil ont un effet significatif sur la masse corporelle corrigée, sans interaction entre ces deux facteurs. Cela suggère que chacun de ces paramètres agit indépendamment sur la masse, mettant en lumière l'importance de prendre en compte aussi bien les déterminants biologiques que comportementaux dans l'analyse de l'obésité.
 
-L\'ANOVA à un facteur a ensuite montré que le niveau d\'activité physique influence significativement l\'indice de masse grasse (IMG), soulignant ainsi le rôle protecteur d\'une activité physique régulière contre l\'accumulation de masse grasse.
+L'ANOVA à un facteur a ensuite montré que le niveau d'activité physique influence significativement l'indice de masse grasse (IMG), soulignant ainsi le rôle protecteur d'une activité physique régulière contre l'accumulation de masse grasse.
 
-Le test de Student a mis en évidence une différence significative d\'IMG selon la consommation de fast-food, confirmant que de mauvaises habitudes alimentaires peuvent contribuer à une augmentation de la masse grasse.
+Le test de Student a mis en évidence une différence significative d'IMG selon la consommation de fast-food, confirmant que de mauvaises habitudes alimentaires peuvent contribuer à une augmentation de la masse grasse.
 
-Enfin, un test d\'ANOVA a permis de constater une corrélation entre le nombre de cigarettes fumées par semaine et l\'indice de masse adipeuse (IMA). Ce résultat met en lumière un lien entre tabagisme et accumulation de masse grasse viscérale, probablement lié à des effets métaboliques et comportementaux associés au tabac.
+Enfin, un test d'ANOVA a permis de constater une corrélation entre le nombre de cigarettes fumées par semaine et l'indice de masse adipeuse (IMA). Ce résultat met en lumière un lien entre tabagisme et accumulation de masse grasse viscérale, probablement lié à des effets métaboliques et comportementaux associés au tabac.
 
-Dans l\'ensemble, ces tests soulignent l\'importance de plusieurs facteurs de mode de vie (sommeil, alimentation, activité physique, tabagisme) dans la variation de la composition corporelle. Ces résultats renforcent la nécessité d\'une approche globale et individualisée dans la prévention et la prise en charge de l\'obésité.
+Dans l'ensemble, ces tests soulignent l'importance de plusieurs facteurs de mode de vie (sommeil, alimentation, activité physique, tabagisme) dans la variation de la composition corporelle. Ces résultats renforcent la nécessité d'une approche globale et individualisée dans la prévention et la prise en charge de l'obésité.
 
 # Discussion et conclusions
 
