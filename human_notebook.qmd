@@ -420,6 +420,10 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 ### Test de Chi^2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
+```{r}
+
+```
+
 
 Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible niveau d'activité physique: environ 60% d 'entre elles font peu d'effort physique. Cela pourrait indiquer qu'un manque d'activité physique pourrait être un facteur de risque pour le développement de l'obésité ou du moins que les deux éléments sont liés.
 
@@ -430,6 +434,9 @@ Autre chose importante: L'activité modérée est assez peu fréquente dans tout
 Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un niveau d'activité faible, cela pourrait suggérer une certaine fréquence de la sédentarité dans cet échantillon mais il faudrait davantage de données pour en tirer une conclusion solide
 
 <!--% Vérification des conditions d'application -->
+```{r}
+
+```
 
 
 
