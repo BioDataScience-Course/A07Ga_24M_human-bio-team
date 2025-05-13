@@ -494,7 +494,7 @@ tabularise(test)
 
 Dans le but d'exporer un lien possible entre la consommation de fast food et l'img , nous avons effectué un test de student . Une différence de moyenne de 2 groupes a été émis ici comme hypothèse. Sur le plan statistique, puisque la valeur de p est faible et inférieure au seuil alpha 5%, nous rejetons H0. Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t bilatéral, t = 3.4892, ddl = 52.776, p value= 0.000986 \< 0.05).
 
-Sur le plan staistique, les résultats montrent que les personnes qui consomment des fast-food plus fréquemment présentent en moyenne un indice de masse grasse significativement plus élevé que ceux qui n' en consomment pas . Cette augmentation peut avoir des implications en santé : les fast-food pourraient contribuer à l\'augmentation du tissu adipeux, ce qui est un facteur de risque pour le développement de l'obésité
+Sur le plan staistique, les résultats montrent que les personnes qui consomment des fast-food plus fréquemment présentent en moyenne un indice de masse grasse significativement plus élevé que ceux qui n' en consomment pas . Cette augmentation peut avoir des implications en santé : les fast-food pourraient contribuer à l'augmentation du tissu adipeux, ce qui est un facteur de risque pour le développement de l'obésité
 
 ### Test t de Student 2
 
