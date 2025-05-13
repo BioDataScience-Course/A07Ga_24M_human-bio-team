@@ -417,7 +417,7 @@ Puisque la valeur p est bien inférieure au seuil de 0.05, on rejette l'hypothè
 
 les résultats suggèrent que le genre influence la répartition de la graisse corporelle. Les hommes et les femmes ont des profils de distribution de la graisse corporelle différents, ce qui peut expliquer pourquoi la catégorie d'IMA varie de manière significative entre les deux sexes. Par exemple, les hommes peuvent avoir tendance à accumuler plus de graisse viscérale, associée à un IMA plus élevé, tandis que les femmes peuvent stocker davantage de graisse sous-cutanée, ce qui pourrait les amener à avoir un IMA plus faible.
 
-### Test de Chi^2^ **2**
+### Test de Chi^2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
