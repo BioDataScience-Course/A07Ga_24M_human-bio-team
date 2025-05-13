@@ -434,11 +434,9 @@ Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un ni
 
 <!--% Vérification des conditions d'application -->
 
-<<<<<<< HEAD
+
 ```{r test_chi2_2}
-#test_chi2_2 <- chisq.test(table_img_activite)
-#tabularise(test_chi2_2)
-```
+
 
 <!--% Hypothèse nulle et alternative -->
 
@@ -455,9 +453,7 @@ Hypothèse alternative (H₁) : Le niveau d'activité et l'indice de masse grass
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```
-=======
-test_chi2_2 \<- chisq.test(table_img_activite) tabularise(test_chi2_2)
->>>>>>> 4f0d2fad0b6da17be2498444555b8820c8d7cc26
+
 
 <!-- Hypothèse nulle et alternative -->
 
