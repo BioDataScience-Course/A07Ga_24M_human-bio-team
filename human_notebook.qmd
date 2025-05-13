@@ -335,9 +335,7 @@ tabularise(biometry_3)
 
 <!--% Description et formule ci-dessous. -->
 
-$
-\[\text{IMG} = (1.2 \times \text{IMC}) + (0.23 \times \text{âge}) - (10.8 \times \text{sexe}) - 5.4\]
-$
+\$ \[\text{IMG} = (1.2 \times \text{IMC}) + (0.23 \times \text{âge}) - (10.8 \times \text{sexe}) - 5.4\] \$
 
 L'**Indice de Masse Grasse (IMG)** est une mesure qui estime le pourcentage de graisse corporelle d'une personne. Contrairement à l'IMC (indice de masse corporelle), qui ne fait pas de distinction entre la masse grasse et la masse musculaire, l'IMG offre une estimation plus précise de la composition corporelle [@wikipedia2025].
 
