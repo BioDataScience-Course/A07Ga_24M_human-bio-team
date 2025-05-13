@@ -720,7 +720,7 @@ Mais il n'y a pas d'effet d'interaction statistiquement significatif entre le ge
 
 Le genre a un impact significatif sur la masse corrigée. La durée de sommeil a un impact significatif sur la masse corrigée. L'effet combiné (interaction) du genre et de la durée de sommeil n'a pas un impact significatif sur la masse corrigée.
 
-### ANOVA à deux facteurs 
+### ANOVA à deux facteurs
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
@@ -767,6 +767,7 @@ chart$qqplot(anova2, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
+
 
 # Discussion et conclusions
 
