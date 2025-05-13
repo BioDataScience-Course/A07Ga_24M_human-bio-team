@@ -526,8 +526,7 @@ chart(data = biometry_data, IMA ~ fumeur_rec %fill=% fumeur_rec) +
   labs(
     title = "Distribution de l'IMA selon le statut tabagique",
     x = "Statut tabagique",
-    y = "Indice de Masse Abdominale (IMA)"
-  )
+    y = "Indice de Masse Abdominale (IMA)")
 ```
 
 <!--% Hypothèse nulle et alternative -->
@@ -778,7 +777,6 @@ chart$qqplot(anova2, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
-
 
 # Discussion et conclusions
 
