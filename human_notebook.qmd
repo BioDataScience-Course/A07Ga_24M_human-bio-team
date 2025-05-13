@@ -790,7 +790,13 @@ L'évaluation de l'influence du genre et du niveau d'activité sur le logarithme
 
 -   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à la corpulence.
 
--   ...
+-   Le test ANOVA à deux facteurs a révélé une interaction significative entre le genre et la durée de sommeil sur la masse corporelle corrigée. Cela suggère que le sommeil n'affecte pas de la même manière les hommes et les femmes en ce qui concerne leur poids, mettant en évidence une influence croisée entre facteurs biologiques et comportementaux.
+
+-   Le test t de Student (t.test(IMG \~ fast_food_rec)) montre une différence significative d\'IMG entre les individus selon leur consommation de fast-food. Ceux qui consomment plus fréquemment du fast-food ont en moyenne un indice de masse grasse plus élevé, ce qui confirme le rôle délétère de ce comportement alimentaire sur la santé corporelle.
+
+-   Le test ANOVA simple indique une influence significative du niveau d\'activité physique sur l\'IMG. Plus le niveau d\'activité est élevé, plus l\'IMG est faible, ce qui soutient l\'idée que l\'activité physique protège contre l\'excès de masse grasse.
+
+-   Un test t de Student (t.test(IMA \~ fumeur_rec)) met en évidence une différence significative d\'IMA (Indice de Masse Abdominale) entre fumeurs et non-fumeurs. Cela montre que le tabagisme est associé à une répartition différente des graisses, en particulier au niveau abdominal, et pourrait constituer un facteur de risque métabolique supplémentaire.
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
