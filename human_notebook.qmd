@@ -421,9 +421,6 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
-<<<<<<< HEAD
-``
-
 Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible niveau d'activité physique: environ 60% d 'entre elles font peu d'effort physique. Cela pourrait indiquer qu'un manque d'activité physique pourrait être un facteur de risque pour le développement de l'obésité ou du moins que les deux éléments sont liés.
 
 De leur coté , les personnes ayant un poids normal sont plus nombreuses à avoir une activité physique élevée . Plus de 40% d'entre elles sont actives , ce qui pourrait faire penser qu'un mode de vie actif joute un rôle dans le maintien d'un poids sain
@@ -435,10 +432,9 @@ Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un ni
 <!--% Vérification des conditions d'application -->
 
 
-```{r test_chi2_2}
 
 
-<!--% Hypothèse nulle et alternative -->
+<!--% Interprétation statistique et biologique -->
 
 Hypothèse nulle (H₀) : Le niveau d'activité et l'indice de masse grasse sont indépendants
 
@@ -453,7 +449,6 @@ Hypothèse alternative (H₁) : Le niveau d'activité et l'indice de masse grass
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```
-
 
 <!-- Hypothèse nulle et alternative -->
 
