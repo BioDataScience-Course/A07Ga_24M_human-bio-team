@@ -196,8 +196,6 @@ Le tableau obtenu reflète une différence biologique habituelle, les hommes aya
 
 <!--% Description et formule ci-dessous. -->
 
-$${IMA} = \left( \frac{\text{tour_hanche}}{\text{taille}^{1.5}} \right) - 18$$
-
 L'**Indice de Masse Adipeuse (IMA)** est un indicateur permettant d'estimer le pourcentage de graisse corporelle en fonction du tour de hanche et de la taille. Contrairement à l'IMC, il ne nécessite pas le poids corporel et est parfois considéré comme plus représentatif de la masse grasse, notamment pour certaines populations.
 
 ```{r indice1}
@@ -293,6 +291,8 @@ chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
 
 <!--% Description et formule ci-dessous. -->
 
+$\text{IMC} = \frac{\text{Poids (kg)}}{\text{Taille (m)}^2}$
+
 L'**Indice de Masse Corporelle (IMC)** est une mesure simple et largement utilisée pour évaluer la corpulence d'une personne. Il permet d'estimer le rapport entre le poids et la taille d'un individu, en fournissant une évaluation du risque lié à la santé, tel que le surpoids, l'obésité ou l'insuffisance pondérale.
 
 ```{r indice3}
@@ -334,8 +334,6 @@ tabularise(biometry_3)
 ### Indice 4
 
 <!--% Description et formule ci-dessous. -->
-
-\$ \[\text{IMG} = (1.2 \times \text{IMC}) + (0.23 \times \text{âge}) - (10.8 \times \text{sexe}) - 5.4\] \$
 
 L'**Indice de Masse Grasse (IMG)** est une mesure qui estime le pourcentage de graisse corporelle d'une personne. Contrairement à l'IMC (indice de masse corporelle), qui ne fait pas de distinction entre la masse grasse et la masse musculaire, l'IMG offre une estimation plus précise de la composition corporelle [@wikipedia2025].
 
@@ -706,17 +704,14 @@ bartlett.test(masse_corr ~ interaction(genre, sommeil_rec), data = biometry_data
 
 ```
 
-**L**es variances sont homogènes entre les groupes définis par l'interaction `genre * sommeil_cat` (p-value = 0.9107 \> 0.05 )
+**L**es variances sont homogènes entre les groupes définis par l'interaction `genre * sommeil_cat` (p-value = 0.07617 \> 0.05 )
+
+et
 
 ```{r}
 anova_amal <- lm(masse_corr ~ genre * sommeil_rec, data = biometry_data) 
 anova(anova_amal) |>
   tabularise()
-```
-
-```{r}
-#Graphique quantile-quantile des résidus anova
-chart$qqplot(anova_amal, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->

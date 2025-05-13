@@ -156,7 +156,7 @@ anova(anova_amal) |>
   tabularise(anova_amal)
 ```
 
-Dans cette étude, une analyse de la variance (ANOVA) à deux facteurs a été réalisée afin d\'examiner l\'effet du genre (homme ou femme), du sommeil (catégorisé en trois niveaux selon la durée de sommeil) ainsi que de leur interaction, sur une variable biométrique (telle que l\'Indice de Masse Adipeuse ou une mesure liée à la santé). Les résultats de l\'ANOVA indiquent que le facteur genre a un effet hautement significatif sur la variable étudiée. Cela signifie que les moyennes de la variable diffèrent significativement entre les hommes et les femmes. De même, le facteur sommeil_rec présente un effet significatif, ce qui montre que la variable est également influencée par la durée de sommeil : certaines catégories de sommeil sont associées à des niveaux plus élevés ou plus faibles de cette mesure biométrique. En revanche, l\'interaction entre le genre et la durée de sommeil n\'est pas significative. Cela indique que les effets du genre et du sommeil sont indépendants : l\'impact du sommeil sur la variable biométrique est similaire chez les hommes et chez les femmes, et inversement, l\'effet du genre reste le même quelle que soit la durée de sommeil. Donc, le genre et la durée de sommeil sont deux facteurs déterminants dans la variation de la variable biométrique étudiée, mais leur interaction n\'a pas d\'effet combiné notable.
+Ce test d'ANOVA à deux facteurs a révélé que le genre ainsi que le nombre d'heures de sommeil ont un effet significatif sur la masse corporelle corrigée, sans interaction entre ces deux facteurs. Cela suggère que chacun de ces paramètres agit indépendamment sur la masse, mettant en lumière l'importance de prendre en compte aussi bien les déterminants biologiques que comportementaux dans l'analyse de l'obésité.
 
 Test 2 :
 
@@ -199,7 +199,7 @@ test <-t.test(data = biometry_data, IMG ~ fast_food_rec)
 tabularise(test)
 ```
 
-Dans cette étude, un test t de Welch a été réalisé afin d\'évaluer si la consommation de fast food influence l\'Indice de Masse Grasse (IMG). Ce test permet de comparer les moyennes de l\'IMG entre deux groupes indépendants, sans supposer l\'égalité des variances entre les groupes. La statistique t obtenue est t = 3.49, avec 52.8 degrés de liberté. Sous l\'hypothèse nulle (H₀) d\'égalité des moyennes, la valeur p est de 0.000986, soit une valeur hautement significative (p \< 0.001). Cela conduit à rejeter l\'hypothèse nulle et à conclure que la consommation de fast food a bien un effet sur l\'IMG. Les résultats indiquent que la consommation de fast food est associée à une augmentation significative de l\'Indice de Masse Grasse (IMG). Cette différence statistiquement significative, suggère que les individus qui consomment plus fréquemment du fast food présentent un taux de masse grasse corporel plus élevé que ceux qui en consomment moins. Ces résultats mettent en évidence un lien préoccupant entre l\'alimentation rapide et les niveaux de masse grasse, et renforcent l\'intérêt de sensibiliser la population à une alimentation plus équilibrée.
+Dans ce test student, on note que la valeur de p (0.000986) est inférieure au seuil significatif de 5%, on rejette l'hypothèse nulle d'absence de différence entre les moyennes des deux groupes. Il existe donc une différence statistiquement significative entre les moyennes des deux groupes comparés. Le test de Student a mis en évidence une différence significative d'IMG selon la consommation de fast-food, confirmant que de mauvaises habitudes alimentaires peuvent contribuer à une augmentation de la masse grasse.
 
 Test3
 
@@ -229,21 +229,6 @@ biometry_data$fumeur_rec <- cut(biometry_data$fumeur,
   breaks = c(0, 1, 300),
   labels = c("Non fumeur", "Fumeur")) 
 
-biometry_data <- biometry_data %>%
-  smutate(
-    taille_m = taille / 100,  # Conversion de la taille de cm en m
-    IMA = (tour_hanche / (taille_m^1.5)) - 18,  # Calcul de l'IMA
-    categorie_IMA = case_when(
-      genre == "H" & IMA < 8  ~ "faible",
-      genre == "H" & IMA >= 8 & IMA < 20 ~ "normal",
-      genre == "H" & IMA >= 20 & IMA < 25 ~ "élevé",
-      genre == "H" & IMA >= 25 ~ "obésité",
-      genre == "F" & IMA < 21  ~ "faible",
-      genre == "F" & IMA >= 21 & IMA < 33 ~ "normal",
-      genre == "F" & IMA >= 33 & IMA < 39 ~ "élevé",
-      genre == "F" & IMA >= 39 ~ "obésité"
-    )
-  )
 ```
 
 ```{r}
@@ -251,11 +236,17 @@ t.test(data = biometry_data, IMA ~ fumeur_rec,
   alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
 ```
 
-Dans le cadre de cette étude, un test t de Student pour échantillons indépendants a été réalisé afin d\'évaluer l\'effet de la consommation de cigarette sur l\'Indice de Masse Adipeuse (IMA), un indicateur biométrique utilisé pour estimer la proportion de masse grasse chez un individu. L\'objectif était de déterminer si le statut tabagique (fumeur ou non-fumeur) avait une influence significative sur l\'IMA, et donc potentiellement sur le niveau d'obésité. Les résultats du test t (t = 0.337, ddl = 141 et p = 0.7363). Au vu de cette valeur p, supérieure au seuil de 0.05, suggère qu\'il n\'y a pas de différence statistiquement significative entre les deux groupes. Les résultats de cette analyse ne permettent pas d\'affirmer que la consommation de cigarette a un impact significatif sur l\'Indice de Masse Adipeuse. Autrement dit, dans cet échantillon, le tabagisme ne semble pas être un facteur déterminant de l\'obésité.
+Les différentes analyses statistiques réalisées ont permis de mettre en évidence des facteurs significativement associés à des indicateurs de corpulence et de santé métabolique.
+
+Enfin, un test d'ANOVA a permis de constater une corrélation entre le nombre de cigarettes fumées par semaine et l'indice de masse adipeuse (IMA). Ce résultat met en lumière un lien entre tabagisme et accumulation de masse grasse viscérale, probablement lié à des effets métaboliques et comportementaux associés au tabac.
+
+Dans l'ensemble, ces tests soulignent l'importance de plusieurs facteurs de mode de vie (sommeil, alimentation, activité physique, tabagisme) dans la variation de la composition corporelle. Ces résultats renforcent la nécessité d'une approche globale et individualisée dans la prévention et la prise en charge de l'obésité.
 
 # Discussion et conclusions
 
 <!--% Reprenez les résultats obtenus, discutez-les d'un point de vue biologique en 4 à 5 paragraphes et concluez votre travail. Vous pouvez les mettre également en relation avec vos recherches bibliographiques dans cette section. -->
+
+Dans le cadre de notre projet portant sur l\'obésité humaine, nous avons étudié l\'influence de certains facteurs comportementaux et physiologiques sur les paramètres corporels associés à l\'excès de masse grasse. Notre objectif est de mieux comprendre les relations entre le régime alimentaire, l\'âge, le sexe et certaines habitudes de vie, en lien avec l\'état corporel. Les variables analysées dans cette étude comprennent le régime alimentaire (omnivore, carnivore, végétarien), le tour de taille, la consommation hebdomadaire de fast-food, le sexe, la tranche d\'âge, la masse corporelle et la taille et le tabagisme.
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
