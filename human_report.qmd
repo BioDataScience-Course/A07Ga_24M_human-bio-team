@@ -70,6 +70,15 @@ SciViews::R("infer", "model", lang = "fr")
 ```
 
 ```{r}
+# Chargement des données depuis le fichier 
+biometry_data <- read("data/biometry.rds")
+# Tableau des premières et dernières lignes
+tabularise$headtail(biometry_data)
+# Description des données
+skimr::skim(biometry_data)
+```
+
+```{r}
 chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
   geom_histogram(data = sselect(biometry_data,-alimentation),
     fill = "grey", bins = 25) + 
@@ -78,9 +87,7 @@ chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
   scale_fill_viridis_d()
 ```
 
-Ce graphique compare la distribution du tour de taille selon le régime alimentaire (omnivore, carnivore, végétarien). Les végétariens de cet échantillon semblent avoir les tours de taille les plus petits, concentrés autour de 70-80. Les carnivores ont tendance à avoir des tours de taille plus petits que les omnivores, possiblement entre 80 et 100, mais plus grands que les végétariens. La distribution du tour de taille chez les omnivores est plus large, avec une concentration notable autour de 80-90 et une autre vers 100-110, et globalement plus élevée que celle des autres régimes. La faible visibilité de données pour les végétariens suggère un petit échantillon ou des valeurs très regroupées.
-
-Ce graphique permet de mettre en évidence une éventuelle influence du régime alimentaire sur la corpulence abdominale. Les personnes ayant un régime carnivore présentent en moyenne un tour de taille plus élevé que les végétariens ou herbivores.
+Afin d'explorer l'influence du régime alimentaire sur l'obésité, nous avons comparé les distributions du tour de taille chez les individus omnivores, carnivores et végétariens. Le tour de taille étant un indicateur courant de la masse grasse abdominale, cette variable permet de visualiser une dimension concrète de l'état corporel lié à l\'alimentation. Le graphique montre que les omnivores présentent une distribution plus étendue et plus concentrée autour de valeurs élevées (80 à 100 cm), avec plusieurs cas dépassant même les 110 cm. En revanche, les carnivores et surtout les végétariens sont représentés par un nombre d'individus bien plus faible, ce qui limite l'interprétation statistique, mais on remarque que leurs tours de taille sont plutôt concentrés dans les valeurs plus basses. Cette tendance pourrait suggérer un lien entre un régime végétarien et un tour de taille plus réduit. Ces premiers résultats appuient l'idée que le régime alimentaire est un facteur clé à prendre en compte dans l'analyse des déterminants de l\'obésité.
 
 ```{r}
 #Regroupage en tranche d'age 
@@ -100,17 +107,7 @@ chart(data = biometry_data, ~ fast_food %fill=% genre | age_rec) +
   y = "Effectifs")
 ```
 
-Le graphique présente la répartition du nombre de fast-food consommés par semaine selon quatre tranches d'âge, différenciée par le genre. Une tendance décroissante se dégage globalement, suggérant que les plus jeunes consomment plus fréquemment du fast-food que les personnes plus âgées.
-
-La tranche 17--29 ans est celle qui consomme le plus fréquemment du fast-food, avec des individus atteignant jusqu'à 12 repas/semaine. Les hommes et les femmes sont fortement représentés dans cette tranche, bien que les hommes semblent consommer légèrement plus en quantité.
-
-Dans les tranches d'âge supérieures, la consommation diminue progressivement avec l'âge, notamment à partir de 50 ans, où la majorité des individus consomment 0 à 1 fast-food/semaine.
-
-Chez les plus de 70 ans, la consommation devient quasi inexistante.
-
-La consommation de fast-food reste globalement plus élevée chez les jeunes adultes, ce qui peut représenter un facteur de risque important de sur-poids ou d'obésité si elle est couplée à une sédentarité ou une mauvaise hygiène de vie.
-
-Ce graphique illustre un facteur comportemental clé.
+La figure ci-dessus représente la répartition du nombre de fast-food consommés par semaine selon la tranche d\'âge et le genre. On observe clairement que les jeunes adultes (17-29 ans) sont les plus grands consommateurs de fast-food, avec des effectifs non négligeables allant jusqu\'à 12 fast-foods par semaine. Cette consommation élevée est présente chez les deux sexes, bien que les femmes (en jaune) semblent légèrement plus représentées parmi les fortes consommatrices dans cette tranche d\'âge. Chez les individus de 30 à 49 ans, on note une baisse marquée de la consommation, qui devient plus modérée, voire occasionnelle. Cette tendance se poursuit avec les groupes plus âgés (50-69 ans, et plus de 70 ans), où la consommation devient quasi nulle pour une grande majorité des individus. Ce graphique met en évidence un lien probable entre la jeunesse et une plus forte consommation de fast-food, avec une influence possible du genre dans les comportements alimentaires. Ces observations soulignent l'importance d'intervenir précocement auprès des jeunes adultes dans le cadre de la prévention de l'obésité, notamment en sensibilisant aux effets d\'une alimentation déséquilibrée.
 
 ```{r}
 library(dplyr)
@@ -126,17 +123,7 @@ biometry_data %>%
 
 ```
 
-Le tableau présente les valeurs moyennes de masse (kg), taille (cm), âge (ans) et le nombre d'individus (n) selon le genre.
-
-La différence entre la moyenne de masse peut s'expliquer en partie par la différence de taille, mais pourrait aussi indiquer une proportion plus importante de masse grasse ou musculaire chez les hommes.
-
-Les hommes sont en moyenne plus grands (179 cm) que les femmes (165 cm), ce qui est attendu biologiquement.
-
-L'âge moyen des femmes est légèrement plus élevé (35 ans) que celui des hommes (31,2 ans), ceci peut influencer certains facteurs physiologiques comme le métabolisme basal ou la distribution des graisses.
-
-L'échantillon est légèrement déséquilibré, avec 78 femmes contre 65 hommes, mais reste suffisamment représentatif.
-
-Ces statistiques montrent que les hommes de l'échantillon sont en moyenne plus lourds et plus grands, ce qui pourrait les amener à avoir un IMC comparable à celui des femmes, ou non, selon la masse grasse.
+Ce tableau présente les moyennes de masse, taille et âge selon le genre. On observe que les hommes (H) ont en moyenne une masse corporelle de 81,8 kg, une taille de 179 cm et un âge moyen de 31,2 ans, tandis que les femmes (F) ont une masse moyenne de 69,5 kg, une taille de 165 cm et un âge moyen de 35 ans. L\'échantillon comporte 65 hommes et 78 femmes. Ces différences montrent que les hommes de l\'échantillon sont globalement plus grands et plus lourds que les femmes, mais légèrement plus jeunes.
 
 ```{r}
 chart(data = biometry_data, masse_corr ~ genre %fill=% genre) +
@@ -146,13 +133,7 @@ labs(title = "Distribution de la masse par genre",
        y = "Masse (kg)")
 ```
 
-Cette visualisation montre une répartition distincte du poids entre hommes et femmes, avec une masse corporelle généralement plus élevée chez les hommes.
-
-Au travers de ce graphique on voit une tendance claire : en général, les hommes de cet échantillon ont une masse corporelle plus élevée que les femmes**.**
-
-La distribution de la masse est décalée vers des valeurs plus élevées chez les hommes par rapport aux femmes (comparaison des médianes et des boîtes).
-
-La présence de valeurs aberrantes plus élevées chez les hommes pourrait indiquer une plus grande proportion d'individus avec une masse très élevée dans ce groupe.
+Ce graphique compare la masse (en kg) entre les hommes (H) et les femmes (F). En général, les hommes de cet échantillon ont une masse plus élevée que les femmes, comme le montre la position plus haute de la boîte et de la médiane pour le groupe H. La distribution de la masse est également plus étendue chez les hommes, avec des valeurs aberrantes plus élevées.
 
 ## Tests d'hypothèses
 
@@ -160,19 +141,30 @@ La présence de valeurs aberrantes plus élevées chez les hommes pourrait indiq
 
 Les tests d'hypothèses les plus pertinents en rapport avec notre but sont:
 
-Test 1
+Test 1 :
 
 ```{r}
+biometry_data$sommeil_rec <- cut(biometry_data$sommeil,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(4, 7, 10, 13),
+labels = c("Sommeil insuffisant", "Sommeil normal", "Sommeil prolongé"))
+
 anova_amal <- lm(masse_corr ~ genre * sommeil_rec, data = biometry_data) 
 anova(anova_amal) |>
-  tabularise()
+  tabularise(anova_amal)
 ```
+
+Ce test d'ANOVA à deux facteurs a révélé que le genre ainsi que le nombre d'heures de sommeil ont un effet significatif sur la masse corporelle corrigée, sans interaction entre ces deux facteurs. Cela suggère que chacun de ces paramètres agit indépendamment sur la masse, mettant en lumière l'importance de prendre en compte aussi bien les déterminants biologiques que comportementaux dans l'analyse de l'obésité.
 
 Test 2 :
 
 ```{r}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-     
+     biometry_data <- biometry_data %>.% 
+smutate(biometry_data, imc = (masse_corr / (taille / 100)^2)) %>.%   
+  drop_na(.)
 biometry_data <- biometry_data %>%
   smutate(., 
    taille_m = taille / 100,
@@ -193,9 +185,6 @@ biometry_data <- biometry_data %>%
       
       TRUE ~ "Non défini"
     ))
-```
-
-```{r}
 ## Recodage de biometry_data$fast_food en biometry_data$fast_food_rec
 biometry_data$fast_food_rec <- cut(biometry_data$fast_food,
   include.lowest = TRUE,
@@ -210,12 +199,24 @@ test <-t.test(data = biometry_data, IMG ~ fast_food_rec)
 tabularise(test)
 ```
 
+Dans ce test student, on note que la valeur de p (0.000986) est inférieure au seuil significatif de 5%, on rejette l'hypothèse nulle d'absence de différence entre les moyennes des deux groupes. Il existe donc une différence statistiquement significative entre les moyennes des deux groupes comparés. Le test de Student a mis en évidence une différence significative d'IMG selon la consommation de fast-food, confirmant que de mauvaises habitudes alimentaires peuvent contribuer à une augmentation de la masse grasse.
+
 Test3
+
+```{r}
+biometry_data <- biometry_data %>%
+  mutate(niveau_activite = cut(activite_physique,
+                               breaks = c(-Inf, 149, 300, Inf),
+                               labels = c("Faible", "Modérée", "Élevée"),
+                               ordered_result = TRUE))
+```
 
 ```{r}
 biometry_anova1 <- lm(data = biometry_data, IMG ~ niveau_activite)
 anova(biometry_anova1) |> tabularise()
 ```
+
+Cette analyse de la variance (ANOVA) a été réalisée pour examiner l'effet du "niveau_activite" sur l'Indice de Masse Grasse (IMG). Les résultats montrent que le facteur "niveau_activite" a un effet statistiquement significatif sur l'IMG (Fobs.​=4.59, p = 0.0118). La valeur de p étant inférieure au seuil de 0.05, nous rejetons l'hypothèse nulle selon laquelle il n'y a pas de différence significative de l'IMG moyenne entre les différents niveaux d'activité. Cette analyse suggère que le niveau d'activité est associé à des différences significatives dans l'Indice de Masse Grasse au sein de la population étudiée. Bien que ce test indique qu'au moins un des groupes de niveau d'activité diffère significativement des autres en termes d'IMG. Ce test montre que le niveau d'activité physique influence significativement l'indice de masse grasse (IMG), soulignant ainsi le rôle protecteur d'une activité physique régulière contre l'accumulation de masse grasse.
 
 Test 4
 
@@ -228,13 +229,6 @@ biometry_data$fumeur_rec <- cut(biometry_data$fumeur,
   breaks = c(0, 1, 300),
   labels = c("Non fumeur", "Fumeur")) 
 
-chart(data = biometry_data, IMA ~ fumeur_rec %fill=% fumeur_rec) +
-  geom_boxplot() + 
-  labs(
-    title = "Distribution de l'IMA selon le statut tabagique",
-    x = "Statut tabagique",
-    y = "Indice de Masse Abdominale (IMA)"
-  )
 ```
 
 ```{r}
@@ -243,12 +237,6 @@ t.test(data = biometry_data, IMA ~ fumeur_rec,
 ```
 
 Les différentes analyses statistiques réalisées ont permis de mettre en évidence des facteurs significativement associés à des indicateurs de corpulence et de santé métabolique.
-
-Tout d'abord, l'ANOVA à deux facteurs a révélé que le genre ainsi que le nombre d'heures de sommeil ont un effet significatif sur la masse corporelle corrigée, sans interaction entre ces deux facteurs. Cela suggère que chacun de ces paramètres agit indépendamment sur la masse, mettant en lumière l'importance de prendre en compte aussi bien les déterminants biologiques que comportementaux dans l'analyse de l'obésité.
-
-L'ANOVA à un facteur a ensuite montré que le niveau d'activité physique influence significativement l'indice de masse grasse (IMG), soulignant ainsi le rôle protecteur d'une activité physique régulière contre l'accumulation de masse grasse.
-
-Le test de Student a mis en évidence une différence significative d'IMG selon la consommation de fast-food, confirmant que de mauvaises habitudes alimentaires peuvent contribuer à une augmentation de la masse grasse.
 
 Enfin, un test d'ANOVA a permis de constater une corrélation entre le nombre de cigarettes fumées par semaine et l'indice de masse adipeuse (IMA). Ce résultat met en lumière un lien entre tabagisme et accumulation de masse grasse viscérale, probablement lié à des effets métaboliques et comportementaux associés au tabac.
 
