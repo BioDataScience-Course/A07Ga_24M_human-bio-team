@@ -171,7 +171,7 @@ obesite_table <- biometry_data %>%
     ecart_type     =  fsd(masse_corr),
     n              = fn(masse_corr)
     )
-tabularise(cross_table)
+tabularise(obesite_table)
 ```
 
 La ligne épaisse à l'intérieur de chaque boîte représente la médiane de la masse pour chaque genre. Cette médiane est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu'il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande.
