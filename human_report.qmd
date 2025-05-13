@@ -87,7 +87,7 @@ chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
   scale_fill_viridis_d()
 ```
 
-Afin d'explorer l'influence du régime alimentaire sur l'obésité, nous avons comparé les distributions du tour de taille chez les individus omnivores, carnivores et végétariens. Le tour de taille étant un indicateur courant de la masse grasse abdominale, cette variable permet de visualiser une dimension concrète de l'état corporel lié à l\'alimentation. Le graphique montre que les omnivores présentent une distribution plus étendue et plus concentrée autour de valeurs élevées (80 à 100 cm), avec plusieurs cas dépassant même les 110 cm. En revanche, les carnivores et surtout les végétariens sont représentés par un nombre d'individus bien plus faible, ce qui limite l'interprétation statistique, mais on remarque que leurs tours de taille sont plutôt concentrés dans les valeurs plus basses. Cette tendance pourrait suggérer un lien entre un régime végétarien et un tour de taille plus réduit. Ces premiers résultats appuient l'idée que le régime alimentaire est un facteur clé à prendre en compte dans l'analyse des déterminants de l\'obésité.
+Afin d'explorer l'influence du régime alimentaire sur l'obésité, nous avons comparé les distributions du tour de taille chez les individus omnivores, carnivores et végétariens. Le tour de taille étant un indicateur courant de la masse grasse abdominale, cette variable permet de visualiser une dimension concrète de l'état corporel lié à l'alimentation. Le graphique montre que les omnivores présentent une distribution plus étendue et plus concentrée autour de valeurs élevées (80 à 100 cm), avec plusieurs cas dépassant même les 110 cm. En revanche, les carnivores et surtout les végétariens sont représentés par un nombre d'individus bien plus faible, ce qui limite l'interprétation statistique, mais on remarque que leurs tours de taille sont plutôt concentrés dans les valeurs plus basses. Cette tendance pourrait suggérer un lien entre un régime végétarien et un tour de taille plus réduit. Ces premiers résultats appuient l'idée que le régime alimentaire est un facteur clé à prendre en compte dans l'analyse des déterminants de l'obésité.
 
 ```{r}
 #Regroupage en tranche d'age 
@@ -107,7 +107,7 @@ chart(data = biometry_data, ~ fast_food %fill=% genre | age_rec) +
   y = "Effectifs")
 ```
 
-La figure ci-dessus représente la répartition du nombre de fast-food consommés par semaine selon la tranche d\'âge et le genre. On observe clairement que les jeunes adultes (17-29 ans) sont les plus grands consommateurs de fast-food, avec des effectifs non négligeables allant jusqu\'à 12 fast-foods par semaine. Cette consommation élevée est présente chez les deux sexes, bien que les femmes (en jaune) semblent légèrement plus représentées parmi les fortes consommatrices dans cette tranche d\'âge. Chez les individus de 30 à 49 ans, on note une baisse marquée de la consommation, qui devient plus modérée, voire occasionnelle. Cette tendance se poursuit avec les groupes plus âgés (50-69 ans, et plus de 70 ans), où la consommation devient quasi nulle pour une grande majorité des individus. Ce graphique met en évidence un lien probable entre la jeunesse et une plus forte consommation de fast-food, avec une influence possible du genre dans les comportements alimentaires. Ces observations soulignent l'importance d'intervenir précocement auprès des jeunes adultes dans le cadre de la prévention de l'obésité, notamment en sensibilisant aux effets d\'une alimentation déséquilibrée.
+La figure ci-dessus représente la répartition du nombre de fast-food consommés par semaine selon la tranche d'âge et le genre. On observe clairement que les jeunes adultes (17-29 ans) sont les plus grands consommateurs de fast-food, avec des effectifs non négligeables allant jusqu'à 12 fast-foods par semaine. Cette consommation élevée est présente chez les deux sexes, bien que les femmes (en jaune) semblent légèrement plus représentées parmi les fortes consommatrices dans cette tranche d'âge. Chez les individus de 30 à 49 ans, on note une baisse marquée de la consommation, qui devient plus modérée, voire occasionnelle. Cette tendance se poursuit avec les groupes plus âgés (50-69 ans, et plus de 70 ans), où la consommation devient quasi nulle pour une grande majorité des individus. Ce graphique met en évidence un lien probable entre la jeunesse et une plus forte consommation de fast-food, avec une influence possible du genre dans les comportements alimentaires. Ces observations soulignent l'importance d'intervenir précocement auprès des jeunes adultes dans le cadre de la prévention de l'obésité, notamment en sensibilisant aux effets d'une alimentation déséquilibrée.
 
 ```{r}
 library(dplyr)
@@ -123,7 +123,7 @@ biometry_data %>%
 
 ```
 
-Ce tableau présente les moyennes de masse, taille et âge selon le genre. On observe que les hommes (H) ont en moyenne une masse corporelle de 81,8 kg, une taille de 179 cm et un âge moyen de 31,2 ans, tandis que les femmes (F) ont une masse moyenne de 69,5 kg, une taille de 165 cm et un âge moyen de 35 ans. L\'échantillon comporte 65 hommes et 78 femmes. Ces différences montrent que les hommes de l\'échantillon sont globalement plus grands et plus lourds que les femmes, mais légèrement plus jeunes.
+Ce tableau présente les moyennes de masse, taille et âge selon le genre. On observe que les hommes (H) ont en moyenne une masse corporelle de 81,8 kg, une taille de 179 cm et un âge moyen de 31,2 ans, tandis que les femmes (F) ont une masse moyenne de 69,5 kg, une taille de 165 cm et un âge moyen de 35 ans. L'échantillon comporte 65 hommes et 78 femmes. Ces différences montrent que les hommes de l'échantillon sont globalement plus grands et plus lourds que les femmes, mais légèrement plus jeunes.
 
 ```{r}
 chart(data = biometry_data, masse_corr ~ genre %fill=% genre) +
@@ -256,8 +256,6 @@ Dans le cadre de cette étude, un test t de Student pour échantillons indépend
 # Discussion et conclusions
 
 <!--% Reprenez les résultats obtenus, discutez-les d'un point de vue biologique en 4 à 5 paragraphes et concluez votre travail. Vous pouvez les mettre également en relation avec vos recherches bibliographiques dans cette section. -->
-
-...Vos conclusions ici.
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
