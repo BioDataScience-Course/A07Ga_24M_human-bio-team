@@ -275,7 +275,7 @@ chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
 
 -   La variable Categorie_RTH présente une répartition déséquilibrée entre ses modalités. On constate une forte concentration d'individus ayant un rapport taille/hanche faible en particulier chez les hommes pour qui cette modalité constitue le mode
 
--   La distribution croisée des variables "genre " et "rapport taille/hanche" suggère un association statistique. Les différences de profils observés selon le sexe pourraient être vérifiées plus formellement à l'aide d'un test de chi carré
+-   La distribution croisée des variables "genre" et "rapport taille/hanche" suggère un association statistique. Les différences de profils observés selon le sexe pourraient être vérifiées plus formellement à l'aide d'un test de chi carré
 
 -   
 
@@ -411,7 +411,7 @@ test_chi2_1 <- chisq.test(table_ima_genre)
 tabularise(test_chi2_1)
 ```
 
-\<!\--% Interprétation statistique et biologique -\>
+<!--% Interprétation statistique et biologique -->
 
 Puisque la valeur p est bien inférieure au seuil de 0.05, on rejette l'hypothèse nulle. Cela signifie qu'il y a une association significative entre les catégories d'IMA et le genre dans cette population.
 
@@ -441,6 +441,12 @@ Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un ni
 test_chi2_2 <- chisq.test(table_img_activite)
 tabularise(test_chi2_2)
 ```
+
+<!--% Hypothèse nulle et alternative -->
+
+Hypothèse nulle (H₀) : Le niveau d'activité et l'indice de masse grasse sont indépendants
+
+Hypothèse alternative (H₁) : Le niveau d'activité et l'indice de masse grasse sont dépendants
 
 <!--% Interprétation statistique et biologique -->
 
@@ -770,7 +776,7 @@ chart$qqplot(anova2, lang = "fr")
 
 -   Le type de régime alimentaire influence potentiellement la distribution des graisses abdominales, et pourrait être un levier de prévention de l'obésité.
 
--   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à lacorpulence.
+-   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à la corpulence.
 
 -   ...
 
