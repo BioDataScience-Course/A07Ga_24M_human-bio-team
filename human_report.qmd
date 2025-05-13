@@ -221,6 +221,30 @@ Cette analyse de la variance (ANOVA) a été réalisée pour examiner l'effet du
 Test 4
 
 ```{r}
+biometry_data <- biometry_data %>%
+  smutate(
+  taille_m = taille / 100,   # Conversion de la taille de cm en m
+ IMA = (tour_hanche / (taille_m^1.5)) - 18  # Calcul de l'IMA
+  )
+
+biometry_data <- biometry_data %>%
+  smutate(
+    taille_m = taille / 100,  # Conversion de la taille de cm en m
+    IMA = (tour_hanche / (taille_m^1.5)) - 18,  # Calcul de l'IMA
+    categorie_IMA = case_when(
+      genre == "H" & IMA < 8  ~ "faible",
+      genre == "H" & IMA >= 8 & IMA < 20 ~ "normal",
+      genre == "H" & IMA >= 20 & IMA < 25 ~ "élevé",
+      genre == "H" & IMA >= 25 ~ "obésité",
+      genre == "F" & IMA < 21  ~ "faible",
+      genre == "F" & IMA >= 21 & IMA < 33 ~ "normal",
+      genre == "F" & IMA >= 33 & IMA < 39 ~ "élevé",
+      genre == "F" & IMA >= 39 ~ "obésité"
+    )
+  )
+```
+
+```{r}
 ## Recodage de biometry_data$fumeur en biometry_data$fumeur_rec
 biometry_data$fumeur_rec <- cut(biometry_data$fumeur,
   include.lowest = TRUE,
