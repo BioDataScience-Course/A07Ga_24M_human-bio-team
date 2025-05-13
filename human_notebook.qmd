@@ -422,21 +422,6 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 
-```{r}
-#Recodage de la variable activite_physique
-#biometry_data <- biometry_data %>%
-##  mutate(niveau_activite = cut(activite_physique,
-                               breaks = c(-Inf, 149, 300, Inf),
-                               labels = c("Faible", "Modérée", #"Élevée"),
-# ordered_result = TRUE)
-#table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite))
-#tabularise(table_img_activite)
-
-```
-
-
-{r} Recodage de la variable activite_physique biometry_data \<- biometry_data %\>% mutate(niveau_activite = cut(activite_physique, breaks = c(-Inf, 149, 300, Inf), labels = c("Faible", "Modérée", "Élevée"), ordered_result = TRUE) table_img_activite \<- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite)) tabularise(table_img_activite)
-
 
 Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible niveau d'activité physique: environ 60% d 'entre elles font peu d'effort physique. Cela pourrait indiquer qu'un manque d'activité physique pourrait être un facteur de risque pour le développement de l'obésité ou du moins que les deux éléments sont liés.
 
