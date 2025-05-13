@@ -102,7 +102,7 @@ chart(data = biometry_data, ~ tour_taille %fill=% alimentation|alimentation) +
 
 L'observation principale est que la distribution du tour de taille semble varier significativement entre les groupes alimentaires. Le groupe végétarien tend à présenter des tours de taille plus bas, ce qui pourrait suggérer une association entre un régime végétarien et une moindre adiposité abdominale.
 
-La distribution du tour de taille pour le groupe omnivore semble être **bimodale**, avec deux pics principaux un premier autour de 70 et un deuxième autour de 90. Cette distribution suggère qu'il pourrait y avoir deux sous-groupes distincts au sein de le catégorie"omnivore". Ces sous groupes pourrait être caractérisés par des facteurs non directement apparents dans ce graphique comme le genre, l'age ou les facteurs lié au mode de vie (l'activité physique).
+La distribution du tour de taille pour le groupe omnivore semble être bimodale , avec deux pics principaux un premier autour de 70 et un deuxième autour de 90. Cette distribution suggère qu'il pourrait y avoir deux sous-groupes distincts au sein de le catégorie"omnivore". Ces sous groupes pourrait être caractérisés par des facteurs non directement apparents dans ce graphique comme le genre, l'age ou les facteurs lié au mode de vie (l'activité physique).
 
 ```{r}
 ## Recodage de biometry_data$sommeil en biometry_data$sommeil_rec
@@ -174,7 +174,7 @@ cross_table <- biometry_data %>%
 tabularise(cross_table)
 ```
 
-La ligne épaisse à l'intérieur de chaque boîte représente la mediane de la masse pour chaque genre. Cette médiane est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu'il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande.
+La ligne épaisse à l'intérieur de chaque boîte représente la médiane de la masse pour chaque genre. Cette médiane est légèrement plus élevée chez les hommes que chez les femmes. Donc cette boîte à moustaches montre qu'il existe une légère différence dans la distribution de la masse entre les hommes et les femmes de cet échantillon, les hommes ayant tendance à avoir une masse médiane légèrement plus élevée et une dispersion légèrement plus grande.
 
 Le tableau obtenu reflète une différence biologique habituelle, les hommes ayant généralement une masse musculaire plus élevée que les femmes. L'écart type est pratiquement similaire entre les hommes et les femmes de même que le nombre d'individu analyse. Comme conclusion : les hommes ont une masse corporelle moyenne plus élevée que les femmes ce qui correspond a la tendance physiologique générale
 
@@ -275,9 +275,9 @@ chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
 
 -   La variable Categorie_RTH présente une répartition déséquilibrée entre ses modalités. On constate une forte concentration d'individus ayant un rapport taille/hanche faible en particulier chez les hommes pour qui cette modalité constitue le mode
 
--   La distribution croisée des variables "genre" et "rapport taille/hanche" suggère un association statistique. Les différences de profils observés selon le sexe pourraient être vérifiées plus formellement à l'aide d'un test de chi carré
+-   La distribution croisée des variables "genre" et "rapport taille/hanche" suggère un association statistique. Les différences de profils observés selon le sexe pourraient être vérifiées plus formellement à l'aide d'un test de Chi carré
 
--   
+-   La majorité des femmes de l'échantillon présentent un rapport taille/hanche élevé. Cette répartition pourrait traduire des différences de silhouette moyenne entre les sexes
 
 ### Indice 3
 
@@ -492,9 +492,9 @@ tabularise(test)
 
 <!-- Interprétation statistique et biologique -->
 
-Puisque la valeur de p est faible et inférieure au seuil alpha 5%. Nous rejetons H(0). Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t bilatéral, t = 3.4892, ddl = 52.776, valeur de p \<\<\< 0.05).
+Dans le but d'exporer un lien possible entre la consommation de fast food et l'img , nous avons effectué un test de student . Une différence de moyenne de 2 groupes a été émis ici comme hypothèse. Sur le plan statistique, puisque la valeur de p est faible et inférieure au seuil alpha 5%, nous rejetons H0. Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t bilatéral, t = 3.4892, ddl = 52.776, p value= 0.000986 \< 0.05).
 
-Les résultats montrent que les personnes qui consomment du fast-food plus fréquemment présentent en moyenne un indice de masse grasse plus faible que celles qui n'en consomment pas. Biologiquement, ce résultat peut s'expliquer par d'autres facteurs comme l'âge, le niveau d'activité physique, ou le métabolisme individuel, qui peuvent influencer la masse grasse indépendamment de l'alimentation.
+Sur le plan staistique, les résultats montrent que les personnes qui consomment des fast-food plus fréquemment présentent en moyenne un indice de masse grasse significativement plus élevé que ceux qui n' en consomment pas . Cette augmentation peut avoir des implications en santé : les fast-food pourraient contribuer à l\'augmentation du tissu adipeux, ce qui est un facteur de risque pour le développement de l'obésité
 
 ### Test t de Student 2
 
@@ -656,13 +656,13 @@ chart$qqplot(biometry_anova_2)
 
 <!--% Interprétation statistique et biologique -->
 
-Interprétation(Fiona)
+Interprétation (Fiona)
 
 Dans le but d'explorer un lien possible entre la répartition de la masse grasse et le statut pondéral, nous avons comparer le rapport tour de taille sur tour de hanche selon l'IMC. Pour cela, une analyse à un facteur a été utilisée, On a vérifier les conditions d'applications; tout d'abord à travers le test de Bartlett qui à montrer une homoscédasticité et le graphique quantile-quantile qui a montré une distribution normale des résidus.
 
 Nous observons dans le tableau de l'anova que la valeur p est très faible et inférieur au seuil alpha de 5% . Du point de vue statistique, nous rejetons H0 car la p value=4.59\*10E-6 \< 5% .Nous pouvons dire que le rapport tour de taille sur tour de hanche varie significativement en fonction des groupes d'IMC (ANOVA , F=10.1, ddl=3 et 139, valeur P= 4.59\*10E-6)
 
-Sur le plan biologique, cela nous indique qu'à mesure que le poids corporel augmente , la graisse s'accumule davantage autour de la taille plutôt que sur les hanches. . Ainsi ce résultat montre que la répartition de la masse grasse devient plus défavorable à la santé lorsque l'IMC augmente
+Sur le plan biologique, cela nous indique qu'à mesure que le poids corporel augmente , la graisse s'accumule davantage autour de la taille plutôt que sur les hanches. Ainsi ce résultat montre que la répartition de la masse grasse devient plus défavorable à la santé lorsque l'IMC augmente
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
@@ -777,8 +777,6 @@ chart$qqplot(anova2, lang = "fr")
 -   Le type de régime alimentaire influence potentiellement la distribution des graisses abdominales, et pourrait être un levier de prévention de l'obésité.
 
 -   Les hommes présentent en moyenne une taille et une masse corporelle plus élevées que les femmes dans l'échantillon étudié. Cette différence reflète des caractéristiques biologiques attendues et justifie de prendre en compte le genre dans les analyses comparatives, notamment pour les variables liées à la corpulence.
-
--   ...
 
 -   ...
 
