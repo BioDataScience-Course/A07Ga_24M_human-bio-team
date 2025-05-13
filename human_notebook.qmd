@@ -241,7 +241,7 @@ chart(data = biometry_data, IMA ~ genre %fill=% genre) +
 
 <!--% Description et formule ci-dessous. -->
 
-\\text{WHR} = \\frac{\\text{Tour de taille}}{\\text{Tour de hanche}}
+$$\[\text{RTH} = \frac{\text{Tour de taille (en cm)}}{\text{Tour de hanches (en cm)}}\]$$
 
 Le rapport tour de taille sur tour de hanches (RTH) est une mesure anthropométrique qui permet d'évaluer la distribution de la graisse corporelle. Son élévation témoigne d'une accumulation de tissus graisseux au niveau abdominal
 
