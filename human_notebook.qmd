@@ -190,6 +190,8 @@ Le tableau obtenu reflète une différence biologique habituelle, les hommes aya
 
 <!--% Description et formule ci-dessous. -->
 
+$${IMA} = \left( \frac{\text{tour_hanche}}{\text{taille}^{1.5}} \right) - 18$$
+
 L'**Indice de Masse Adipeuse (IMA)** est un indicateur permettant d'estimer le pourcentage de graisse corporelle en fonction du tour de hanche et de la taille. Contrairement à l'IMC, il ne nécessite pas le poids corporel et est parfois considéré comme plus représentatif de la masse grasse, notamment pour certaines populations.
 
 ```{r indice1}
@@ -779,7 +781,6 @@ chart$qqplot(anova2, lang = "fr")
 ```
 
 <!--% Interprétation statistique et biologique -->
-
 
 # Discussion et conclusions
 
