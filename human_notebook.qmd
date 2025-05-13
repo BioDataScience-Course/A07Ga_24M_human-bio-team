@@ -422,6 +422,12 @@ les résultats suggèrent que le genre influence la répartition de la graisse c
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r}
+#Recodage de la variable activite_physique
+biometry_data <- biometry_data %>%
+  mutate(niveau_activite = cut(activite_physique,
+                               breaks = c(-Inf, 149, 300, Inf),
+                               labels = c("Faible", "Modérée", "Élevée"),
+                               ordered_result = TRUE))
 table_img_activite <- table(biometry_data$IMG_Categorie, biometry_data$niveau_activite)
 tabularise(table_img_activite)
 
@@ -555,12 +561,6 @@ Sur le plan biologique, ces résultats suggèrent que, dans l'échantillon étud
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_1}
-biometry_data <- biometry_data %>%
-  mutate(niveau_activite = cut(activite_physique,
-                               breaks = c(-Inf, 149, 300, Inf),
-                               labels = c("Faible", "Modérée", "Élevée"),
-                               ordered_result = TRUE))
-
 biometry_data %>.%
   sgroup_by(., niveau_activite) %>.%
   ssummarise(.,
