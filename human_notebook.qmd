@@ -289,7 +289,7 @@ chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
 
 $\text{IMC} = \frac{\text{Poids (kg)}}{\left(\text{Taille (m)}\right)^2}$
 
-L'**Indice de Masse Corporelle (IMC)** est une mesure simple et largement utilisée pour évaluer la corpulence d'une personne. Il permet d'estimer le rapport entre le poids et la taille d'un individu, en fournissant une évaluation du risque lié à la santé, tel que le surpoids, l'obésité ou l'insuffisance pondérale \[\@nuttall2015bmi\].
+L'**Indice de Masse Corporelle (IMC)** est une mesure simple et largement utilisée pour évaluer la corpulence d'une personne. Il permet d'estimer le rapport entre le poids et la taille d'un individu, en fournissant une évaluation du risque lié à la santé, tel que le surpoids, l'obésité ou l'insuffisance pondérale \[ \@nuttall2015bmi \].
 
 ```{r indice3}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
