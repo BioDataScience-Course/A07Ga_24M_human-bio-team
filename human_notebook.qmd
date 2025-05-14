@@ -419,9 +419,15 @@ Puisque la valeur p est bien inférieure au seuil de 0.05, on rejette l'hypothè
 
 les résultats suggèrent que le genre influence la répartition de la graisse corporelle. Les hommes et les femmes ont des profils de distribution de la graisse corporelle différents, ce qui peut expliquer pourquoi la catégorie d'IMA varie de manière significative entre les deux sexes. Par exemple, les hommes peuvent avoir tendance à accumuler plus de graisse viscérale, associée à un IMA plus élevé, tandis que les femmes peuvent stocker davantage de graisse sous-cutanée, ce qui pourrait les amener à avoir un IMA plus faible.
 
-### Test de Chi^2^ **2**
+### Test de Chi^2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
+```{r}
+
+```
+
+
+
 
 Dans ce tableau, on remarque que plusieurs personnes obèses ont un faible niveau d'activité physique: environ 60% d 'entre elles font peu d'effort physique. Cela pourrait indiquer qu'un manque d'activité physique pourrait être un facteur de risque pour le développement de l'obésité ou du moins que les deux éléments sont liés.
 
@@ -432,13 +438,19 @@ Autre chose importante: L'activité modérée est assez peu fréquente dans tout
 Enfin on voit que plus de la moitie des personnes interrogées (52,4%) ont un niveau d'activité faible, cela pourrait suggérer une certaine fréquence de la sédentarité dans cet échantillon mais il faudrait davantage de données pour en tirer une conclusion solide
 
 <!--% Vérification des conditions d'application -->
+```{r}
+
 
 ```{r test_chi2_2}
 #test_chi2_2 <- chisq.test(table_img_activite)
 #tabularise(test_chi2_2)
+
 ```
 
-<!--% Hypothèse nulle et alternative -->
+
+
+
+<!--% Interprétation statistique et biologique -->
 
 Hypothèse nulle (H₀) : Le niveau d'activité et l'indice de masse grasse sont indépendants
 
@@ -452,6 +464,7 @@ Hypothèse alternative (H₁) : Le niveau d'activité et l'indice de masse grass
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
+
 ```{r plot_t_1}
 ## Recodage de biometry_data$fast_food en biometry_data$fast_food_rec
 biometry_data$fast_food_rec <- cut(biometry_data$fast_food,
@@ -463,6 +476,24 @@ biometry_data$fast_food_rec <- cut(biometry_data$fast_food,
 biometry_data %>.%
   sgroup_by(., fast_food_rec) %>.%
   ssummarise(., mean = mean(IMG, na.rm = T)) 
+
+```
+
+<!-- Hypothèse nulle et alternative -->
+
+H0 : mean \[0,1) - mean \[1,13\] = 0. La consommation de fast-food n'a pas d'effet significatif sur l'indice de masse grasse.
+
+H1 : mean \[0,1) - mean \[1,13\] != 0. La consommation de fast - food a un effet significatif sur l'indice de masse grasse.
+
+<!-- Vérification des conditions d'application -->
+
+```{r}
+#Vérification de la distribution
+biometry_data 
+biometry_data$imglog <- log(biometry_data$IMG)
+car::qqPlot(biometry_data[["imglog"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "Distrubution de l'IMG")
+>>>>>>> 4b464e37315361fa543caf72342f9ba6f98c4423
 ```
 
 ```{r test_t_1}
