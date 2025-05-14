@@ -287,6 +287,8 @@ chart(data = biometry_data, ~ Categorie_RTH %fill=% genre ) +
 
 <!--% Description et formule ci-dessous. -->
 
+$\text{IMC} = \frac{\text{Poids (kg)}}{\left(\text{Taille (m)}\right)^2}$
+
 L'**Indice de Masse Corporelle (IMC)** est une mesure simple et largement utilisée pour évaluer la corpulence d'une personne. Il permet d'estimer le rapport entre le poids et la taille d'un individu, en fournissant une évaluation du risque lié à la santé, tel que le surpoids, l'obésité ou l'insuffisance pondérale.
 
 ```{r indice3}
@@ -510,7 +512,7 @@ tabularise(test)
 
 <!-- Interprétation statistique et biologique -->
 
-Dans le but d\'explorer un lien possible entre la consommation de fast food et l'img , nous avons effectué un test de student . Une différence de moyenne de 2 groupes a été émis ici comme hypothèse. Sur le plan statistique, puisque la valeur de p est faible et inférieure au seuil alpha 5%, nous rejetons H0. Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t bilatéral, t = 3.4892, ddl = 52.776, p value= 0.000986 \< 0.05).
+Dans le but d'explorer un lien possible entre la consommation de fast food et l'img , nous avons effectué un test de student . Une différence de moyenne de 2 groupes a été émis ici comme hypothèse. Sur le plan statistique, puisque la valeur de p est faible et inférieure au seuil alpha 5%, nous rejetons H0. Nous pouvons dire que l'indice de masse grasse (IMG) diffère de manière significative en fonction de la consommation de fast-food (test t bilatéral, t = 3.4892, ddl = 52.776, p value= 0.000986 \< 0.05).
 
 Sur le plan staistique, les résultats montrent que les personnes qui consomment des fast-food plus fréquemment présentent en moyenne un indice de masse grasse significativement plus élevé que ceux qui n' en consomment pas . Cette augmentation peut avoir des implications en santé : les fast-food pourraient contribuer à l'augmentation du tissu adipeux, ce qui est un facteur de risque pour le développement de l'obésité
 
